@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>STELORA™ Fine Aromatic Rice — by Galaxynova Exports & Trading</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#030c12;
+  --deep:#061520;
+  --teal:#082030;
+  --teal2:#0a2a3a;
+  --g1:#00c97a;
+  --g2:#00e5a0;
+  --g3:#1affb2;
+  --glow:#00c97a30;
+  --glow2:#00c97a18;
+  --glow3:#00c97a08;
+  --star:#dff4ec;
+  --white:#ffffff;
+  --muted:rgba(223,244,236,0.55);
+  --subtle:rgba(223,244,236,0.2);
+  --border:rgba(0,201,122,0.2);
+  --border2:rgba(0,201,122,0.4);
+}
+
+html{scroll-behavior:smooth;}
+body{font-family:'Raleway',sans-serif;background:var(--ink);color:var(--star);overflow-x:hidden;}
+
+/* ── AURORA CANVAS BACKGROUND ── */
+.aurora-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+}
+.aurora-layer{
+  position:absolute;border-radius:50%;filter:blur(80px);opacity:0;
+  animation:auroraFloat 12s ease-in-out infinite;
+}
+.aurora-layer:nth-child(1){
+  width:70vw;height:50vh;top:-10vh;left:-10vw;
+  background:radial-gradient(ellipse,#00c97a25 0%,transparent 70%);
+  animation-delay:0s;animation-duration:14s;
+}
+.aurora-layer:nth-child(2){
+  width:60vw;height:60vh;top:10vh;right:-15vw;
+  background:radial-gradient(ellipse,#00e5a020 0%,transparent 70%);
+  animation-delay:3s;animation-duration:18s;
+}
+.aurora-layer:nth-child(3){
+  width:80vw;height:40vh;bottom:-5vh;left:10vw;
+  background:radial-gradient(ellipse,#1affb215 0%,transparent 70%);
+  animation-delay:6s;animation-duration:16s;
+}
+.aurora-layer:nth-child(4){
+  width:40vw;height:70vh;top:30vh;left:30vw;
+  background:radial-gradient(ellipse,#00c97a12 0%,transparent 70%);
+  animation-delay:9s;animation-duration:20s;
+}
+@keyframes auroraFloat{
+  0%{opacity:0;transform:translateY(0) scaleX(1);}
+  25%{opacity:1;}
+  50%{opacity:0.7;transform:translateY(-30px) scaleX(1.05);}
+  75%{opacity:1;}
+  100%{opacity:0;transform:translateY(0) scaleX(1);}
+}
+
+/* star particles */
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) var(--delay,0s) ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:0.1;}50%{opacity:0.8;}}
+
+/* page content sits above bg */
+.page{position:relative;z-index:1;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(3,12,18,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  height:70px;padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{display:flex;align-items:center;gap:14px;cursor:pointer;}
+.nav-star{
+  width:38px;height:38px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-star svg{width:28px;height:28px;fill:var(--g1);filter:drop-shadow(0 0 8px var(--g1));}
+.nav-brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.nav-brand-text .b1{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:700;color:var(--white);letter-spacing:3px;}
+.nav-brand-text .b2{font-size:0.58rem;font-weight:400;color:rgba(0,201,122,0.7);letter-spacing:2.5px;text-transform:uppercase;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  text-decoration:none;color:var(--muted);font-size:0.72rem;
+  font-weight:500;letter-spacing:2px;text-transform:uppercase;
+  transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--g2);}
+.nav-cta{
+  background:transparent;border:1px solid var(--g1);color:var(--g1);
+  padding:9px 22px;cursor:pointer;font-family:'Raleway',sans-serif;
+  font-size:0.72rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.nav-cta::before{content:'';position:absolute;inset:0;background:var(--g1);transform:translateX(-101%);transition:transform 0.3s;}
+.nav-cta:hover::before{transform:translateX(0);}
+.nav-cta span{position:relative;z-index:1;}
+.nav-cta:hover span{color:var(--ink);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 5% 80px;position:relative;overflow:hidden;
+}
+.hero-aurora{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 30%,rgba(0,201,122,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 80% at 80% 60%,rgba(0,229,160,0.08) 0%,transparent 50%),
+    linear-gradient(180deg,var(--ink) 0%,var(--deep) 50%,var(--ink) 100%);
+}
+.hero-aurora-sweep{
+  position:absolute;top:0;right:0;width:55%;height:100%;
+  background:
+    radial-gradient(ellipse 100% 70% at 80% 20%,rgba(0,201,122,0.18) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 90% at 95% 50%,rgba(26,255,178,0.08) 0%,transparent 60%);
+  animation:sweepPulse 8s ease-in-out infinite;
+}
+@keyframes sweepPulse{
+  0%,100%{opacity:0.7;transform:scaleY(1);}
+  50%{opacity:1;transform:scaleY(1.05);}
+}
+.hero-grid-lines{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,201,122,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,201,122,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-content{position:relative;z-index:2;max-width:620px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--border2);padding:6px 18px;
+  margin-bottom:28px;
+  font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--g2);
+}
+.hero-eyebrow::before{content:'★';font-size:10px;}
+.hero-eyebrow::after{content:'★';font-size:10px;}
+.hero-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(3rem,7vw,5.5rem);
+  font-weight:900;line-height:0.95;
+  letter-spacing:6px;
+  margin-bottom:12px;
+  color:var(--white);
+  text-shadow:0 0 60px rgba(0,201,122,0.3);
+}
+.hero-subtitle{
+  font-family:'Cinzel',serif;
+  font-size:clamp(0.85rem,1.5vw,1.05rem);
+  font-weight:400;letter-spacing:5px;
+  color:var(--g1);margin-bottom:28px;
+  text-transform:uppercase;
+}
+.hero-divider{
+  width:80px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--g1),transparent);
+  margin:24px 0;
+}
+.hero-desc{
+  font-size:0.95rem;font-weight:300;line-height:1.9;
+  color:var(--muted);margin-bottom:40px;max-width:500px;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-aurora{
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  color:var(--ink);padding:13px 32px;border:none;cursor:pointer;
+  font-family:'Raleway',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  transition:all 0.3s;position:relative;overflow:hidden;
+  text-decoration:none;display:inline-block;
+  box-shadow:0 0 30px rgba(0,201,122,0.3);
+}
+.btn-aurora:hover{box-shadow:0 0 50px rgba(0,201,122,0.6);transform:translateY(-2px);}
+.btn-ghost{
+  border:1px solid var(--border2);color:var(--g1);
+  padding:13px 32px;cursor:pointer;font-family:'Raleway',sans-serif;
+  font-size:0.75rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  transition:all 0.3s;background:transparent;
+  text-decoration:none;display:inline-block;
+}
+.btn-ghost:hover{background:var(--glow);border-color:var(--g2);box-shadow:0 0 20px rgba(0,201,122,0.2);}
+
+/* hero right — product mockup */
+.hero-visual{
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  z-index:2;
+}
+.hero-pack{
+  width:280px;
+  filter:drop-shadow(0 0 60px rgba(0,201,122,0.35)) drop-shadow(0 30px 60px rgba(0,0,0,0.6));
+  animation:floatPack 6s ease-in-out infinite;
+}
+@keyframes floatPack{
+  0%,100%{transform:translateY(0) rotate(-1deg);}
+  50%{transform:translateY(-18px) rotate(1deg);}
+}
+.hero-glow-ring{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,201,122,0.15) 0%,transparent 70%);
+  animation:ringPulse 4s ease-in-out infinite;
+}
+@keyframes ringPulse{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.1);}}
+
+/* markets pill row */
+.hero-markets{
+  display:flex;gap:10px;margin-top:32px;flex-wrap:wrap;
+}
+.market-pill{
+  display:flex;align-items:center;gap:6px;
+  border:1px solid rgba(0,201,122,0.2);
+  padding:5px 14px;font-size:0.68rem;letter-spacing:1.5px;
+  color:rgba(223,244,236,0.6);
+}
+
+/* ── TRUST BAR ── */
+.trust-bar{
+  position:relative;z-index:1;
+  background:rgba(6,21,32,0.9);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:16px 5%;
+  display:flex;justify-content:center;gap:40px;flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.67rem;letter-spacing:1.5px;text-transform:uppercase;
+  color:rgba(223,244,236,0.38);
+}
+.trust-item strong{color:var(--g1);}
+
+/* ── SECTIONS ── */
+section{position:relative;z-index:1;padding:90px 5%;}
+.sec-label{
+  font-size:0.62rem;letter-spacing:4px;text-transform:uppercase;
+  color:var(--g1);margin-bottom:12px;display:flex;align-items:center;gap:10px;
+}
+.sec-label::before{content:'★';font-size:9px;}
+.sec-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:700;letter-spacing:3px;
+  color:var(--white);margin-bottom:18px;line-height:1.15;
+}
+.sec-title em{color:var(--g1);font-style:italic;font-family:'Cinzel',serif;}
+.sec-line{
+  width:60px;height:1px;
+  background:linear-gradient(90deg,var(--g1),transparent);
+  margin:20px 0;
+}
+.sec-sub{font-size:0.9rem;font-weight:300;color:var(--muted);line-height:1.9;max-width:520px;}
+
+/* ── BRAND STORY ── */
+.brand-section{background:var(--ink);}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px;}
+.brand-img-wrap{position:relative;}
+.brand-img{
+  width:100%;aspect-ratio:3/4;
+  background:url('https://images.unsplash.com/photo-1586201375761-83865001e31c?w=800&q=80') center/cover;
+  border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.brand-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,201,122,0.08),rgba(3,12,18,0.4));
+}
+.brand-img-frame{
+  position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;
+  border:1px solid rgba(0,201,122,0.12);pointer-events:none;
+}
+.brand-badge{
+  position:absolute;bottom:-24px;right:-24px;
+  width:110px;height:110px;
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--ink);
+}
+.brand-badge .bb-icon{font-size:1.6rem;line-height:1;}
+.brand-badge .bb-text{font-size:0.55rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-align:center;margin-top:4px;}
+.brand-info{padding-left:12px;}
+.brand-text{font-size:0.93rem;font-weight:300;line-height:1.95;color:var(--muted);margin-bottom:16px;}
+.brand-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.brand-tag{
+  border:1px solid var(--border);padding:7px 16px;
+  font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--g1);
+}
+.director-block{
+  margin-top:30px;padding:22px 24px;
+  background:rgba(0,201,122,0.05);
+  border-left:2px solid var(--g1);
+}
+.director-block h4{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--star);letter-spacing:1px;margin-bottom:4px;}
+.director-block p{font-size:0.72rem;color:rgba(0,201,122,0.6);letter-spacing:1.5px;text-transform:uppercase;}
+
+/* ── PRODUCTS ── */
+.products-section{background:linear-gradient(180deg,var(--ink) 0%,var(--deep) 100%);}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;}
+.prod-card{position:relative;overflow:hidden;aspect-ratio:2/3;cursor:default;}
+.prod-card-bg{
+  position:absolute;inset:0;background-size:cover;background-position:center;
+  transition:transform 0.7s ease;
+}
+.prod-card:hover .prod-card-bg{transform:scale(1.06);}
+.prod-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(3,12,18,0.97) 0%,rgba(3,12,18,0.2) 55%);
+}
+.prod-card-aurora{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(0,201,122,0.12) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.5s;
+}
+.prod-card:hover .prod-card-aurora{opacity:1;}
+.prod-card-content{
+  position:absolute;bottom:0;left:0;right:0;padding:28px 24px;
+}
+.prod-tag{
+  display:inline-block;
+  border:1px solid var(--g1);color:var(--g1);
+  font-size:0.58rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;margin-bottom:10px;
+  background:rgba(0,201,122,0.08);
+}
+.prod-card h3{
+  font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;
+  letter-spacing:2px;color:var(--white);margin-bottom:10px;
+}
+.prod-card p{font-size:0.78rem;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.prod-specs{list-style:none;}
+.prod-specs li{
+  display:flex;justify-content:space-between;font-size:0.7rem;
+  color:rgba(223,244,236,0.38);padding:4px 0;
+  border-top:1px solid rgba(0,201,122,0.1);
+}
+.prod-specs li span{color:var(--g1);}
+
+/* featured block */
+.featured-block{
+  margin-top:2px;
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--border);
+}
+.featured-left{
+  padding:52px 48px;
+  background:linear-gradient(135deg,rgba(0,201,122,0.08) 0%,rgba(3,12,18,0.95) 100%);
+  position:relative;overflow:hidden;
+}
+.featured-left::before{
+  content:'STELORA';
+  position:absolute;right:-20px;top:50%;transform:translateY(-50%) rotate(90deg);
+  font-family:'Cinzel',serif;font-size:5rem;font-weight:900;letter-spacing:10px;
+  color:rgba(0,201,122,0.04);white-space:nowrap;
+}
+.feat-star{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--g1);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
+.feat-star::before{content:'★';}
+.featured-left h3{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;letter-spacing:3px;color:var(--white);margin-bottom:14px;}
+.featured-left p{font-size:0.88rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:28px;}
+.feat-specs{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.feat-spec{padding:14px 16px;border:1px solid var(--border);background:rgba(0,201,122,0.04);}
+.feat-spec-label{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(0,201,122,0.5);margin-bottom:5px;}
+.feat-spec-val{font-size:0.9rem;font-weight:600;color:var(--g2);letter-spacing:1px;}
+.featured-right{
+  background:
+    linear-gradient(135deg,rgba(0,201,122,0.06),rgba(3,12,18,0.8)),
+    url('https://images.unsplash.com/photo-1536304993881-ff86e0c9b2d3?w=700&q=80') center/cover;
+  min-height:400px;
+  position:relative;
+}
+.featured-right::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 70% at 50% 30%,rgba(0,201,122,0.15) 0%,transparent 60%);
+}
+
+/* specs & packaging */
+.spec-pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:2px;}
+.spec-box{padding:36px;background:rgba(6,21,32,0.9);border:1px solid var(--border);}
+.spec-box h4{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:2px;color:var(--g1);margin-bottom:20px;}
+.spec-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,201,122,0.08);font-size:0.78rem;}
+.spec-row .sk{color:rgba(223,244,236,0.45);}
+.spec-row .sv{color:var(--g2);font-weight:500;}
+.pkg-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,201,122,0.08);}
+.pkg-item::before{content:'◆';color:var(--g1);font-size:8px;margin-top:4px;flex-shrink:0;}
+.pkg-item span{font-size:0.78rem;color:rgba(223,244,236,0.55);}
+
+/* ── MARKETS ── */
+.markets-section{background:rgba(6,21,32,0.95);}
+.markets-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--border);}
+.mkt-card{
+  padding:40px 32px;background:var(--ink);
+  position:relative;overflow:hidden;transition:background 0.4s;
+}
+.mkt-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--g1),transparent);
+  transform:scaleX(0);transition:transform 0.4s;
+}
+.mkt-card:hover::before{transform:scaleX(1);}
+.mkt-card:hover{background:rgba(0,201,122,0.04);}
+.mkt-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(0,201,122,0.06) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.4s;
+}
+.mkt-card:hover::after{opacity:1;}
+.mkt-flag{font-size:2.8rem;margin-bottom:18px;display:block;}
+.mkt-name{font-family:'Cinzel',serif;font-size:1.4rem;letter-spacing:2px;color:var(--white);margin-bottom:12px;}
+.mkt-desc{font-size:0.8rem;color:var(--muted);line-height:1.8;margin-bottom:20px;}
+.mkt-meta{border-top:1px solid rgba(0,201,122,0.12);padding-top:16px;}
+.mkt-meta-row{font-size:0.72rem;color:rgba(223,244,236,0.38);padding:3px 0;}
+.mkt-meta-row strong{color:var(--g1);}
+
+/* ── WHY STELORA ── */
+.why-section{background:var(--ink);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;margin-top:64px;}
+.why-list{display:flex;flex-direction:column;gap:0;}
+.why-item{
+  display:flex;gap:20px;padding:22px 24px;
+  border-left:1px solid rgba(0,201,122,0.15);
+  transition:all 0.3s;position:relative;
+}
+.why-item::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:var(--g1);transform:scaleY(0);transition:transform 0.3s;
+}
+.why-item:hover::after{transform:scaleY(1);}
+.why-item:hover{background:rgba(0,201,122,0.04);}
+.why-icon{
+  width:44px;height:44px;flex-shrink:0;
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;background:var(--glow);
+  transition:all 0.3s;
+}
+.why-item:hover .why-icon{background:rgba(0,201,122,0.15);box-shadow:0 0 20px rgba(0,201,122,0.2);}
+.why-item h4{font-size:0.9rem;font-weight:600;color:var(--star);margin-bottom:6px;letter-spacing:0.5px;}
+.why-item p{font-size:0.79rem;color:rgba(223,244,236,0.5);line-height:1.7;}
+.why-visual{position:sticky;top:88px;}
+.why-img{
+  width:100%;aspect-ratio:3/4;
+  background:linear-gradient(135deg,rgba(0,201,122,0.08),rgba(3,12,18,0.6)),
+    url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80') center/cover;
+  border:1px solid var(--border);
+  position:relative;
+}
+.why-img::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,201,122,0.18) 0%,transparent 55%);
+}
+.why-badge{
+  position:absolute;top:-16px;right:-16px;
+  width:130px;height:130px;
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--ink);
+  box-shadow:0 0 40px rgba(0,201,122,0.4);
+}
+.why-badge .wb-num{font-family:'Cinzel',serif;font-size:2rem;font-weight:900;line-height:1;}
+.why-badge .wb-txt{font-size:0.52rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-align:center;}
+
+/* ── CERTIFICATIONS ── */
+.certs-section{background:linear-gradient(135deg,var(--deep),var(--ink));}
+.certs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:48px;background:var(--border);}
+.cert-card{
+  padding:30px 20px;background:var(--ink);text-align:center;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.cert-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,201,122,0.08) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.cert-card:hover::before{opacity:1;}
+.cert-card:hover{background:rgba(0,201,122,0.04);}
+.cert-icon{font-size:2rem;margin-bottom:12px;display:block;}
+.cert-title{font-family:'Cinzel',serif;font-size:0.75rem;letter-spacing:2px;color:var(--g1);margin-bottom:6px;}
+.cert-sub{font-size:0.68rem;color:rgba(223,244,236,0.35);line-height:1.6;margin-bottom:8px;}
+.cert-id{font-size:0.6rem;color:rgba(0,201,122,0.4);font-family:monospace;letter-spacing:0.5px;}
+
+/* ── CONTACT ── */
+.contact-section{background:var(--ink);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:60px;}
+.contact-info h3{
+  font-family:'Cinzel',serif;font-size:1.6rem;letter-spacing:2px;
+  color:var(--white);margin-bottom:28px;
+}
+.contact-detail{display:flex;gap:14px;margin-bottom:24px;align-items:flex-start;}
+.c-icon{
+  width:40px;height:40px;flex-shrink:0;
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  background:var(--glow);
+}
+.c-label{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--g1);margin-bottom:4px;}
+.c-val{font-size:0.86rem;color:rgba(223,244,236,0.65);line-height:1.7;}
+.c-val a{color:inherit;text-decoration:none;}
+.c-val a:hover{color:var(--g2);}
+.contact-note{
+  margin-top:28px;padding:20px 22px;
+  border:1px solid var(--border);background:var(--glow3);
+}
+.contact-note p{font-size:0.75rem;color:rgba(223,244,236,0.45);line-height:1.8;}
+.contact-note strong{color:var(--g2);}
+
+/* form */
+.contact-form{
+  background:rgba(6,21,32,0.8);
+  border:1px solid var(--border);
+  padding:40px;
+  position:relative;overflow:hidden;
+}
+.contact-form::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--g1),var(--g2),transparent);
+}
+.form-title{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:2px;color:var(--g1);margin-bottom:26px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:rgba(0,201,122,0.6);margin-bottom:7px;}
+.fg input,.fg select,.fg textarea{
+  width:100%;background:rgba(0,201,122,0.04);
+  border:1px solid rgba(0,201,122,0.18);color:var(--star);
+  padding:11px 14px;font-family:'Raleway',sans-serif;font-size:0.84rem;
+  outline:none;transition:border-color 0.3s,background 0.3s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--g1);background:rgba(0,201,122,0.08);
+}
+.fg select option{background:var(--deep);}
+.fg textarea{resize:vertical;min-height:92px;}
+.btn-submit{
+  width:100%;
+  background:linear-gradient(135deg,var(--g1),var(--g2));
+  color:var(--ink);padding:14px;border:none;cursor:pointer;
+  font-family:'Raleway',sans-serif;font-size:0.78rem;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;margin-top:8px;
+  transition:all 0.3s;box-shadow:0 0 24px rgba(0,201,122,0.25);
+}
+.btn-submit:hover{box-shadow:0 0 40px rgba(0,201,122,0.5);transform:translateY(-1px);}
+.success-msg{
+  background:rgba(0,201,122,0.12);border:1px solid rgba(0,201,122,0.4);
+  padding:12px 16px;font-size:0.8rem;color:var(--g2);margin-bottom:14px;
+  display:none;
+}
+.success-msg.show{display:block;}
+
+/* ── FOOTER ── */
+.flag-bar{height:3px;background:linear-gradient(90deg,#FF9933 0%,#FF9933 33.33%,#fff 33.33%,#fff 66.66%,#138808 66.66%);}
+footer{
+  background:#020810;
+  border-top:1px solid var(--border);
+  padding:56px 5% 24px;
+  position:relative;z-index:1;
+}
+footer::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(0,201,122,0.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;position:relative;}
+.footer-brand-name{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:900;letter-spacing:5px;color:var(--white);text-shadow:0 0 30px rgba(0,201,122,0.4);margin-bottom:4px;}
+.footer-brand-sub{font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:rgba(0,201,122,0.5);margin-bottom:16px;}
+.footer-brand-by{font-size:0.72rem;color:rgba(223,244,236,0.35);line-height:1.7;margin-bottom:18px;}
+.footer-col-title{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--g1);margin-bottom:16px;}
+.footer-col a,.footer-col span{
+  display:block;font-size:0.78rem;color:rgba(223,244,236,0.35);
+  text-decoration:none;margin-bottom:9px;cursor:pointer;
+  transition:color 0.3s;
+}
+.footer-col a:hover,.footer-col span:hover{color:var(--g2);}
+.footer-col p{font-size:0.78rem;color:rgba(223,244,236,0.35);line-height:1.9;}
+.footer-bottom{
+  border-top:1px solid rgba(0,201,122,0.08);padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;position:relative;
+}
+.footer-bottom p{font-size:0.66rem;color:rgba(223,244,236,0.2);letter-spacing:0.5px;}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.anim{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.anim.visible{opacity:1;transform:translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-links{display:none;}
+  .hero-visual{display:none;}
+  .brand-grid,.why-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
+  .products-grid,.markets-grid{grid-template-columns:1fr;}
+  .certs-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
+  .featured-block,.spec-pkg-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .why-img{display:none;}
+}
+@media(max-width:520px){
+  .certs-grid,.footer-grid{grid-template-columns:1fr;}
+  .trust-bar{gap:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Aurora animated background -->
+<div class="aurora-bg">
+  <div class="aurora-layer"></div>
+  <div class="aurora-layer"></div>
+  <div class="aurora-layer"></div>
+  <div class="aurora-layer"></div>
+</div>
+
+<!-- Star field -->
+<div class="stars" id="stars"></div>
+
+<div class="page">
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-brand" onclick="scrollTo('hero')">
+    <div class="nav-star">
+      <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+    </div>
+    <div class="nav-brand-text">
+      <span class="b1">STELORA</span>
+      <span class="b2">Fine Aromatic Rice</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#markets">Markets</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#certs">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+    <span>Get Quote</span>
+  </button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-aurora"></div>
+  <div class="hero-aurora-sweep"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Specialty Rice From Bengal, India</div>
+    <div class="hero-title">STELORA</div>
+    <div class="hero-subtitle">Fine Aromatic Rice</div>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      Where the Northern Lights meet Bengal's ancient fields — STELORA is the premium rice brand of Galaxynova Exports & Trading, bringing GI-certified Tulai Pinji and other heritage aromatic rices to the most discerning tables across Europe, the UK, and the UAE.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-aurora">Discover Our Rice</a>
+      <a href="#contact" class="btn-ghost">Request a Sample</a>
+    </div>
+    <div class="hero-markets">
+      <div class="market-pill">🇮🇳 Bengal Origin</div>
+      <div class="market-pill">🇪🇺 Europe</div>
+      <div class="market-pill">🇬🇧 United Kingdom</div>
+      <div class="market-pill">🇦🇪 UAE</div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-glow-ring"></div>
+    <img class="hero-pack"
+      src="/mnt/user-data/uploads/WhatsApp_Image_2026-03-10_at_1_29_00_PM.jpeg"
+      alt="STELORA Fine Aromatic Rice 1kg"
+      onerror="this.style.display='none'"
+    />
+    <!-- Fallback visual if image doesn't render in browser -->
+    <div id="pack-fallback" style="display:none;width:260px;height:380px;background:linear-gradient(180deg,#0a2a35,#04090f);border:1px solid rgba(0,201,122,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#00c97a" style="filter:drop-shadow(0 0 12px #00c97a)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <div style="font-family:'Cinzel',serif;font-size:1.6rem;letter-spacing:6px;color:#fff;text-shadow:0 0 20px rgba(0,201,122,0.5)">STELORA</div>
+      <div style="font-size:0.6rem;letter-spacing:3px;color:#00c97a;text-transform:uppercase">Fine Aromatic Rice</div>
+      <div style="font-size:0.55rem;letter-spacing:2px;color:rgba(223,244,236,0.4);text-transform:uppercase">Specialty Rice from Bengal, India</div>
+      <div style="font-size:0.65rem;color:rgba(0,201,122,0.6);margin-top:8px">1 kg (2.2 lb)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-item">🏛️ &nbsp;IEC <strong>AAMCG8275A</strong></div>
+  <div class="trust-item">📋 &nbsp;GSTIN <strong>19AAMCG8275A1ZC</strong></div>
+  <div class="trust-item">⚖️ &nbsp;CIN <strong>U46309WR2026OPC292400</strong></div>
+  <div class="trust-item">🏷️ &nbsp;TM <strong>STELORA™ Class 30</strong></div>
+  <div class="trust-item">🏭 &nbsp;MSME <strong>UDYAM-WB-18-0180640</strong></div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="brand-section" id="about">
+  <div class="anim">
+    <div class="sec-label">The Brand</div>
+    <h2 class="sec-title">Where Celestial Meets <em>Heritage</em></h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="brand-grid">
+    <div class="brand-img-wrap anim">
+      <div class="brand-img"></div>
+      <div class="brand-img-frame"></div>
+      <div class="brand-badge">
+        <div class="bb-icon">🌾</div>
+        <div class="bb-text">GI<br/>Certified</div>
+      </div>
+    </div>
+    <div class="brand-info anim">
+      <p class="brand-text">
+        <strong style="color:var(--star)">STELORA™</strong> is the premium rice brand of <strong style="color:var(--g1)">Galaxynova Exports & Trading (OPC) Private Limited</strong>, incorporated in West Bengal, India. Just as the Northern Lights illuminate the sky with celestial energy, STELORA carries the luminous essence of Bengal's finest rice to the world.
+      </p>
+      <p class="brand-text">
+        We specialise in the export of GI-certified non-basmati rice — foremost among them <strong style="color:var(--star)">Tulai Pinji</strong>, a rare, fragrant, short-grain rice with Geographical Indication status from the Government of India. Sourced directly from farmers in South 24 Parganas and the rice belts of West Bengal, each grain carries the provenance of centuries of cultivation.
+      </p>
+      <p class="brand-text">
+        STELORA is Non-GMO, HACCP-compliant, free from preservatives, and packed to the highest export standards — ready for the most demanding international markets in Europe, the UK, and the UAE.
+      </p>
+      <div class="brand-tags">
+        <span class="brand-tag">Non-GMO</span>
+        <span class="brand-tag">HACCP Certified</span>
+        <span class="brand-tag">No Preservatives</span>
+        <span class="brand-tag">GI Protected</span>
+        <span class="brand-tag">Export Grade</span>
+      </div>
+      <div class="director-block">
+        <h4>Ms. Stela Das</h4>
+        <p>Founder & Director · DIN 11568080 · Galaxynova Exports & Trading (OPC) Pvt. Ltd.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section class="products-section" id="products">
+  <div class="anim">
+    <div class="sec-label">Our Products</div>
+    <h2 class="sec-title">The <em>STELORA</em> Collection</h2>
+    <div class="sec-line"></div>
+    <p class="sec-sub">Every variety in the STELORA range is selected for aroma, grain integrity, and authentic regional provenance — export-certified and beautifully packaged.</p>
+  </div>
+
+  <div class="products-grid" style="margin-top:52px;">
+    <div class="prod-card anim">
+      <div class="prod-card-bg" style="background-image:url('https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80')"></div>
+      <div class="prod-card-overlay"></div>
+      <div class="prod-card-aurora"></div>
+      <div class="prod-card-content">
+        <span class="prod-tag">★ GI Tagged · Star</span>
+        <h3>Tulai Pinji</h3>
+        <p>The crown jewel of Bengal rice. A rare short-grain, intensely fragrant variety with Geographical Indication certification from the Government of India.</p>
+        <ul class="prod-specs">
+          <li>Grain Type <span>Short, Aromatic</span></li>
+          <li>GI Status <span>Certified</span></li>
+          <li>Origin <span>West Bengal</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="prod-card anim">
+      <div class="prod-card-bg" style="background-image:url('https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=600&q=80')"></div>
+      <div class="prod-card-overlay"></div>
+      <div class="prod-card-aurora"></div>
+      <div class="prod-card-content">
+        <span class="prod-tag">Specialty Rice</span>
+        <h3>Gobindobhog & Heritage Rices</h3>
+        <p>Premium aromatic varieties including Gobindobhog and other GI-tagged Bengal rices, beloved in gourmet and diaspora markets worldwide.</p>
+        <ul class="prod-specs">
+          <li>Varieties <span>Multiple</span></li>
+          <li>Aroma <span>Distinctly Fragrant</span></li>
+          <li>Grade <span>Export Quality</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="prod-card anim">
+      <div class="prod-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518977822534-7049a61ee0c2?w=600&q=80')"></div>
+      <div class="prod-card-overlay"></div>
+      <div class="prod-card-aurora"></div>
+      <div class="prod-card-content">
+        <span class="prod-tag">Non-Basmati</span>
+        <h3>Non-Basmati Export Rice</h3>
+        <p>Export-quality non-basmati rice sourced from trusted mills across India, meeting phytosanitary and international buyer specifications.</p>
+        <ul class="prod-specs">
+          <li>Moisture <span>12–14%</span></li>
+          <li>Broken <span>Per Buyer Spec</span></li>
+          <li>Process <span>Sortex Cleaned</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED: TULAI PINJI -->
+  <div class="featured-block anim">
+    <div class="featured-left">
+      <div class="feat-star">Spotlight — Flagship Product</div>
+      <h3>Tulai Pinji</h3>
+      <p>Grown in the alluvial soil of West Bengal, Tulai Pinji is a short-grain, intensely aromatic rice awarded Geographical Indication protection by the Government of India. Its distinctive fragrance, silky texture, and rare provenance make it the centrepiece of the STELORA collection — prized by fine dining chefs, specialty food retailers, and connoisseurs across Europe and the Middle East.</p>
+      <div class="feat-specs">
+        <div class="feat-spec"><div class="feat-spec-label">Grain Length</div><div class="feat-spec-val">Short (~4mm)</div></div>
+        <div class="feat-spec"><div class="feat-spec-label">Aroma</div><div class="feat-spec-val">Intensely Fragrant</div></div>
+        <div class="feat-spec"><div class="feat-spec-label">GI Protection</div><div class="feat-spec-val">Govt. of India</div></div>
+        <div class="feat-spec"><div class="feat-spec-label">Best For</div><div class="feat-spec-val">Fine Dining, Retail</div></div>
+      </div>
+    </div>
+    <div class="featured-right"></div>
+  </div>
+
+  <!-- SPECS + PACKAGING -->
+  <div class="spec-pkg-grid anim">
+    <div class="spec-box">
+      <h4>Export Specifications</h4>
+      <div class="spec-row"><span class="sk">Moisture Content</span><span class="sv">12–14%</span></div>
+      <div class="spec-row"><span class="sk">Broken %</span><span class="sv">As per buyer spec</span></div>
+      <div class="spec-row"><span class="sk">Processing</span><span class="sv">Sortex Cleaned</span></div>
+      <div class="spec-row"><span class="sk">HS Codes</span><span class="sv">100630, 10063091</span></div>
+      <div class="spec-row"><span class="sk">Pre-shipment</span><span class="sv">Fumigation Certificate</span></div>
+      <div class="spec-row"><span class="sk">Documents</span><span class="sv">Phyto + Certificate of Origin</span></div>
+      <div class="spec-row"><span class="sk">Non-GMO</span><span class="sv">Yes — Certified</span></div>
+      <div class="spec-row"><span class="sk">HACCP</span><span class="sv">Compliant</span></div>
+    </div>
+    <div class="spec-box">
+      <h4>Packaging Options</h4>
+      <div class="pkg-item"><span>1 kg premium retail pouch (STELORA branded)</span></div>
+      <div class="pkg-item"><span>5 kg / 10 kg / 20 kg / 25 kg / 50 kg bags</span></div>
+      <div class="pkg-item"><span>PP bags or laminated export-grade bags</span></div>
+      <div class="pkg-item"><span>Private label packaging for importers & distributors</span></div>
+      <div class="pkg-item"><span>Bulk container shipment (FCL / LCL)</span></div>
+      <div class="pkg-item"><span>Custom retail branding available</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MARKETS ── -->
+<section class="markets-section" id="markets">
+  <div class="anim">
+    <div class="sec-label">Export Destinations</div>
+    <h2 class="sec-title">Our <em>Global</em> Reach</h2>
+    <div class="sec-line"></div>
+    <p class="sec-sub">STELORA by Galaxynova Exports reaches three major international markets with full regulatory compliance and documentation support.</p>
+  </div>
+  <div class="markets-grid">
+    <div class="mkt-card anim">
+      <span class="mkt-flag">🇬🇧</span>
+      <div class="mkt-name">United Kingdom</div>
+      <p class="mkt-desc">FSA compliant documentation, HMRC import clearance support. Serving Indian diaspora supermarkets, Asian grocery chains, and fine food retailers across England, Scotland and Wales.</p>
+      <div class="mkt-meta">
+        <div class="mkt-meta-row"><strong>Regulations:</strong> UK FSA, HMRC, GFSI</div>
+        <div class="mkt-meta-row"><strong>Target Buyers:</strong> Asian food importers, supermarkets, HORECA</div>
+        <div class="mkt-meta-row"><strong>Incoterms:</strong> CIF / CFR</div>
+      </div>
+    </div>
+    <div class="mkt-card anim">
+      <span class="mkt-flag">🇪🇺</span>
+      <div class="mkt-name">European Union</div>
+      <p class="mkt-desc">Phytosanitary certification, EU Food Law compliance, and GI recognition framework navigation. Primary targets include Germany, Netherlands, France, Belgium, and Italy.</p>
+      <div class="mkt-meta">
+        <div class="mkt-meta-row"><strong>Regulations:</strong> EC 178/2002, Phytosanitary Cert.</div>
+        <div class="mkt-meta-row"><strong>Target Buyers:</strong> Specialty stores, diaspora retailers</div>
+        <div class="mkt-meta-row"><strong>Incoterms:</strong> CIF / FOB</div>
+      </div>
+    </div>
+    <div class="mkt-card anim">
+      <span class="mkt-flag">🇦🇪</span>
+      <div class="mkt-name">UAE & Gulf</div>
+      <p class="mkt-desc">ESMA and Dubai Municipality compliant. Halal documentation available. Targeting hypermarkets, Indian diaspora grocery chains, premium HORECA buyers in Dubai and Abu Dhabi.</p>
+      <div class="mkt-meta">
+        <div class="mkt-meta-row"><strong>Regulations:</strong> ESMA, Dubai Municipality, Halal</div>
+        <div class="mkt-meta-row"><strong>Target Buyers:</strong> Hypermarkets, HORECA, Indian diaspora</div>
+        <div class="mkt-meta-row"><strong>Incoterms:</strong> CIF Jebel Ali / FOB</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY STELORA ── -->
+<section class="why-section" id="why">
+  <div class="anim">
+    <div class="sec-label">Why Choose STELORA</div>
+    <h2 class="sec-title">The <em>STELORA</em> Difference</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="why-grid">
+    <div class="why-list">
+      <div class="why-item anim">
+        <div class="why-icon">🌾</div>
+        <div><h4>Direct Farm Sourcing</h4><p>We source Tulai Pinji and other GI rice directly from farmers and cooperatives in West Bengal — authentic provenance, guaranteed freshness, fair prices.</p></div>
+      </div>
+      <div class="why-item anim">
+        <div class="why-icon">📜</div>
+        <div><h4>Fully Licensed & Compliant</h4><p>IEC, GSTIN, MSME, CIN, and Trademark registered. We handle all export documentation including Phytosanitary, Certificate of Origin, and Bill of Lading.</p></div>
+      </div>
+      <div class="why-item anim">
+        <div class="why-icon">★</div>
+        <div><h4>STELORA™ Registered Brand</h4><p>Our trademark (No. 7342590, Class 30) enables private-label and fully branded export solutions — from 1kg retail pouches to bulk container loads.</p></div>
+      </div>
+      <div class="why-item anim">
+        <div class="why-icon">✓</div>
+        <div><h4>Non-GMO · HACCP · No Preservatives</h4><p>Every STELORA product is Non-GMO certified, HACCP-compliant, and free from preservatives — meeting the highest international food safety standards.</p></div>
+      </div>
+      <div class="why-item anim">
+        <div class="why-icon">📦</div>
+        <div><h4>Flexible MOQs & Custom Packaging</h4><p>From 1kg premium branded pouches to 50kg bulk bags and FCL containers — packaging tailored to your retail, wholesale, or HORECA requirements.</p></div>
+      </div>
+      <div class="why-item anim">
+        <div class="why-icon">🚢</div>
+        <div><h4>End-to-End Export Support</h4><p>Sampling, quotation, documentation, freight coordination, and post-shipment communication — fully managed by our dedicated export team in Baruipur.</p></div>
+      </div>
+    </div>
+    <div class="why-visual anim">
+      <div class="why-img">
+        <div class="why-badge">
+          <div class="wb-num">GI</div>
+          <div class="wb-txt">Certified<br/>Heritage</div>
+        </div>
+      </div>
+      <div style="margin-top:20px;padding:22px 24px;border:1px solid var(--border);background:rgba(0,201,122,0.04);">
+        <div style="font-family:'Cinzel',serif;font-size:0.85rem;letter-spacing:2px;color:var(--g1);margin-bottom:12px;">ABOUT THE COMPANY</div>
+        <p style="font-size:0.82rem;color:rgba(223,244,236,0.45);line-height:1.8;margin-bottom:10px;">
+          <strong style="color:var(--star)">Galaxynova Exports & Trading (OPC) Pvt. Ltd.</strong> is the company behind STELORA™, incorporated on 24 February 2026 under the Companies Act 2013, headquartered at 3G, Merlin Oikyo, Baruipur, South 24 Parganas, West Bengal — 743610, India.
+        </p>
+        <div style="font-size:0.7rem;color:rgba(0,201,122,0.5);font-family:monospace;line-height:2;">
+          CIN: U46309WR2026OPC292400<br/>
+          IEC: AAMCG8275A<br/>
+          GSTIN: 19AAMCG8275A1ZC
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section class="certs-section" id="certs">
+  <div class="anim">
+    <div class="sec-label">Credentials & Compliance</div>
+    <h2 class="sec-title">Fully <em>Verified</em> — Every Detail</h2>
+    <div class="sec-line"></div>
+    <p class="sec-sub">Every registration is government-issued and verifiable — providing international buyers with complete confidence in STELORA and Galaxynova Exports.</p>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card anim">
+      <span class="cert-icon">🏛️</span>
+      <div class="cert-title">IEC</div>
+      <div class="cert-sub">Importer–Exporter Code<br/>DGFT, Govt. of India</div>
+      <div class="cert-id">AAMCG8275A</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">⚖️</span>
+      <div class="cert-title">CIN</div>
+      <div class="cert-sub">MCA Incorporation<br/>Companies Act 2013</div>
+      <div class="cert-id">U46309WR2026OPC292400</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">📋</span>
+      <div class="cert-title">GSTIN</div>
+      <div class="cert-sub">GST Registration<br/>West Bengal</div>
+      <div class="cert-id">19AAMCG8275A1ZC</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">🏭</span>
+      <div class="cert-title">MSME / Udyam</div>
+      <div class="cert-sub">Micro Enterprise<br/>Ministry of MSME, GOI</div>
+      <div class="cert-id">UDYAM-WB-18-0180640</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">★</span>
+      <div class="cert-title">STELORA™</div>
+      <div class="cert-sub">Registered Trademark<br/>Class 30 — IPIndia</div>
+      <div class="cert-id">TM App No. 7342590</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">💼</span>
+      <div class="cert-title">PAN</div>
+      <div class="cert-sub">Permanent Account Number<br/>Income Tax Dept., GOI</div>
+      <div class="cert-id">AAMCG8275A</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">🏦</span>
+      <div class="cert-title">SBI Bank Account</div>
+      <div class="cert-sub">Current Account<br/>State Bank of India</div>
+      <div class="cert-id">IFSC: SBIN0001490</div>
+    </div>
+    <div class="cert-card anim">
+      <span class="cert-icon">🌾</span>
+      <div class="cert-title">GI Product Portfolio</div>
+      <div class="cert-sub">Geographical Indication<br/>Certified Rice Varieties</div>
+      <div class="cert-id">Non-Basmati · GI Tagged</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section class="contact-section" id="contact">
+  <div class="anim">
+    <div class="sec-label">Connect With Us</div>
+    <h2 class="sec-title">Begin Your <em>STELORA</em> Journey</h2>
+    <div class="sec-line"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="anim">
+      <h3>Ready to source the finest GI rice from Bengal?</h3>
+      <div class="contact-detail">
+        <div class="c-icon">📍</div>
+        <div>
+          <div class="c-label">Registered Office</div>
+          <div class="c-val">3G, Merlin Oikyo, Madarat Road<br/>Durgapur Baruipur, Baruipur<br/>South 24 Parganas, West Bengal — 743610, India</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">📞</div>
+        <div>
+          <div class="c-label">Phone / WhatsApp</div>
+          <div class="c-val"><a href="tel:+918479006412">+91 84790 06412</a></div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">✉️</div>
+        <div>
+          <div class="c-label">Email</div>
+          <div class="c-val"><a href="mailto:galaxynova.exports@gmail.com">galaxynova.exports@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="c-icon">🕐</div>
+        <div>
+          <div class="c-label">Business Hours (IST)</div>
+          <div class="c-val">Monday – Saturday: 9:00 AM – 7:00 PM<br/>Enquiries responded within 24 hours</div>
+        </div>
+      </div>
+      <div class="contact-note">
+        <p><strong>Sampling Policy:</strong> We provide STELORA rice samples to verified importers and distributors. Use the enquiry form to request a sample pack with full product specifications and export pricing sheet.</p>
+      </div>
+    </div>
+
+    <div class="contact-form anim">
+      <div class="form-title">★ &nbsp;Send an Enquiry</div>
+      <div class="success-msg" id="successMsg">✓ Thank you — our team will respond within 24 hours.</div>
+      <div class="form-row">
+        <div class="fg"><label>Your Name *</label><input type="text" id="f-name" placeholder="Full Name"/></div>
+        <div class="fg"><label>Company Name</label><input type="text" id="f-company" placeholder="Your Company"/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Email Address *</label><input type="email" id="f-email" placeholder="email@company.com"/></div>
+        <div class="fg"><label>Country *</label>
+          <select id="f-country">
+            <option value="">Select Country</option>
+            <option>United Kingdom</option>
+            <option>Germany</option>
+            <option>France</option>
+            <option>Netherlands</option>
+            <option>Belgium</option>
+            <option>Italy</option>
+            <option>Sweden</option>
+            <option>UAE / Dubai</option>
+            <option>Other EU Country</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Product of Interest *</label>
+        <select id="f-product">
+          <option value="">Select Product</option>
+          <option>STELORA — Tulai Pinji Rice (GI Tagged)</option>
+          <option>STELORA — Gobindobhog Rice</option>
+          <option>STELORA — Other GI Heritage Rice</option>
+          <option>Non-Basmati Rice (Bulk)</option>
+          <option>Pulses & Agro Commodities</option>
+          <option>Sample Request — STELORA Range</option>
+          <option>Private Label / OEM Enquiry</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Quantity (MT/Year)</label><input type="text" id="f-qty" placeholder="e.g. 5 MT/month"/></div>
+        <div class="fg"><label>Preferred Packaging</label>
+          <select id="f-pkg">
+            <option value="">Select</option>
+            <option>1 kg STELORA Retail Pouch</option>
+            <option>5 kg / 10 kg bags</option>
+            <option>25 kg / 50 kg bulk bags</option>
+            <option>FCL Container</option>
+            <option>Private Label / Custom</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Message / Requirements</label>
+        <textarea id="f-msg" placeholder="Tell us about your market, target customers, certifications required, or any specific requirements…"></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">Send Enquiry to STELORA Team →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<div class="flag-bar"></div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">STELORA</div>
+      <div class="footer-brand-sub">Fine Aromatic Rice</div>
+      <div class="footer-brand-by">
+        A brand of <strong style="color:rgba(223,244,236,0.6)">Galaxynova Exports & Trading (OPC) Pvt. Ltd.</strong><br/>
+        Exporting Heritage GI Rice from Bengal, India<br/>to Europe · United Kingdom · UAE
+      </div>
+      <div style="display:flex;gap:10px;">
+        <a href="mailto:galaxynova.exports@gmail.com" style="width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:all 0.3s;" onmouseover="this.style.color='var(--g2)';this.style.borderColor='var(--g2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border2)'">✉</a>
+        <a href="tel:+918479006412" style="width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:all 0.3s;" onmouseover="this.style.color='var(--g2)';this.style.borderColor='var(--g2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border2)'">📞</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigate</div>
+      <span onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About STELORA</span>
+      <span onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Our Products</span>
+      <span onclick="document.getElementById('markets').scrollIntoView({behavior:'smooth'})">Export Markets</span>
+      <span onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">Why Choose Us</span>
+      <span onclick="document.getElementById('certs').scrollIntoView({behavior:'smooth'})">Credentials</span>
+      <span onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</span>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Products</div>
+      <span>Tulai Pinji Rice</span>
+      <span>Gobindobhog Rice</span>
+      <span>Other GI Heritage Rice</span>
+      <span>Non-Basmati Rice</span>
+      <span>Pulses & Agro Commodities</span>
+      <span>Private Label Solutions</span>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Contact</div>
+      <p>
+        3G, Merlin Oikyo<br/>
+        Madarat Road, Baruipur<br/>
+        S. 24 Parganas — 743610<br/>
+        West Bengal, India<br/><br/>
+        <a href="tel:+918479006412" style="color:var(--g1);">+91 84790 06412</a><br/>
+        <a href="mailto:galaxynova.exports@gmail.com" style="color:rgba(223,244,236,0.35);font-size:0.72rem;">galaxynova.exports@gmail.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Galaxynova Exports & Trading (OPC) Pvt. Ltd. · CIN: U46309WR2026OPC292400 · IEC: AAMCG8275A · STELORA™ TM No. 7342590</p>
+    <p>Specialty Rice from Bengal, India 🇮🇳 · Made with Aurora</p>
+  </div>
+</footer>
+
+</div><!-- .page -->
+
+<script>
+// ── STAR FIELD ──
+(function(){
+  const container = document.getElementById('stars');
+  for(let i=0;i<120;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const size = Math.random()*2+0.5;
+    s.style.cssText=`
+      width:${size}px;height:${size}px;
+      top:${Math.random()*100}%;left:${Math.random()*100}%;
+      --d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;
+    `;
+    container.appendChild(s);
+  }
+})();
+
+// ── SMOOTH NAV SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+  });
+});
+
+function scrollTo(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth'});
+}
+
+// ── INTERSECTION OBSERVER for .anim ──
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // stagger children if any
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.anim').forEach((el,i)=>{
+  el.style.transitionDelay=`${(i%5)*0.08}s`;
+  obs.observe(el);
+});
+
+// ── FORM SUBMIT ──
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  if(!name||!email){
+    alert('Please fill in your name and email address.');
+    return;
+  }
+  const msg=document.getElementById('successMsg');
+  msg.classList.add('show');
+  setTimeout(()=>msg.classList.remove('show'),5000);
+  ['f-name','f-company','f-email','f-country','f-product','f-qty','f-pkg','f-msg'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+}
+
+// ── NAV aurora glow on scroll ──
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY>50 ? '0 0 40px rgba(0,201,122,0.1)' : 'none';
+});
+</script>
+</body>
+</html>
