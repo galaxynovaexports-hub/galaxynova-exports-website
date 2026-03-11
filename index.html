@@ -1035,62 +1035,97 @@ Full compliance documents available to verified importers upon request.
       </div>
     </div>
 
-    <div class="contact-form anim">
-      <div class="form-title">★ &nbsp;Send an Enquiry</div>
-      <div class="success-msg" id="successMsg">✓ Thank you — our team will respond within 24 hours.</div>
-      <div class="form-row">
-        <div class="fg"><label>Your Name *</label><input type="text" id="f-name" placeholder="Full Name"/></div>
-        <div class="fg"><label>Company Name</label><input type="text" id="f-company" placeholder="Your Company"/></div>
-      </div>
-      <div class="form-row">
-        <div class="fg"><label>Email Address *</label><input type="email" id="f-email" placeholder="email@company.com"/></div>
-        <div class="fg"><label>Country *</label>
-          <select id="f-country">
-            <option value="">Select Country</option>
-            <option>United Kingdom</option>
-            <option>Germany</option>
-            <option>France</option>
-            <option>Netherlands</option>
-            <option>Belgium</option>
-            <option>Italy</option>
-            <option>Sweden</option>
-            <option>UAE / Dubai</option>
-            <option>Other EU Country</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-      <div class="fg"><label>Product of Interest *</label>
-        <select id="f-product">
-          <option value="">Select Product</option>
-          <option>STELORA — Tulaipanji Rice (GI Tagged)</option>
-          <option>STELORA — Gobindobhog Rice</option>
-          <option>STELORA — Other GI Heritage Rice</option>
-          <option>Non-Basmati Rice (Bulk)</option>
-          <option>Pulses & Agro Commodities</option>
-          <option>Sample Request — STELORA Range</option>
-          <option>Private Label / OEM Enquiry</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div class="fg"><label>Quantity (MT/Year)</label><input type="text" id="f-qty" placeholder="e.g. 5 MT/month"/></div>
-        <div class="fg"><label>Preferred Packaging</label>
-          <select id="f-pkg">
-            <option value="">Select</option>
-            <option>1 kg STELORA Retail Pouch</option>
-            <option>5 kg / 10 kg bags</option>
-            <option>25 kg / 50 kg bulk bags</option>
-            <option>FCL Container</option>
-            <option>Private Label / Custom</option>
-          </select>
-        </div>
-      </div>
-      <div class="fg"><label>Message / Requirements</label>
-        <textarea id="f-msg" placeholder="Tell us about your market, target customers, certifications required, or any specific requirements…"></textarea>
-      </div>
-      <button class="btn-submit" onclick="submitForm()">Send Enquiry to STELORA Team →</button>
-    </div>
-  </div>
+   <div class="contact-form anim">
+
+<form action="https://formsubmit.co/exports@stelora.co.in" method="POST">
+
+<input type="hidden" name="_subject" value="New STELORA Website Enquiry">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+
+<div class="form-title">★ &nbsp;Send an Enquiry</div>
+
+<div class="form-row">
+<div class="fg">
+<label>Your Name *</label>
+<input type="text" name="name" placeholder="Full Name" required>
+</div>
+
+<div class="fg">
+<label>Company Name</label>
+<input type="text" name="company" placeholder="Your Company">
+</div>
+</div>
+
+<div class="form-row">
+<div class="fg">
+<label>Email Address *</label>
+<input type="email" name="email" placeholder="email@company.com" required>
+</div>
+
+<div class="fg">
+<label>Country *</label>
+<select name="country" required>
+<option value="">Select Country</option>
+<option>United Kingdom</option>
+<option>Germany</option>
+<option>France</option>
+<option>Netherlands</option>
+<option>Belgium</option>
+<option>Italy</option>
+<option>Sweden</option>
+<option>UAE / Dubai</option>
+<option>Other EU Country</option>
+<option>Other</option>
+</select>
+</div>
+</div>
+
+<div class="fg">
+<label>Product of Interest *</label>
+<select name="product" required>
+<option value="">Select Product</option>
+<option>STELORA — Tulaipanji Rice (GI Tagged)</option>
+<option>STELORA — Gobindobhog Rice</option>
+<option>STELORA — Other GI Heritage Rice</option>
+<option>Non-Basmati Rice (Bulk)</option>
+<option>Pulses & Agro Commodities</option>
+<option>Sample Request — STELORA Range</option>
+<option>Private Label / OEM Enquiry</option>
+</select>
+</div>
+
+<div class="form-row">
+<div class="fg">
+<label>Quantity (MT/Year)</label>
+<input type="text" name="quantity" placeholder="e.g. 5 MT/month">
+</div>
+
+<div class="fg">
+<label>Preferred Packaging</label>
+<select name="packaging">
+<option value="">Select</option>
+<option>1 kg STELORA Retail Pouch</option>
+<option>5 kg / 10 kg bags</option>
+<option>25 kg / 50 kg bulk bags</option>
+<option>FCL Container</option>
+<option>Private Label / Custom</option>
+</select>
+</div>
+</div>
+
+<div class="fg">
+<label>Message / Requirements</label>
+<textarea name="message" placeholder="Tell us about your market, target customers, certifications required, or any specific requirements…"></textarea>
+</div>
+
+<button type="submit" class="btn-submit">
+Send Enquiry to STELORA Team →
+</button>
+
+</form>
+
+</div>    
 </section>
 
 <!-- ── FOOTER ── -->
