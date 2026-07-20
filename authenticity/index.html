@@ -1,1 +1,3009 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>STELORA™ | Product Verification</title>
+
+<meta name="description"
+content="Verify your authentic STELORA Premium Gobindobhog Rice">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+background:#081321;
+
+color:#F8F4EA;
+
+overflow-x:hidden;
+
+line-height:1.7;
+
+}
+
+/*==========================
+COLORS
+===========================*/
+
+:root{
+
+--gold:#D4AF37;
+
+--gold-light:#F6E7A1;
+
+--emerald:#23D18B;
+
+--navy:#081321;
+
+--navy2:#0E2035;
+
+--white:#FFFFFF;
+
+--ivory:#F8F4EA;
+
+--glass:rgba(255,255,255,.08);
+
+--border:rgba(255,255,255,.12);
+
+}
+
+/*==========================
+BACKGROUND
+===========================*/
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+
+radial-gradient(circle at 15% 25%,
+rgba(35,209,139,.22),
+transparent 45%),
+
+radial-gradient(circle at 82% 18%,
+rgba(212,175,55,.15),
+transparent 42%),
+
+radial-gradient(circle at 65% 78%,
+rgba(0,170,255,.14),
+transparent 45%);
+
+animation:aurora 16s ease infinite;
+
+z-index:-2;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(0,0,0,.12),
+rgba(0,0,0,.45)
+);
+
+z-index:-1;
+
+}
+
+@keyframes aurora{
+
+0%{
+
+transform:scale(1)
+translate(0,0);
+
+}
+
+50%{
+
+transform:scale(1.25)
+translate(-40px,-20px);
+
+}
+
+100%{
+
+transform:scale(1)
+translate(0,0);
+
+}
+
+}
+
+/*==========================
+GLOBAL
+===========================*/
+
+.container{
+
+width:min(1200px,92%);
+
+margin:auto;
+
+}
+
+section{
+
+padding:110px 0;
+
+}
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+a{
+
+text-decoration:none;
+
+color:inherit;
+
+}
+
+ul{
+
+list-style:none;
+
+}
+
+h1,h2,h3,h4{
+
+font-family:
+'Cormorant Garamond',
+serif;
+
+font-weight:700;
+
+letter-spacing:.5px;
+
+}
+
+h1{
+
+font-size:clamp(48px,7vw,84px);
+
+line-height:1.05;
+
+}
+
+h2{
+
+font-size:clamp(36px,5vw,60px);
+
+margin-bottom:18px;
+
+}
+
+p{
+
+color:rgba(248,244,234,.82);
+
+font-size:17px;
+
+}
+
+/*==========================
+BUTTONS
+===========================*/
+
+.btn{
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:15px 34px;
+
+border-radius:50px;
+
+font-weight:600;
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.btn-gold{
+
+background:var(--gold);
+
+color:#111;
+
+}
+
+.btn-gold:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 12px 35px
+rgba(212,175,55,.35);
+
+}
+
+.btn-outline{
+
+border:1px solid
+rgba(255,255,255,.22);
+
+backdrop-filter:blur(12px);
+
+}
+
+.btn-outline:hover{
+
+background:
+rgba(255,255,255,.08);
+
+}
+/*==========================
+HEADER
+===========================*/
+
+header{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+z-index:1000;
+
+background:rgba(8,19,33,.55);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.navbar{
+
+height:82px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+.logo{
+
+font-family:'Cormorant Garamond',serif;
+
+font-size:34px;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+color:var(--gold);
+
+}
+
+.nav-links{
+
+display:flex;
+
+gap:34px;
+
+align-items:center;
+
+}
+
+.nav-links a{
+
+font-size:15px;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+color:var(--gold);
+
+}
+
+/*==========================
+HERO
+===========================*/
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+padding-top:120px;
+
+}
+
+.hero-grid{
+
+display:grid;
+
+grid-template-columns:1.1fr .9fr;
+
+gap:70px;
+
+align-items:center;
+
+}
+
+.badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:10px 20px;
+
+border-radius:40px;
+
+background:rgba(35,209,139,.12);
+
+border:1px solid rgba(35,209,139,.45);
+
+color:#7CFFB9;
+
+font-size:14px;
+
+font-weight:600;
+
+margin-bottom:26px;
+
+}
+
+.hero h1{
+
+margin-bottom:18px;
+
+}
+
+.hero p{
+
+max-width:620px;
+
+font-size:19px;
+
+margin-bottom:36px;
+
+}
+
+.hero-buttons{
+
+display:flex;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+margin-top:10px;
+
+}
+
+.hero-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:26px;
+
+padding:36px;
+
+backdrop-filter:blur(18px);
+
+box-shadow:0 30px 60px rgba(0,0,0,.25);
+
+}
+
+.hero-card h3{
+
+font-size:34px;
+
+margin-bottom:18px;
+
+}
+
+.verify-list{
+
+display:grid;
+
+gap:16px;
+
+margin-top:24px;
+
+}
+
+.verify-item{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+font-size:16px;
+
+}
+
+.verify-icon{
+
+width:42px;
+
+height:42px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:rgba(35,209,139,.18);
+
+color:#7CFFB9;
+
+font-weight:bold;
+
+}
+
+/*==========================
+RESPONSIVE
+===========================*/
+/*==================================
+PRODUCT
+==================================*/
+
+.product-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+margin-top:70px;
+
+}
+
+.info-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+padding:35px;
+
+border-radius:22px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.info-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+box-shadow:0 25px 50px rgba(0,0,0,.25);
+
+}
+
+.card-icon{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+}
+
+.info-card h3{
+
+font-size:30px;
+
+margin-bottom:15px;
+
+color:var(--gold);
+
+}
+
+.info-card p{
+
+font-size:16px;
+
+color:rgba(248,244,234,.82);
+
+}
+  /*==================================
+LAB REPORTS
+==================================*/
+
+.lab-grid{
+
+display:grid;
+
+
+gap:28px;
+
+margin-top:60px;
+
+margin-bottom:80px;
+
+}
+
+.lab-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
+padding:34px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.lab-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+}
+
+.lab-card.featured{
+
+grid-column:span 2;
+
+}
+
+.lab-top{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+margin-bottom:18px;
+
+}
+
+.lab-icon{
+
+font-size:42px;
+
+}
+
+.lab-card h3{
+
+font-size:30px;
+
+margin-bottom:12px;
+
+color:var(--gold);
+
+}
+
+.lab-card p{
+
+margin-bottom:24px;
+
+}
+
+.quality-process{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:28px;
+
+}
+
+.process-step{
+
+text-align:center;
+
+background:var(--glass);
+
+padding:30px;
+
+border-radius:20px;
+
+border:1px solid var(--border);
+
+}
+
+.step-circle{
+
+width:65px;
+
+height:65px;
+
+border-radius:50%;
+
+margin:auto;
+
+margin-bottom:20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:24px;
+
+font-weight:700;
+
+background:linear-gradient(135deg,var(--gold),var(--gold-light));
+
+color:#111;
+
+}
+
+.process-step h4{
+
+font-size:28px;
+
+margin-bottom:10px;
+
+color:var(--gold);
+
+}
+
+.process-step p{
+
+font-size:15px;
+
+}
+  /*==================================
+STORAGE
+==================================*/
+
+.storage-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:30px;
+
+margin-top:60px;
+
+}
+
+.storage-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
+padding:35px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.storage-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.storage-icon{
+
+font-size:48px;
+
+margin-bottom:18px;
+
+}
+
+.storage-card h3{
+
+font-size:30px;
+
+margin-bottom:18px;
+
+color:var(--gold);
+
+}
+
+.storage-card ul{
+
+padding-left:20px;
+
+list-style:disc;
+
+}
+
+.storage-card li{
+
+margin-bottom:12px;
+
+color:rgba(248,244,234,.85);
+
+line-height:1.8;
+
+}
+  /*==================================
+FEEDBACK
+==================================*/
+
+.feedback-wrapper{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:40px;
+
+margin-top:60px;
+
+}
+
+.feedback-info,
+.feedback-form{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:40px;
+
+backdrop-filter:blur(18px);
+
+}
+
+.feedback-info h3{
+
+font-size:34px;
+
+margin-bottom:20px;
+
+color:var(--gold);
+
+}
+
+.rating-box{
+
+margin-top:35px;
+
+padding:25px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.04);
+
+text-align:center;
+
+}
+
+.rating-box span{
+
+font-size:42px;
+
+color:var(--gold);
+
+display:block;
+
+margin-bottom:10px;
+
+}
+
+.form-group{
+
+margin-bottom:22px;
+
+}
+
+.form-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-weight:600;
+
+}
+
+.form-group input,
+.form-group textarea{
+
+width:100%;
+
+padding:16px;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,.12);
+
+background:rgba(255,255,255,.05);
+
+color:var(--ivory);
+
+font-size:15px;
+
+font-family:inherit;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+
+border-color:var(--gold);
+
+background:rgba(255,255,255,.08);
+
+}
+
+.feedback-form button{
+
+margin-top:10px;
+
+}
+  /*==================================
+REWARDS
+==================================*/
+
+.reward-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+margin-top:60px;
+
+}
+
+.reward-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:36px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+text-align:center;
+
+}
+
+.reward-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.reward-card.featured{
+
+grid-column:span 2;
+
+text-align:left;
+
+padding:45px;
+
+}
+
+.reward-badge{
+
+display:inline-block;
+
+padding:8px 18px;
+
+border-radius:30px;
+
+background:rgba(212,175,55,.15);
+
+color:var(--gold);
+
+font-size:14px;
+
+font-weight:600;
+
+margin-bottom:20px;
+
+}
+
+.reward-card h3{
+
+font-size:38px;
+
+margin-bottom:18px;
+
+color:var(--gold);
+
+}
+
+.reward-card h4{
+
+font-size:28px;
+
+margin:18px 0;
+
+color:var(--gold);
+
+}
+
+.reward-card p{
+
+margin-bottom:25px;
+
+}
+
+.reward-icon{
+
+font-size:48px;
+
+}
+  /*==================================
+OUR STORY
+==================================*/
+
+.story-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:70px;
+
+align-items:center;
+
+}
+
+.story-content h2{
+
+margin-bottom:25px;
+
+}
+
+.story-content p{
+
+margin-bottom:20px;
+
+font-size:18px;
+
+}
+
+.story-image{
+
+display:flex;
+
+justify-content:center;
+
+}
+
+.story-box{
+
+width:100%;
+
+max-width:450px;
+
+padding:60px 45px;
+
+border-radius:28px;
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(18px);
+
+text-align:center;
+
+box-shadow:0 30px 60px rgba(0,0,0,.25);
+
+}
+
+.story-icon{
+
+font-size:72px;
+
+margin-bottom:25px;
+
+}
+
+.story-box h3{
+
+font-size:38px;
+
+margin-bottom:20px;
+
+color:var(--gold);
+
+}
+
+.story-box p{
+
+font-size:17px;
+
+}
+  /*==================================
+HERITAGE
+==================================*/
+
+.heritage-grid,
+.why-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+margin-top:60px;
+
+}
+
+.heritage-card,
+.why-item{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:35px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+text-align:center;
+
+}
+
+.heritage-card:hover,
+.why-item:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.heritage-icon{
+
+font-size:52px;
+
+margin-bottom:20px;
+
+}
+
+.heritage-card h3,
+.why-item h3{
+
+font-size:30px;
+
+margin-bottom:15px;
+
+color:var(--gold);
+
+}
+
+.why-number{
+
+width:70px;
+
+height:70px;
+
+margin:auto;
+
+margin-bottom:22px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:linear-gradient(135deg,var(--gold),var(--gold-light));
+
+color:#111;
+
+font-weight:700;
+
+font-size:24px;
+
+}
+  /*==================================
+COLLECTION
+==================================*/
+
+.collection-grid,
+.market-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+margin-top:60px;
+
+}
+
+.collection-card,
+.market-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:36px;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.collection-card:hover,
+.market-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.collection-card.featured{
+
+grid-column:span 2;
+
+}
+
+.product-tag{
+
+display:inline-block;
+
+padding:8px 16px;
+
+background:rgba(212,175,55,.12);
+
+border-radius:25px;
+
+color:var(--gold);
+
+font-size:14px;
+
+margin-bottom:20px;
+
+}
+
+.product-icon{
+
+font-size:52px;
+
+margin-bottom:20px;
+
+}
+
+.collection-card h3,
+.market-card h3{
+
+font-size:32px;
+
+margin-bottom:18px;
+
+color:var(--gold);
+
+}
+
+.product-features{
+
+margin:25px 0;
+
+padding-left:0;
+
+list-style:none;
+
+}
+
+.product-features li{
+
+margin-bottom:12px;
+
+}
+
+.coming-soon{
+
+opacity:.9;
+
+border-style:dashed;
+
+}
+
+.market-card{
+
+text-align:center;
+
+}
+  /*==================================
+CONTACT
+==================================*/
+
+.contact-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+margin-top:60px;
+
+}
+
+.contact-card{
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:35px;
+
+text-align:center;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.contact-card:hover{
+
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,.35);
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.contact-icon{
+
+font-size:52px;
+
+margin-bottom:20px;
+
+}
+
+.contact-card h3{
+
+font-size:30px;
+
+margin-bottom:15px;
+
+color:var(--gold);
+
+}
+
+/*==================================
+FOOTER
+==================================*/
+
+footer{
+
+padding:80px 0 40px;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+background:rgba(0,0,0,.15);
+
+}
+
+.footer-grid{
+
+display:grid;
+
+grid-template-columns:2fr 1fr 1fr;
+
+gap:50px;
+
+margin-bottom:40px;
+
+}
+
+.footer-logo{
+
+font-size:42px;
+
+color:var(--gold);
+
+margin-bottom:18px;
+
+}
+
+footer h4{
+
+font-size:26px;
+
+margin-bottom:18px;
+
+color:var(--gold);
+
+}
+
+footer ul{
+
+list-style:none;
+
+padding:0;
+
+}
+
+footer li{
+
+margin-bottom:12px;
+
+}
+
+footer hr{
+
+border:none;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+margin:30px 0;
+
+}
+
+.copyright{
+
+text-align:center;
+
+font-size:15px;
+
+opacity:.75;
+
+}
+  /*==================================
+BACK TO TOP
+==================================*/
+
+#backToTop{
+
+position:fixed;
+
+bottom:30px;
+
+right:30px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:linear-gradient(135deg,var(--gold),var(--gold-light));
+
+color:#111;
+
+font-size:24px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+display:none;
+
+z-index:999;
+
+transition:.3s;
+
+box-shadow:0 15px 30px rgba(0,0,0,.3);
+
+}
+
+#backToTop:hover{
+
+transform:translateY(-5px);
+
+}
+
+/*==================================
+SCROLL ANIMATION
+==================================*/
+
+section{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:all .8s ease;
+
+}
+
+section.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+@media(max-width:900px){
+
+.nav-links{
+
+display:none;
+
+}
+  .footer-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+  .collection-card.featured{
+
+grid-column:span 1;
+
+}
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  .story-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+  .reward-card.featured{
+
+grid-column:span 1;
+
+text-align:center;
+
+}
+
+.hero-grid{
+
+grid-template-columns:1fr;
+
+}
+  .feedback-wrapper{
+
+grid-template-columns:1fr;
+
+}
+
+.hero{
+
+text-align:center;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="container navbar">
+
+<a href="#" class="logo">STELORA™</a>
+
+<nav class="nav-links">
+
+<a href="#product">Product</a>
+
+<a href="#lab">Lab Report</a>
+
+<a href="#storage">Storage</a>
+
+<a href="#feedback">Feedback</a>
+
+<a href="#reward">Rewards</a>
+
+<a href="#about">About</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+
+✔ VERIFIED PRODUCT
+
+</div>
+
+<h1>
+
+Authentic STELORA™<br>
+
+Premium Gobindobhog Rice
+
+</h1>
+
+<p>
+
+Thank you for choosing STELORA™.
+Your product has been successfully verified as genuine.
+Every grain is carefully sourced from Bengal and packed with strict quality control to preserve its natural aroma and taste.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#product" class="btn btn-gold">
+
+View Product
+
+</a>
+
+<a href="#feedback" class="btn btn-outline">
+
+Share Feedback
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<h3>Product Verification</h3>
+
+<div class="verify-list">
+
+<div class="verify-item">
+
+<div class="verify-icon">✓</div>
+
+<span>Authentic STELORA Product</span>
+
+</div>
+
+<div class="verify-item">
+
+<div class="verify-icon">✓</div>
+
+<span>Premium Gobindobhog Rice</span>
+
+</div>
+
+<div class="verify-item">
+
+<div class="verify-icon">✓</div>
+
+<span>Carefully Selected Quality Grains</span>
+
+</div>
+
+<div class="verify-item">
+
+<div class="verify-icon">✓</div>
+
+<span>Packed Under Hygienic Conditions</span>
+
+</div>
+
+<div class="verify-item">
+
+<div class="verify-icon">✓</div>
+
+<span>Made in India</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+PRODUCT INFORMATION
+========================================= -->
+
+<section id="product">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Premium Product Information
+</div>
+
+<h2>
+Know Your STELORA™ Rice
+</h2>
+
+<p>
+
+Every pack of STELORA Premium Gobindobhog Rice is selected from trusted farming regions of Bengal and processed under hygienic conditions to preserve its naturally rich aroma and texture.
+
+</p>
+
+</div>
+
+<div class="product-grid">
+
+<div class="info-card">
+
+<div class="card-icon">🌾</div>
+
+<h3>Rice Variety</h3>
+
+<p>
+
+Premium Gobindobhog Rice
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<div class="card-icon">📍</div>
+
+<h3>Source</h3>
+
+<p>
+
+Carefully sourced from West Bengal, India.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<div class="card-icon">✨</div>
+
+<h3>Natural Aroma</h3>
+
+<p>
+
+Short grain aromatic rice known for its rich fragrance and soft texture.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<div class="card-icon">🍚</div>
+
+<h3>Best For</h3>
+
+<p>
+
+Pulao, Khichuri, Payesh, Biryani, Daily Premium Meals.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<div class="card-icon">🛡️</div>
+
+<h3>Quality</h3>
+
+<p>
+
+Every batch undergoes quality inspection before packing.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<div class="card-icon">📦</div>
+
+<h3>Packaging</h3>
+
+<p>
+
+Packed hygienically to maintain freshness and aroma.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+LABORATORY REPORTS
+========================================= -->
+
+<section id="lab">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Quality Assurance
+</div>
+
+<h2>
+Laboratory Tested for Your Confidence
+</h2>
+
+<p>
+
+Every STELORA batch undergoes quality evaluation before reaching your kitchen. We believe transparency builds trust, and our testing process ensures every pack meets our quality standards.
+
+</p>
+
+</div>
+
+<div class="lab-grid">
+
+<div class="lab-card featured">
+
+<div class="lab-top">
+
+<div class="lab-icon">🧪</div>
+
+<h3>Quality Inspection</h3>
+
+</div>
+
+<p>
+
+Each production batch is evaluated for physical quality, appearance, aroma, cleanliness, and consistency before packaging.
+
+</p>
+
+<a href="#" class="btn btn-gold">
+
+View Report
+
+</a>
+
+</div>
+
+<div class="lab-card">
+
+<div class="lab-icon">🌾</div>
+
+<h3>Purity</h3>
+
+<p>
+
+Carefully cleaned and sorted to remove unwanted impurities before packing.
+
+</p>
+
+</div>
+
+<div class="lab-card">
+
+<div class="lab-icon">🔬</div>
+
+<h3>Food Safety</h3>
+
+<p>
+
+Processed under hygienic conditions following food safety practices.
+
+</p>
+
+</div>
+
+<div class="lab-card">
+
+<div class="lab-icon">📦</div>
+
+<h3>Packaging Quality</h3>
+
+<p>
+
+Packed to preserve aroma, freshness and product integrity throughout storage.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="quality-process">
+
+<div class="process-step">
+
+<div class="step-circle">1</div>
+
+<h4>Selection</h4>
+
+<p>
+
+Premium grains sourced from trusted farmers.
+
+</p>
+
+</div>
+
+<div class="process-step">
+
+<div class="step-circle">2</div>
+
+<h4>Inspection</h4>
+
+<p>
+
+Every batch checked before processing.
+
+</p>
+
+</div>
+
+<div class="process-step">
+
+<div class="step-circle">3</div>
+
+<h4>Packaging</h4>
+
+<p>
+
+Packed under hygienic conditions.
+
+</p>
+
+</div>
+
+<div class="process-step">
+
+<div class="step-circle">4</div>
+
+<h4>Verification</h4>
+
+<p>
+
+QR verification confirms an authentic STELORA product.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+STORAGE & COOKING
+========================================= -->
+
+<section id="storage">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Storage & Cooking Guide
+</div>
+
+<h2>
+Enjoy the Best Aroma & Taste
+</h2>
+
+<p>
+
+Proper storage preserves the natural aroma of Gobindobhog rice. Follow these simple recommendations for the best cooking experience.
+
+</p>
+
+</div>
+
+<div class="storage-grid">
+
+<div class="storage-card">
+
+<div class="storage-icon">📦</div>
+
+<h3>Storage</h3>
+
+<ul>
+
+<li>Store in a cool & dry place.</li>
+
+<li>Keep away from direct sunlight.</li>
+
+<li>Keep the pouch tightly sealed after opening.</li>
+
+<li>Transfer to an airtight container for long-term freshness.</li>
+
+</ul>
+
+</div>
+
+<div class="storage-card">
+
+<div class="storage-icon">🍚</div>
+
+<h3>Cooking</h3>
+
+<ul>
+
+<li>Rinse gently 2–3 times before cooking.</li>
+
+<li>Recommended ratio: 1 cup rice : 2 cups water.</li>
+
+<li>Allow the rice to rest for 5 minutes after cooking.</li>
+
+<li>Serve hot for the finest aroma.</li>
+
+</ul>
+
+</div>
+
+<div class="storage-card">
+
+<div class="storage-icon">👨‍🍳</div>
+
+<h3>Perfect For</h3>
+
+<ul>
+
+<li>Traditional Bengali Pulao</li>
+
+<li>Payesh</li>
+
+<li>Khichuri</li>
+
+<li>Special Festive Meals</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+CUSTOMER FEEDBACK
+========================================= -->
+
+<section id="feedback">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Customer Experience
+</div>
+
+<h2>
+We Value Your Feedback
+</h2>
+
+<p>
+
+Your opinion helps us improve every batch of STELORA™ Premium Gobindobhog Rice. We'd love to hear about your experience.
+
+</p>
+
+</div>
+
+<div class="feedback-wrapper">
+
+<div class="feedback-info">
+
+<h3>Share Your Experience</h3>
+
+<p>
+
+Whether you enjoyed the aroma, taste, packaging or have suggestions for improvement, your feedback is valuable to us.
+
+</p>
+
+<div class="rating-box">
+
+<span>★★★★★</span>
+
+<p>Rate your overall experience</p>
+
+</div>
+
+</div>
+
+<div class="feedback-form">
+
+<form>
+
+<div class="form-group">
+
+<label>Your Name</label>
+
+<input type="text" placeholder="Enter your name">
+
+</div>
+
+<div class="form-group">
+
+<label>Email (Optional)</label>
+
+<input type="email" placeholder="Enter your email">
+
+</div>
+
+<div class="form-group">
+
+<label>Your Feedback</label>
+
+<textarea rows="6" placeholder="Tell us about your experience with STELORA™"></textarea>
+
+</div>
+
+<button type="submit" class="btn btn-gold">
+
+Submit Feedback
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+REWARDS & COUPONS
+========================================= -->
+
+<section id="reward">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Exclusive Rewards
+</div>
+
+<h2>
+Thank You for Choosing STELORA™
+</h2>
+
+<p>
+
+Every genuine STELORA™ customer deserves something special. Scan your purchase, share your feedback and unlock exclusive rewards.
+
+</p>
+
+</div>
+
+<div class="reward-grid">
+
+<div class="reward-card featured">
+
+<div class="reward-badge">
+🎁 Exclusive Offer
+</div>
+
+<h3>Unlock Your Reward</h3>
+
+<p>
+
+Complete your feedback to receive special offers, festival promotions and early access to new STELORA products.
+
+</p>
+
+<a href="#feedback" class="btn btn-gold">
+
+Claim Reward
+
+</a>
+
+</div>
+
+<div class="reward-card">
+
+<div class="reward-icon">
+🏆
+</div>
+
+<h4>Loyalty Rewards</h4>
+
+<p>
+
+Earn exclusive benefits as you continue choosing authentic STELORA products.
+
+</p>
+
+</div>
+
+<div class="reward-card">
+
+<div class="reward-icon">
+🎉
+</div>
+
+<h4>Festival Offers</h4>
+
+<p>
+
+Receive special festive discounts and premium gift hampers during selected seasons.
+
+</p>
+
+</div>
+
+<div class="reward-card">
+
+<div class="reward-icon">
+🌟
+</div>
+
+<h4>Premium Community</h4>
+
+<p>
+
+Be among the first to discover upcoming premium collections and limited editions.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+OUR STORY
+========================================= -->
+
+<section id="about">
+
+<div class="container">
+
+<div class="story-grid">
+
+<div class="story-content">
+
+<div class="badge">
+Our Story
+</div>
+
+<h2>
+Born in Bengal.<br>
+Reserved for the Finest Tables.
+</h2>
+
+<p>
+
+STELORA™ was founded with a simple vision—to bring the authentic taste of Bengal's finest rice to households around the world.
+
+</p>
+
+<p>
+
+Every grain is carefully selected from trusted farming communities and packed with uncompromising attention to quality, freshness, and authenticity.
+
+</p>
+
+<p>
+
+We believe premium food should offer complete transparency—from sourcing to packaging—so every customer can enjoy it with confidence.
+
+</p>
+
+<a href="#product" class="btn btn-gold">
+
+Explore Our Rice
+
+</a>
+
+</div>
+
+<div class="story-image">
+
+<div class="story-box">
+
+<div class="story-icon">
+🌾
+</div>
+
+<h3>
+Authentic Heritage
+</h3>
+
+<p>
+
+Celebrating Bengal's rich culinary tradition through carefully selected premium Gobindobhog rice.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+  <!-- =========================================
+WHY GOBINDOBHOG
+========================================= -->
+
+<section id="heritage">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+The Heritage of Bengal
+</div>
+
+<h2>
+Why Gobindobhog Rice?
+</h2>
+
+<p>
+
+Gobindobhog is one of Bengal's most treasured aromatic rice varieties. Its naturally rich fragrance, soft texture, and exceptional flavour have made it a favourite for festive and traditional cuisine for generations.
+
+</p>
+
+</div>
+
+<div class="heritage-grid">
+
+<div class="heritage-card">
+
+<div class="heritage-icon">🌾</div>
+
+<h3>Naturally Aromatic</h3>
+
+<p>
+
+Known for its distinctive aroma that enhances every meal.
+
+</p>
+
+</div>
+
+<div class="heritage-card">
+
+<div class="heritage-icon">🍚</div>
+
+<h3>Short Grain</h3>
+
+<p>
+
+A premium short-grain rice with a soft and delicate texture.
+
+</p>
+
+</div>
+
+<div class="heritage-card">
+
+<div class="heritage-icon">👑</div>
+
+<h3>Traditional Favourite</h3>
+
+<p>
+
+Used in festive dishes such as Pulao, Payesh and Khichuri.
+
+</p>
+
+</div>
+
+<div class="heritage-card">
+
+<div class="heritage-icon">🇮🇳</div>
+
+<h3>Proudly Indian</h3>
+
+<p>
+
+Celebrating the culinary heritage of Bengal with every pack.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================
+WHY CHOOSE STELORA
+========================================= -->
+
+<section id="why">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Why STELORA™
+</div>
+
+<h2>
+The STELORA Difference
+</h2>
+
+</div>
+
+<div class="why-grid">
+
+<div class="why-item">
+
+<div class="why-number">01</div>
+
+<h3>Carefully Selected</h3>
+
+<p>
+
+Every batch is chosen for quality, aroma and consistency.
+
+</p>
+
+</div>
+
+<div class="why-item">
+
+<div class="why-number">02</div>
+
+<h3>Quality Focused</h3>
+
+<p>
+
+Processed and packed under hygienic conditions.
+
+</p>
+
+</div>
+
+<div class="why-item">
+
+<div class="why-number">03</div>
+
+<h3>Authenticity</h3>
+
+<p>
+
+Every QR code helps you verify that your product is genuine.
+
+</p>
+
+</div>
+
+<div class="why-item">
+
+<div class="why-number">04</div>
+
+<h3>Customer Trust</h3>
+
+<p>
+
+Transparency and customer satisfaction remain at the heart of everything we do.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- =========================================
+OUR COLLECTION
+========================================= -->
+
+<section id="collection">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Our Collection
+</div>
+
+<h2>
+Crafted for Every Premium Kitchen
+</h2>
+
+<p>
+
+Every STELORA™ product is selected with the same commitment to authenticity, quality, and exceptional taste.
+
+</p>
+
+</div>
+
+<div class="collection-grid">
+
+<div class="collection-card featured">
+
+<div class="product-tag">
+Signature Collection
+</div>
+
+<h3>
+STELORA™ Reserve
+</h3>
+
+<p>
+
+Our flagship premium Gobindobhog rice, carefully selected for exceptional aroma, texture and purity.
+
+</p>
+
+<ul class="product-features">
+
+<li>✓ Premium Short Grain</li>
+
+<li>✓ Naturally Aromatic</li>
+
+<li>✓ Hygienically Packed</li>
+
+<li>✓ QR Verified Authenticity</li>
+
+</ul>
+
+<a href="#contact" class="btn btn-gold">
+
+Enquire Now
+
+</a>
+
+</div>
+
+<div class="collection-card">
+
+<div class="product-icon">
+🌾
+</div>
+
+<h3>
+STELORA™ Classic
+</h3>
+
+<p>
+
+Everyday premium Gobindobhog rice offering authentic taste and consistent quality.
+
+</p>
+
+</div>
+
+<div class="collection-card coming-soon">
+
+<div class="product-icon">
+✨
+</div>
+
+<h3>
+More Premium Products
+</h3>
+
+<p>
+
+New premium food collections are coming soon under the STELORA™ brand.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================
+GLOBAL PRESENCE
+========================================= -->
+
+<section id="markets">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Global Presence
+</div>
+
+<h2>
+Growing Beyond Borders
+</h2>
+
+<p>
+
+Our vision is to bring the authentic taste of Bengal to homes across the world.
+
+</p>
+
+</div>
+
+<div class="market-grid">
+
+<div class="market-card">
+
+<h3>🇮🇳 India</h3>
+
+<p>
+
+Premium retail and online markets.
+
+</p>
+
+</div>
+
+<div class="market-card">
+
+<h3>🇦🇪 Middle East</h3>
+
+<p>
+
+Serving families across GCC countries.
+
+</p>
+
+</div>
+
+<div class="market-card">
+
+<h3>🇪🇺 Europe</h3>
+
+<p>
+
+Expanding premium exports with trusted partners.
+
+</p>
+
+</div>
+
+<div class="market-card">
+
+<h3>🌍 Future Markets</h3>
+
+<p>
+
+Building a global premium food brand.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- =========================================
+CONTACT
+========================================= -->
+
+<section id="contact">
+
+<div class="container">
+
+<div style="text-align:center;max-width:760px;margin:auto 0 70px auto;">
+
+<div class="badge">
+Get in Touch
+</div>
+
+<h2>
+Connect with STELORA™
+</h2>
+
+<p>
+
+Whether you're a customer, retailer, distributor, or international buyer, we'd be delighted to hear from you.
+
+</p>
+
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📧
+</div>
+
+<h3>Email</h3>
+
+<p>
+
+info@stelora.co.in
+
+</p>
+
+</div>
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📱
+</div>
+
+<h3>WhatsApp</h3>
+
+<p>
+
++91 XXXXXXXXXX
+
+</p>
+
+</div>
+
+<div class="contact-card">
+
+<div class="contact-icon">
+🌐
+</div>
+
+<h3>Website</h3>
+
+<p>
+
+https://stelora.co.in
+
+</p>
+
+</div>
+
+<div class="contact-card">
+
+<div class="contact-icon">
+📍
+</div>
+
+<h3>Location</h3>
+
+<p>
+
+Kolkata, West Bengal, India
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================================
+FOOTER
+========================================= -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+
+<h2 class="footer-logo">
+STELORA™
+</h2>
+
+<p>
+
+Premium Gobindobhog Rice crafted with authenticity, transparency, and the rich culinary heritage of Bengal.
+
+</p>
+
+</div>
+
+<div>
+
+<h4>
+Quick Links
+</h4>
+
+<ul>
+
+<li><a href="#product">Product</a></li>
+
+<li><a href="#lab">Lab Reports</a></li>
+
+<li><a href="#storage">Storage</a></li>
+
+<li><a href="#feedback">Feedback</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h4>
+Our Promise
+</h4>
+
+<p>
+
+✓ Authentic Product
+
+<br>
+
+✓ Premium Quality
+
+<br>
+
+✓ Hygienic Packaging
+
+<br>
+
+✓ QR Verified
+
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="copyright">
+
+© 2026 STELORA™. All Rights Reserved.
+
+</div>
+
+</div>
+
+</footer>
+<!-- =========================================
+BACK TO TOP BUTTON
+========================================= -->
+
+<button id="backToTop" title="Back to Top">
+↑
+</button>
+
+<script>
+
+// ==========================
+// Smooth Reveal Animation
+// ==========================
+
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},{threshold:0.15});
+
+sections.forEach(section=>{
+
+observer.observe(section);
+
+});
+
+// ==========================
+// Back To Top Button
+// ==========================
+
+const backButton=document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>500){
+
+backButton.style.display="block";
+
+}else{
+
+backButton.style.display="none";
+
+}
+
+});
+
+backButton.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+// ==========================
+// Active Navigation Link
+// ==========================
+
+const navLinks=document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll",()=>{
+
+let current="";
+
+sections.forEach(section=>{
+
+const sectionTop=section.offsetTop-120;
+
+if(pageYOffset>=sectionTop){
+
+current=section.getAttribute("id");
+
+}
+
+});
+
+navLinks.forEach(link=>{
+
+link.style.color="";
+
+if(link.getAttribute("href")==="#"+current){
+
+link.style.color="#D4AF37";
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
