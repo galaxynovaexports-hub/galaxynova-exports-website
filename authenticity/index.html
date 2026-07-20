@@ -612,6 +612,229 @@ footer::before{
   .certs-grid,.footer-grid{grid-template-columns:1fr;}
   .trust-bar{gap:16px;}
 }
+  /* =======================================================
+   AUTHENTICITY + FEEDBACK
+=======================================================*/
+
+.feedback-section{
+    background:linear-gradient(180deg,#041018 0%,#061a25 100%);
+    padding:100px 5%;
+}
+
+.product-info-card,
+.feedback-card,
+.reward-card{
+    margin-top:45px;
+    background:rgba(8,25,35,.75);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(0,201,122,.18);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:
+        0 0 40px rgba(0,201,122,.06),
+        inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+.product-info-card{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.product-left img{
+    width:100%;
+    max-width:260px;
+    display:block;
+    margin:auto;
+    filter:drop-shadow(0 25px 40px rgba(0,0,0,.45));
+}
+
+.product-right h3,
+.feedback-card h3,
+.reward-card h3{
+    font-family:'Cinzel',serif;
+    color:var(--g2);
+    font-size:1.5rem;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+.product-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.product-table td{
+    padding:14px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    font-size:.9rem;
+}
+
+.product-table td:first-child{
+    color:rgba(223,244,236,.55);
+    width:180px;
+}
+
+.product-table td:last-child{
+    color:#fff;
+    font-weight:600;
+}
+
+.feedback-card p{
+    color:rgba(223,244,236,.65);
+    margin-bottom:30px;
+}
+
+.rating-group{
+    margin-bottom:35px;
+}
+
+.rating-group label{
+    display:block;
+    margin-bottom:12px;
+    font-weight:600;
+    color:#fff;
+}
+
+.rating-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.rate-btn{
+
+    width:54px;
+    height:54px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(0,201,122,.25);
+
+    background:#07161f;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.rate-btn:hover{
+
+    transform:translateY(-3px);
+
+    border-color:var(--g2);
+
+    box-shadow:0 0 20px rgba(0,201,122,.35);
+
+}
+
+.rate-btn.active{
+
+    background:linear-gradient(135deg,var(--g1),var(--g2));
+
+    color:#00150f;
+
+    border-color:transparent;
+
+    box-shadow:0 0 30px rgba(0,201,122,.45);
+
+}
+
+.reward-card{
+
+    text-align:center;
+
+}
+
+.reward-card p{
+
+    max-width:700px;
+
+    margin:25px auto 0;
+
+    line-height:1.9;
+
+    color:rgba(223,244,236,.72);
+
+}
+
+.reward-card strong{
+
+    color:var(--g2);
+
+}
+
+.feedback-card .fg{
+
+    margin-top:22px;
+
+}
+
+.feedback-card textarea{
+
+    min-height:130px;
+
+}
+
+.feedback-card input,
+.feedback-card textarea{
+
+    background:#08141d;
+
+}
+
+@media(max-width:900px){
+
+.product-info-card{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.product-table td:first-child{
+
+width:45%;
+
+}
+
+.rating-row{
+
+justify-content:center;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.rate-btn{
+
+width:45px;
+
+height:45px;
+
+font-size:16px;
+
+}
+
+.feedback-card,
+.product-info-card,
+.reward-card{
+
+padding:25px;
+
+}
+
+}
 </style>
 </head>
 <body>
@@ -1127,6 +1350,284 @@ Send Enquiry to STELORA Team →
 
 </div>    
 </section>
+  <!-- ========================================= -->
+<!-- STELORA AUTHENTICITY & CUSTOMER FEEDBACK -->
+<!-- ========================================= -->
+
+<section id="authenticity" class="feedback-section">
+
+    <div class="anim">
+        <div class="sec-label">Authenticity & Quality</div>
+
+        <h2 class="sec-title">
+            Experience <em>STELORA Reserve Collection</em>
+        </h2>
+
+        <div class="sec-line"></div>
+
+        <p class="sec-sub">
+            Thank you for choosing STELORA. Your feedback helps us maintain the
+            highest quality standards and continuously improve every pack we
+            produce.
+        </p>
+    </div>
+
+    <!-- Product Card -->
+
+    <div class="product-info-card anim">
+
+        <div class="product-left">
+
+            <img src="stelora-pack.png"
+                 alt="STELORA Reserve Collection">
+
+        </div>
+
+        <div class="product-right">
+
+            <h3>Product Information</h3>
+
+            <table class="product-table">
+
+                <tr>
+                    <td>Brand</td>
+                    <td>STELORA™</td>
+                </tr>
+
+                <tr>
+                    <td>Collection</td>
+                    <td>Reserve Collection</td>
+                </tr>
+
+                <tr>
+                    <td>Product</td>
+                    <td>Gobindobhog Rice</td>
+                </tr>
+
+                <tr>
+                    <td>Net Weight</td>
+                    <td>1 kg</td>
+                </tr>
+
+                <tr>
+                    <td>Origin</td>
+                    <td>Purba Bardhaman, West Bengal</td>
+                </tr>
+
+                <tr>
+                    <td>Packed By</td>
+                    <td>Megha Agro Products Pvt. Ltd.</td>
+                </tr>
+
+                <tr>
+                    <td>Marketed By</td>
+                    <td>Galaxynova Exports & Trading (OPC) Pvt. Ltd.</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Feedback -->
+
+    <div class="feedback-card anim">
+
+        <h3>Rate Your Experience</h3>
+
+        <p>
+            Please rate each attribute from
+            <strong>0 (Very Poor)</strong>
+            to
+            <strong>5 (Excellent)</strong>.
+        </p>
+
+        <form id="feedbackForm">
+
+            <!-- Question -->
+
+            <div class="rating-group">
+
+                <label>Packaging Quality</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="rating-group">
+
+                <label>Raw Rice Aroma</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="rating-group">
+
+                <label>Cooked Rice Aroma</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="rating-group">
+
+                <label>Taste</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="rating-group">
+
+                <label>Softness After Cooking</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="rating-group">
+
+                <label>Cleanliness (Free from Stones & Impurities)</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="rating-group">
+
+                <label>Overall Satisfaction</label>
+
+                <div class="rating-row">
+
+                    <button type="button" class="rate-btn">0</button>
+                    <button type="button" class="rate-btn">1</button>
+                    <button type="button" class="rate-btn">2</button>
+                    <button type="button" class="rate-btn">3</button>
+                    <button type="button" class="rate-btn">4</button>
+                    <button type="button" class="rate-btn">5</button>
+
+                </div>
+
+            </div>
+
+            <div class="fg">
+
+                <label>Your Name</label>
+
+                <input
+                    type="text"
+                    placeholder="Enter your name">
+
+            </div>
+
+            <div class="fg">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    placeholder="Enter your email">
+
+            </div>
+
+            <div class="fg">
+
+                <label>What did you like most?</label>
+
+                <textarea></textarea>
+
+            </div>
+
+            <div class="fg">
+
+                <label>How can we improve?</label>
+
+                <textarea></textarea>
+
+            </div>
+
+            <button class="btn-submit">
+
+                Submit Feedback
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="reward-card anim">
+
+        <h3>🎁 Thank You Reward</h3>
+
+        <p>
+
+            Complete this feedback form and receive an
+            <strong>exclusive discount coupon of up to 7%</strong>
+            on your next purchase from the
+            <strong>STELORA website.</strong>
+
+        </p>
+
+    </div>
+
+</section>
 
 <!-- ── FOOTER ── -->
 <div class="flag-bar"></div>
@@ -1249,5 +1750,59 @@ window.addEventListener('scroll',()=>{
   nav.style.boxShadow = window.scrollY>50 ? '0 0 40px rgba(0,201,122,0.1)' : 'none';
 });
 </script>
+  /* =======================================================
+   STELORA FEEDBACK RATING
+=======================================================*/
+
+document.querySelectorAll('.rating-row').forEach(function(row){
+
+    const buttons=row.querySelectorAll('.rate-btn');
+
+    buttons.forEach(function(btn){
+
+        btn.addEventListener('click',function(){
+
+            buttons.forEach(function(b){
+
+                b.classList.remove('active');
+
+            });
+
+            this.classList.add('active');
+
+        });
+
+    });
+
+});
+
+
+/* =======================================================
+   FEEDBACK FORM
+=======================================================*/
+
+const feedbackForm=document.getElementById("feedbackForm");
+
+if(feedbackForm){
+
+feedbackForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert(
+"Thank you for sharing your feedback.\n\nWe truly appreciate your support for STELORA.\n\nYour exclusive discount coupon will be shared with you shortly."
+);
+
+feedbackForm.reset();
+
+document.querySelectorAll(".rate-btn").forEach(function(btn){
+
+btn.classList.remove("active");
+
+});
+
+});
+
+}
 </body>
 </html>
