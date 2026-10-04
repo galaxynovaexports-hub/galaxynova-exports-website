@@ -1588,6 +1588,53 @@ justify-content:center;
 
 }
 
+
+/* =========================================
+ONLINE STORE / RESERVE PRODUCT
+========================================= */
+.store-wrap{margin-top:60px;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start}
+.store-gallery{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:28px;padding:22px;backdrop-filter:blur(18px)}
+.store-main-image{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:20px;background:#f7f5ef}
+.store-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.store-thumb{border:1px solid rgba(255,255,255,.14);border-radius:14px;background:#f7f5ef;padding:5px;cursor:pointer}
+.store-thumb.active{border:2px solid var(--gold)}
+.store-thumb img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px}
+.store-panel{background:var(--glass);border:1px solid var(--border);border-radius:28px;padding:38px;backdrop-filter:blur(18px)}
+.store-eyebrow{color:var(--gold);font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:700}
+.store-panel h3{font-size:42px;color:var(--gold);margin:8px 0 12px}
+.store-desc{margin-bottom:24px}
+.price-row{display:flex;align-items:baseline;gap:12px;margin:20px 0 24px}
+.sale-price{font-size:34px;font-weight:700;color:var(--ivory)}
+.mrp-price{text-decoration:line-through;opacity:.55;font-size:18px}
+.pack-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 24px}
+.pack-option{padding:17px;border:1px solid rgba(255,255,255,.2);border-radius:14px;background:rgba(255,255,255,.04);cursor:pointer;text-align:center}
+.pack-option strong{display:block;font-size:18px}
+.pack-option span{font-size:13px;opacity:.75}
+.pack-option.selected{border-color:var(--gold);background:rgba(212,175,55,.12);box-shadow:0 0 0 1px rgba(212,175,55,.25) inset}
+.cart-actions{display:flex;gap:12px;align-items:center;margin-top:18px}
+.qty-control{display:flex;align-items:center;border:1px solid rgba(255,255,255,.2);border-radius:50px;overflow:hidden}
+.qty-control button{width:42px;height:46px;border:0;background:transparent;color:var(--ivory);font-size:20px;cursor:pointer}
+.qty-control span{min-width:34px;text-align:center}
+.store-note{font-size:13px;opacity:.7;margin-top:14px}
+.store-bullets{display:grid;gap:10px;margin:22px 0;padding:0}
+.store-bullets li{font-size:15px}
+.cart-drawer{position:fixed;top:0;right:0;width:min(440px,100%);height:100vh;background:#091522;z-index:10001;transform:translateX(105%);transition:.35s;box-shadow:-20px 0 60px rgba(0,0,0,.4);padding:28px;overflow:auto}
+.cart-drawer.open{transform:translateX(0)}
+.cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:18px}
+.cart-head h3{font-size:30px;color:var(--gold)}
+.cart-close{background:none;border:0;color:var(--ivory);font-size:28px;cursor:pointer}
+.cart-item{display:flex;gap:14px;padding:20px 0;border-bottom:1px solid var(--border)}
+.cart-item img{width:76px;height:76px;object-fit:contain;background:#f7f5ef;border-radius:10px}
+.cart-item-info{flex:1}
+.cart-item-info strong{display:block;margin-bottom:5px}
+.cart-item-info small{opacity:.7}
+.cart-summary{padding-top:22px}
+.cart-total{display:flex;justify-content:space-between;font-size:20px;font-weight:700;margin-bottom:18px}
+.cart-empty{text-align:center;opacity:.7;padding:60px 0}
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;display:none}
+.cart-overlay.show{display:block}
+@media(max-width:900px){.store-wrap{grid-template-columns:1fr}.store-panel{padding:26px}.store-panel h3{font-size:34px}}
+
 </style>
 
 </head>
@@ -2923,6 +2970,13 @@ Our Promise
 </div>
 
 </footer>
+
+<div id="cartOverlay" class="cart-overlay" onclick="closeCart()"></div>
+<aside id="cartDrawer" class="cart-drawer" aria-label="Shopping cart">
+<div class="cart-head"><h3>Your Cart</h3><button class="cart-close" onclick="closeCart()" aria-label="Close cart">×</button></div>
+<div id="cartItems"></div>
+<div id="cartSummary" class="cart-summary"></div>
+</aside>
 <!-- =========================================
 BACK TO TOP BUTTON
 ========================================= -->
@@ -3070,6 +3124,27 @@ function openReport(file) {
 
     document.body.appendChild(viewer);
 }
+</script>
+
+<script>
+const storeState={size:'400 g',price:269,mrp:379,image:'assets/stelora-reserve-400g.webp',qty:1};
+function changeStoreImage(src,btn){document.getElementById('storeMainImage').src=src;document.querySelectorAll('.store-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+document.querySelectorAll('.pack-option').forEach(btn=>btn.addEventListener('click',()=>{
+document.querySelectorAll('.pack-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
+storeState.size=btn.dataset.size;storeState.price=Number(btn.dataset.price);storeState.mrp=Number(btn.dataset.mrp);storeState.image=btn.dataset.image;
+document.getElementById('storePrice').textContent='₹'+storeState.price;document.getElementById('storeMrp').textContent='₹'+storeState.mrp;
+document.getElementById('storeMainImage').src=storeState.image;
+}));
+document.getElementById('qtyMinus').addEventListener('click',()=>{storeState.qty=Math.max(1,storeState.qty-1);document.getElementById('storeQty').textContent=storeState.qty});
+document.getElementById('qtyPlus').addEventListener('click',()=>{storeState.qty++;document.getElementById('storeQty').textContent=storeState.qty});
+document.getElementById('addToCart').addEventListener('click',()=>{
+const total=storeState.price*storeState.qty;
+document.getElementById('cartItems').innerHTML='<div class="cart-item"><img src="'+storeState.image+'" alt=""><div class="cart-item-info"><strong>STELORA™ Reserve Collection — Gobindobhog</strong><small>'+storeState.size+' × '+storeState.qty+'</small><div style="margin-top:7px">₹'+total+'</div></div></div>';
+document.getElementById('cartSummary').innerHTML='<div class="cart-total"><span>Total</span><span>₹'+total+'</span></div><button class="btn btn-gold" style="width:100%" onclick="startCheckout()">Proceed to Checkout</button><p class="store-note">PhonePe payment will be initiated only after the secure server-side payment integration is configured.</p>';
+document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('show');
+});
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('show')}
+function startCheckout(){alert('Checkout UI is ready. PhonePe will be connected through the secure backend in the next step.');}
 </script>
 </body>
 </html>
