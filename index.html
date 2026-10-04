@@ -612,7 +612,32 @@ footer::before{
   .certs-grid,.footer-grid{grid-template-columns:1fr;}
   .trust-bar{gap:16px;}
 }
-</style>
+<style>
+.customer-nav-actions{display:flex;align-items:center;gap:8px;margin-left:10px}
+.customer-nav-actions button,.customer-nav-actions a{font:inherit;font-size:.78rem;color:var(--text,#dff4ec);background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.35);border-radius:999px;padding:9px 13px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.customer-nav-actions button:hover,.customer-nav-actions a:hover{border-color:#d4af37;color:#d4af37}
+.customer-portal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:100000;display:none;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.customer-portal.show{display:flex}
+.customer-portal-card{width:min(680px,100%);max-height:92vh;overflow:auto;background:#07151d;border:1px solid rgba(212,175,55,.35);border-radius:22px;padding:28px;box-shadow:0 25px 80px rgba(0,0,0,.55)}
+.customer-portal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.customer-portal-head h3{margin:0;color:#d4af37;font-size:28px}
+.customer-portal-close{border:0;background:none;color:#dff4ec;font-size:30px;cursor:pointer}
+.portal-tabs{display:flex;gap:8px;margin-bottom:20px}
+.portal-tab{flex:1;border:1px solid rgba(212,175,55,.25);background:rgba(255,255,255,.04);color:#dff4ec;padding:11px;border-radius:10px;cursor:pointer}
+.portal-tab.active{background:rgba(212,175,55,.14);border-color:#d4af37;color:#d4af37}
+.portal-panel{display:none}
+.portal-panel.active{display:block}
+.portal-form{display:grid;gap:12px}
+.portal-form label{font-size:13px;color:rgba(223,244,236,.75)}
+.portal-form input{width:100%;box-sizing:border-box;padding:13px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#dff4ec}
+.portal-primary{width:100%;border:0;border-radius:10px;padding:13px;background:#d4af37;color:#081116;font-weight:700;cursor:pointer}
+.portal-secondary{border:1px solid rgba(212,175,55,.35);border-radius:10px;padding:11px 15px;background:transparent;color:#dff4ec;cursor:pointer}
+.portal-message{margin-top:12px;font-size:14px;line-height:1.5}
+.portal-result{margin-top:16px;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:16px;background:rgba(255,255,255,.035)}
+.portal-result-row{display:flex;justify-content:space-between;gap:20px;padding:6px 0}
+.portal-cancel{margin-top:14px;width:100%;border:1px solid #c85c5c;background:rgba(200,92,92,.08);color:#ffb8b8;border-radius:10px;padding:12px;cursor:pointer}
+@media(max-width:900px){.customer-nav-actions{display:none}}
+</style></style>
 </head>
 <body>
 
@@ -648,6 +673,11 @@ footer::before{
     <li><a href="#certs">Credentials</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="customer-nav-actions">
+    <button type="button" onclick="openCustomerPortal('account')">Account</button>
+    <button type="button" onclick="openCustomerPortal('track')">Track Order</button>
+    <a href="https://stelora.co.in/authenticity/#store">Cart</a>
+  </div>
   <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
     <span>Get Quote</span>
   </button>
@@ -1020,7 +1050,7 @@ Full compliance documents available to verified importers upon request.
         <div class="c-icon">✉️</div>
         <div>
           <div class="c-label">Email</div>
-          <div class="c-val"><a href="mailto:galaxynova.exports@stelora.co.in">galaxynova.exports@stelora.co.in</a></div>
+          <div class="c-val"><a href="mailto:care@stelora.co.in">care@stelora.co.in</a></div>
         </div>
       </div>
       <div class="contact-detail">
@@ -1037,7 +1067,7 @@ Full compliance documents available to verified importers upon request.
 
    <div class="contact-form anim">
 
-<form action="https://formsubmit.co/galaxynova.exports@stelora.co.in" method="POST">
+<form action="https://formsubmit.co/care@stelora.co.in" method="POST">
 
 <input type="hidden" name="_subject" value="New STELORA Website Enquiry">
 <input type="hidden" name="_captcha" value="false">
@@ -1128,6 +1158,66 @@ Send Enquiry to STELORA Team →
 </div>    
 </section>
 
+<div id="customerPortal" class="customer-portal" aria-hidden="true">
+<div class="customer-portal-card">
+  <div class="customer-portal-head">
+    <h3>STELORA™ Customer Portal</h3>
+    <button class="customer-portal-close" type="button" onclick="closeCustomerPortal()">×</button>
+  </div>
+
+  <div class="portal-tabs">
+    <button id="portalAccountTab" class="portal-tab active" type="button" onclick="switchPortalTab('account')">Account</button>
+    <button id="portalTrackTab" class="portal-tab" type="button" onclick="switchPortalTab('track')">Track / Cancel Order</button>
+  </div>
+
+  <div id="portalAccountPanel" class="portal-panel active">
+    <div id="accountLoggedOut">
+      <div class="portal-form">
+        <div>
+          <label for="accountName">Name</label>
+          <input id="accountName" autocomplete="name" placeholder="Your name">
+        </div>
+        <div>
+          <label for="accountEmail">Email</label>
+          <input id="accountEmail" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div>
+          <label for="accountPassword">Password</label>
+          <input id="accountPassword" type="password" autocomplete="new-password" placeholder="At least 6 characters">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <button class="portal-primary" type="button" onclick="createCustomerAccount()">Create Account</button>
+          <button class="portal-secondary" type="button" onclick="signInCustomer()">Sign In</button>
+        </div>
+      </div>
+      <div id="accountMessage" class="portal-message"></div>
+      <p style="font-size:12px;opacity:.62;margin-top:12px">Email verification may be required before your first sign-in.</p>
+    </div>
+
+    <div id="accountLoggedIn" style="display:none">
+      <p id="accountWelcome" style="line-height:1.6"></p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="portal-primary" style="display:inline-block;width:auto;text-decoration:none" href="https://stelora.co.in/authenticity/#store">Shop & Cart</a>
+        <button class="portal-secondary" type="button" onclick="switchPortalTab('track')">Track an Order</button>
+        <button class="portal-secondary" type="button" onclick="signOutCustomer()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="portalTrackPanel" class="portal-panel">
+    <div class="portal-form">
+      <div>
+        <label for="trackOrderNumber">Order ID</label>
+        <input id="trackOrderNumber" autocomplete="off" placeholder="e.g. STL-20261004-A1B2C3">
+      </div>
+      <button class="portal-primary" type="button" onclick="trackCustomerOrder()">Track Order</button>
+    </div>
+    <div id="trackMessage" class="portal-message"></div>
+    <div id="trackResult"></div>
+  </div>
+</div>
+</div>
+
 <!-- ── FOOTER ── -->
 <div class="flag-bar"></div>
 <footer>
@@ -1140,7 +1230,7 @@ Send Enquiry to STELORA Team →
         Exporting Heritage GI Rice from Bengal, India<br/>to Europe · United Kingdom · UAE
       </div>
       <div style="display:flex;gap:10px;">
-        <a href="mailto:galaxynova.exports@stelora.co.in" style="width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:all 0.3s;" onmouseover="this.style.color='var(--g2)';this.style.borderColor='var(--g2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border2)'">✉</a>
+        <a href="mailto:care@stelora.co.in" style="width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:all 0.3s;" onmouseover="this.style.color='var(--g2)';this.style.borderColor='var(--g2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border2)'">✉</a>
         <a href="tel:+918479006412" style="width:34px;height:34px;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);text-decoration:none;transition:all 0.3s;" onmouseover="this.style.color='var(--g2)';this.style.borderColor='var(--g2)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border2)'">📞</a>
       </div>
     </div>
@@ -1170,7 +1260,7 @@ Send Enquiry to STELORA Team →
         S. 24 Parganas — 743610<br/>
         West Bengal, India<br/><br/>
         <a href="tel:+918479006412" style="color:var(--g1);">+91 84790 06412</a><br/>
-        <a href="mailto:galaxynova.exports@stelora.co.in" style="color:rgba(223,244,236,0.35);font-size:0.72rem;">galaxynova.exports@stelora.co.in</a>
+        <a href="mailto:care@stelora.co.in" style="color:rgba(223,244,236,0.35);font-size:0.72rem;">care@stelora.co.in</a>
       </p>
     </div>
   </div>
@@ -1182,6 +1272,104 @@ Send Enquiry to STELORA Team →
 
 </div><!-- .page -->
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const STELORA_SUPABASE_URL='https://synzgbcfpyiqnxgkzpwu.supabase.co';
+const STELORA_SUPABASE_KEY='sb_publishable_7itlwg4cnGgJeQqwPm96aQ_ErsB4lEG';
+const steloraSupabase=window.supabase.createClient(STELORA_SUPABASE_URL,STELORA_SUPABASE_KEY);
+
+function openCustomerPortal(tab='account'){
+  document.getElementById('customerPortal').classList.add('show');
+  document.getElementById('customerPortal').setAttribute('aria-hidden','false');
+  switchPortalTab(tab);
+  refreshCustomerAccount();
+}
+function closeCustomerPortal(){
+  document.getElementById('customerPortal').classList.remove('show');
+  document.getElementById('customerPortal').setAttribute('aria-hidden','true');
+}
+function switchPortalTab(tab){
+  const account=tab==='account';
+  document.getElementById('portalAccountTab').classList.toggle('active',account);
+  document.getElementById('portalTrackTab').classList.toggle('active',!account);
+  document.getElementById('portalAccountPanel').classList.toggle('active',account);
+  document.getElementById('portalTrackPanel').classList.toggle('active',!account);
+}
+async function refreshCustomerAccount(){
+  const {data:{session}}=await steloraSupabase.auth.getSession();
+  document.getElementById('accountLoggedOut').style.display=session?'none':'block';
+  document.getElementById('accountLoggedIn').style.display=session?'block':'none';
+  if(session){
+    const email=session.user.email||'';
+    document.getElementById('accountWelcome').innerHTML='You are signed in as <strong>'+email.replace(/[<>&"]/g,'')+'</strong>.<br>Your account lets you keep using the STELORA shopping/cart experience without re-entering your account credentials.';
+  }
+}
+async function createCustomerAccount(){
+  const name=document.getElementById('accountName').value.trim();
+  const email=document.getElementById('accountEmail').value.trim();
+  const password=document.getElementById('accountPassword').value;
+  const msg=document.getElementById('accountMessage');
+  if(!email||password.length<6){msg.textContent='Please enter an email and a password of at least 6 characters.';return;}
+  msg.textContent='Creating your account...';
+  const {data,error}=await steloraSupabase.auth.signUp({
+    email,password,
+    options:{data:{full_name:name},emailRedirectTo:'https://stelora.co.in/'}
+  });
+  if(error){msg.textContent=error.message;return;}
+  if(data.session){
+    msg.textContent='Account created and signed in.';
+    await refreshCustomerAccount();
+  }else{
+    msg.textContent='Account created. Please check your email and confirm your address before signing in.';
+  }
+}
+async function signInCustomer(){
+  const email=document.getElementById('accountEmail').value.trim();
+  const password=document.getElementById('accountPassword').value;
+  const msg=document.getElementById('accountMessage');
+  if(!email||!password){msg.textContent='Please enter your email and password.';return;}
+  msg.textContent='Signing in...';
+  const {data,error}=await steloraSupabase.auth.signInWithPassword({email,password});
+  if(error){msg.textContent=error.message;return;}
+  msg.textContent='Signed in successfully.';
+  await refreshCustomerAccount();
+}
+async function signOutCustomer(){
+  await steloraSupabase.auth.signOut();
+  await refreshCustomerAccount();
+  document.getElementById('accountMessage').textContent='You have been signed out.';
+}
+async function trackCustomerOrder(){
+  const orderNumber=document.getElementById('trackOrderNumber').value.trim().toUpperCase();
+  const msg=document.getElementById('trackMessage');
+  const result=document.getElementById('trackResult');
+  msg.textContent='Checking order...'; result.innerHTML='';
+  const {data,error}=await steloraSupabase.functions.invoke('track-order',{body:{order_number:orderNumber}});
+  if(error){msg.textContent='Unable to find the order. Please check the Order ID.';return;}
+  if(!data?.success){msg.textContent=data?.error||'Order not found.';return;}
+  const o=data.order;
+  msg.textContent='';
+  result.innerHTML='<div class="portal-result">'+
+    '<div class="portal-result-row"><span>Order ID</span><strong>'+o.order_number+'</strong></div>'+
+    '<div class="portal-result-row"><span>Product</span><strong>'+o.pack_size+'</strong></div>'+
+    '<div class="portal-result-row"><span>Quantity</span><strong>'+o.quantity+'</strong></div>'+
+    '<div class="portal-result-row"><span>Total</span><strong>₹'+o.total_amount+'</strong></div>'+
+    '<div class="portal-result-row"><span>Payment</span><strong>'+o.payment_status+'</strong></div>'+
+    '<div class="portal-result-row"><span>Order status</span><strong>'+o.order_status+'</strong></div>'+
+    (o.can_cancel?'<button class="portal-cancel" type="button" onclick="cancelCustomerOrder(\''+o.order_number+'\')">Cancel this order</button>':'<p style="margin:12px 0 0;font-size:12px;opacity:.65">This order is no longer within the 1-hour cancellation window or cannot be cancelled.</p>')+
+    '</div>';
+}
+async function cancelCustomerOrder(orderNumber){
+  if(!confirm('Cancel order '+orderNumber+'? This can only be done within 1 hour of order creation.'))return;
+  const msg=document.getElementById('trackMessage');
+  msg.textContent='Cancelling order...';
+  const {data,error}=await steloraSupabase.functions.invoke('cancel-order',{body:{order_number:orderNumber}});
+  if(error||!data?.success){msg.textContent=data?.error||'Unable to cancel the order.';return;}
+  msg.textContent=data.message||'Order cancelled successfully.';
+  await trackCustomerOrder();
+}
+steloraSupabase.auth.onAuthStateChange(()=>refreshCustomerAccount());
+</script>
 <script>
 // ── STAR FIELD ──
 (function(){
