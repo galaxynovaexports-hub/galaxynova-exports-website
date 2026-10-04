@@ -3279,12 +3279,23 @@ function openReport(file) {
 <script>
 const SUPABASE_URL='https://synzgbcfpyiqnxgkzpwu.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_7itlwg4cnGgJeQqwPm96aQ_ErsB4lEG';
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+let supabaseClient=null;
+
+function getSupabaseClient(){
+    if(!window.supabase){
+        throw new Error('Secure checkout service is still loading. Please try again in a moment.');
+    }
+    if(!supabaseClient){
+        supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+    }
+    return supabaseClient;
+}
 
 async function ensureAnonymousSession(){
-    const {data:{session}}=await supabaseClient.auth.getSession();
+    const client=getSupabaseClient();
+    const {data:{session}}=await client.auth.getSession();
     if(session) return session;
-    const {data,error}=await supabaseClient.auth.signInAnonymously();
+    const {data,error}=await client.auth.signInAnonymously();
     if(error) throw error;
     return data.session;
 }
@@ -3332,7 +3343,7 @@ async function submitCheckout(event){
             quantity:storeState.qty
         };
 
-        const {data,error}=await supabaseClient.functions.invoke('create-order',{body:payload});
+        const {data,error}=await getSupabaseClient().functions.invoke('create-order',{body:payload});
 
         if(error) throw error;
         if(!data || !data.success) throw new Error(data?.error || 'Order could not be created.');
