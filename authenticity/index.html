@@ -3353,7 +3353,7 @@ async function submitCheckout(event){
 
 document.getElementById('checkoutForm').addEventListener('submit',submitCheckout);
 
-const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams .png',qty:1};{size:'400 g',price:269,mrp:379,image:'asset/400grams .png',qty:1};
+const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams%20.png',qty:1};
 function changeStoreImage(src,btn){document.getElementById('storeMainImage').src=src;document.querySelectorAll('.store-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 document.querySelectorAll('.pack-option').forEach(btn=>btn.addEventListener('click',()=>{
 document.querySelectorAll('.pack-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
