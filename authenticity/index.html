@@ -1633,6 +1633,24 @@ ONLINE STORE / RESERVE PRODUCT
 .cart-empty{text-align:center;opacity:.7;padding:60px 0}
 .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10000;display:none}
 .cart-overlay.show{display:block}
+.checkout-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:10020;display:none;align-items:center;justify-content:center;padding:20px;overflow:auto}
+.checkout-modal.show{display:flex}
+.checkout-card{width:min(720px,100%);max-height:92vh;overflow:auto;background:#091522;border:1px solid var(--border);border-radius:24px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.55)}
+.checkout-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.checkout-head h3{font-size:30px;color:var(--gold);margin:0}
+.checkout-close{background:none;border:0;color:var(--ivory);font-size:30px;cursor:pointer}
+.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.checkout-field{display:flex;flex-direction:column;gap:7px}
+.checkout-field.full{grid-column:1/-1}
+.checkout-field label{font-size:13px;opacity:.82}
+.checkout-field input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--ivory);outline:none}
+.checkout-field input:focus{border-color:var(--gold)}
+.checkout-summary{margin:22px 0;padding:16px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.04)}
+.checkout-summary-row{display:flex;justify-content:space-between;margin:6px 0}
+.checkout-message{margin-top:14px;font-size:14px;line-height:1.5}
+.checkout-success{padding:18px;border:1px solid rgba(100,200,120,.35);border-radius:14px;background:rgba(70,150,90,.08)}
+.checkout-error{color:#ffb4b4}
+@media(max-width:650px){.checkout-grid{grid-template-columns:1fr}.checkout-field.full{grid-column:auto}}
 @media(max-width:900px){.store-wrap{grid-template-columns:1fr}.store-panel{padding:26px}.store-panel h3{font-size:34px}}
 
 </style>
@@ -2981,6 +2999,74 @@ Our Promise
 BACK TO TOP BUTTON
 ========================================= -->
 
+<div id="checkoutModal" class="checkout-modal" aria-hidden="true">
+<div class="checkout-card">
+<div class="checkout-head">
+<h3>Checkout</h3>
+<button class="checkout-close" type="button" onclick="closeCheckout()" aria-label="Close checkout">×</button>
+</div>
+
+<form id="checkoutForm">
+<div class="checkout-summary">
+<div class="checkout-summary-row"><span>Product</span><strong>STELORA™ Reserve Collection</strong></div>
+<div class="checkout-summary-row"><span>Pack</span><strong id="checkoutPack">400 g</strong></div>
+<div class="checkout-summary-row"><span>Quantity</span><strong id="checkoutQuantity">1</strong></div>
+<div class="checkout-summary-row"><span>Total</span><strong id="checkoutTotal">₹269</strong></div>
+</div>
+
+<div class="checkout-grid">
+<div class="checkout-field">
+<label for="customerName">Full name *</label>
+<input id="customerName" name="name" required autocomplete="name">
+</div>
+
+<div class="checkout-field">
+<label for="customerMobile">Mobile number *</label>
+<input id="customerMobile" name="mobile" required inputmode="numeric" maxlength="10" autocomplete="tel">
+</div>
+
+<div class="checkout-field full">
+<label for="customerEmail">Email address</label>
+<input id="customerEmail" name="email" type="email" autocomplete="email">
+</div>
+
+<div class="checkout-field full">
+<label for="customerAddress">Address *</label>
+<input id="customerAddress" name="address_line1" required autocomplete="street-address" placeholder="House / Flat / Street">
+</div>
+
+<div class="checkout-field full">
+<label for="customerAddress2">Address line 2</label>
+<input id="customerAddress2" name="address_line2" autocomplete="address-line2" placeholder="Landmark, area (optional)">
+</div>
+
+<div class="checkout-field">
+<label for="customerCity">City *</label>
+<input id="customerCity" name="city" required autocomplete="address-level2">
+</div>
+
+<div class="checkout-field">
+<label for="customerState">State *</label>
+<input id="customerState" name="state" required autocomplete="address-level1">
+</div>
+
+<div class="checkout-field">
+<label for="customerPincode">PIN code *</label>
+<input id="customerPincode" name="pincode" required inputmode="numeric" maxlength="6" autocomplete="postal-code">
+</div>
+</div>
+
+<div id="checkoutMessage" class="checkout-message" aria-live="polite"></div>
+
+<button id="checkoutSubmit" type="submit" class="btn btn-gold" style="width:100%;margin-top:20px">
+Save Order Details
+</button>
+
+<p class="store-note">Your details are securely submitted to the STELORA order system. PhonePe payment will be connected in the next step.</p>
+</form>
+</div>
+</div>
+
 <button id="backToTop" title="Back to Top">
 ↑
 </button>
@@ -3126,8 +3212,85 @@ function openReport(file) {
 }
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams .png',qty:1};
+const SUPABASE_URL='https://synzgbcfpyiqnxgkzpwu.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_7itlwg4cnGgJeQqwPm96aQ_ErsB4lEG';
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+
+async function ensureAnonymousSession(){
+    const {data:{session}}=await supabaseClient.auth.getSession();
+    if(session) return session;
+    const {data,error}=await supabaseClient.auth.signInAnonymously();
+    if(error) throw error;
+    return data.session;
+}
+
+function openCheckout(){
+    document.getElementById('checkoutPack').textContent=storeState.size;
+    document.getElementById('checkoutQuantity').textContent=storeState.qty;
+    document.getElementById('checkoutTotal').textContent='₹'+(storeState.price*storeState.qty);
+    document.getElementById('checkoutMessage').innerHTML='';
+    document.getElementById('checkoutModal').classList.add('show');
+    document.getElementById('checkoutModal').setAttribute('aria-hidden','false');
+}
+
+function closeCheckout(){
+    document.getElementById('checkoutModal').classList.remove('show');
+    document.getElementById('checkoutModal').setAttribute('aria-hidden','true');
+}
+
+async function submitCheckout(event){
+    event.preventDefault();
+
+    const form=document.getElementById('checkoutForm');
+    const submit=document.getElementById('checkoutSubmit');
+    const message=document.getElementById('checkoutMessage');
+    const formData=new FormData(form);
+
+    submit.disabled=true;
+    submit.textContent='Saving...';
+    message.className='checkout-message';
+    message.textContent='';
+
+    try{
+        await ensureAnonymousSession();
+
+        const payload={
+            name:String(formData.get('name')||'').trim(),
+            mobile:String(formData.get('mobile')||'').trim(),
+            email:String(formData.get('email')||'').trim(),
+            address_line1:String(formData.get('address_line1')||'').trim(),
+            address_line2:String(formData.get('address_line2')||'').trim(),
+            city:String(formData.get('city')||'').trim(),
+            state:String(formData.get('state')||'').trim(),
+            pincode:String(formData.get('pincode')||'').trim(),
+            pack_size:storeState.size,
+            quantity:storeState.qty
+        };
+
+        const {data,error}=await supabaseClient.functions.invoke('create-order',{body:payload});
+
+        if(error) throw error;
+        if(!data || !data.success) throw new Error(data?.error || 'Order could not be created.');
+
+        message.className='checkout-message checkout-success';
+        message.innerHTML='<strong>Order details saved successfully.</strong><br>Order number: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>Payment integration is the next step. No payment has been taken yet.';
+
+        submit.style.display='none';
+        form.reset();
+    }catch(error){
+        console.error(error);
+        message.className='checkout-message checkout-error';
+        message.textContent=error?.message || 'Unable to save your order. Please try again.';
+        submit.disabled=false;
+        submit.textContent='Save Order Details';
+    }
+}
+
+document.getElementById('checkoutForm').addEventListener('submit',submitCheckout);
+
+const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams .png',qty:1};{size:'400 g',price:269,mrp:379,image:'asset/400grams .png',qty:1};
 function changeStoreImage(src,btn){document.getElementById('storeMainImage').src=src;document.querySelectorAll('.store-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 document.querySelectorAll('.pack-option').forEach(btn=>btn.addEventListener('click',()=>{
 document.querySelectorAll('.pack-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
@@ -3144,7 +3307,10 @@ document.getElementById('cartSummary').innerHTML='<div class="cart-total"><span>
 document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('show');
 });
 function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('show')}
-function startCheckout(){alert('Checkout UI is ready. PhonePe will be connected through the secure backend in the next step.');}
+function startCheckout(){
+    closeCart();
+    openCheckout();
+}
 </script>
 </body>
 </html>
