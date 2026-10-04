@@ -355,6 +355,23 @@ color:var(--gold);
 
 }
 
+.nav-cart-btn{
+  border:1px solid var(--gold);
+  background:rgba(212,175,55,.08);
+  color:var(--gold);
+  border-radius:999px;
+  padding:9px 16px;
+  font:inherit;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.nav-cart-btn:hover{
+  background:var(--gold);
+  color:#111;
+}
+
 /*==========================
 HERO
 ===========================*/
@@ -3355,6 +3372,9 @@ async function ensureAnonymousSession(){
 }
 
 function openCheckout(){
+    // Always start with an unselected state. The state is filled only after
+    // the customer selects/types a city that has a matching suggestion.
+    document.getElementById('customerState').value='';
     document.getElementById('checkoutPack').textContent=storeState.size;
     document.getElementById('checkoutQuantity').textContent=storeState.qty;
     document.getElementById('checkoutTotal').textContent='₹'+(storeState.price*storeState.qty);
@@ -3441,6 +3461,10 @@ document.getElementById('customerCity').addEventListener('input',function(){
     const state=cityStateMap[key];
     if(state){
         document.getElementById('customerState').value=state;
+    }else{
+        // Do not keep a previously selected state when the customer changes
+        // the city to something else.
+        document.getElementById('customerState').value='';
     }
 });
 
@@ -3458,9 +3482,16 @@ document.getElementById('addToCart').addEventListener('click',()=>{
 const total=storeState.price*storeState.qty;
 document.getElementById('cartItems').innerHTML='<div class="cart-item"><img src="'+storeState.image+'" alt=""><div class="cart-item-info"><strong>STELORA™ Reserve Collection — Gobindobhog</strong><small>'+storeState.size+' × '+storeState.qty+'</small><div style="margin-top:7px">₹'+total+'</div></div></div>';
 document.getElementById('cartSummary').innerHTML='<div class="cart-total"><span>Total</span><span>₹'+total+'</span></div><button class="btn btn-gold" style="width:100%" onclick="startCheckout()">Proceed to Checkout</button><p class="store-note">PhonePe payment will be initiated only after the secure server-side payment integration is configured.</p>';
-document.getElementById('cartDrawer').classList.add('open');document.getElementById('cartOverlay').classList.add('show');
+openCart();
 });
-function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('cartOverlay').classList.remove('show')}
+function openCart(){
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('show');
+}
+function closeCart(){
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('show')
+}
 function startCheckout(){
     closeCart();
     openCheckout();
