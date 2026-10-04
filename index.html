@@ -1284,7 +1284,8 @@ Send Enquiry to STELORA Team →
 
 </div><!-- .page -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">handlePhonePeReturn();
+</script>
 <script>
 const STELORA_SUPABASE_URL='https://synzgbcfpyiqnxgkzpwu.supabase.co';
 const STELORA_SUPABASE_KEY='sb_publishable_7itlwg4cnGgJeQqwPm96aQ_ErsB4lEG';
@@ -1380,6 +1381,33 @@ async function cancelCustomerOrder(orderNumber){
   msg.textContent=data.message||'Order cancelled successfully.';
   await trackCustomerOrder();
 }
+async function handlePhonePeReturn(){
+  const params=new URLSearchParams(window.location.search);
+  if(params.get('payment')!=='phonepe')return;
+  const orderNumber=(params.get('order')||'').trim().toUpperCase();
+  if(!orderNumber)return;
+  window.history.replaceState({},document.title,window.location.pathname);
+  openCustomerPortal('track');
+  document.getElementById('trackOrderNumber').value=orderNumber;
+  const msg=document.getElementById('trackMessage');
+  msg.textContent='Verifying your PhonePe payment…';
+  const result=document.getElementById('trackResult');
+  result.innerHTML='';
+  const status=await steloraSupabase.functions.invoke('phonepe-status',{body:{order_number:orderNumber}});
+  if(status.error||!status.data?.success){
+    msg.textContent=status.data?.error||'We could not verify the payment yet. Please check Track Order again in a moment.';
+    return;
+  }
+  if(status.data.payment_status==='PAID'){
+    msg.textContent='Payment successful. Your order is confirmed.';
+  }else if(status.data.payment_status==='FAILED'){
+    msg.textContent='Payment was not completed. You can retry payment from the order flow.';
+  }else{
+    msg.textContent='Payment is still being processed. Please check again shortly.';
+  }
+  await trackCustomerOrder();
+}
+
 steloraSupabase.auth.onAuthStateChange(()=>refreshCustomerAccount());
 </script>
 <script>
