@@ -3396,17 +3396,47 @@ async function submitCheckout(event){
         if(error) throw error;
         if(!data || !data.success) throw new Error(data?.error || 'Order could not be created.');
 
-        message.className='checkout-message checkout-success';
-        message.innerHTML='<strong>Order details saved successfully.</strong><br>Order number: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>Payment integration is the next step. No payment has been taken yet.';
+        const payment={data:null,error:null};
+        const paymentResult=await getSupabaseClient().functions.invoke('phonepe-create-payment',{body:{order_number:data.order.order_number}});
+        if(paymentResult.error || !paymentResult.data?.success){
+            message.className='checkout-message checkout-error';
+            message.innerHTML='<strong>Order created successfully.</strong><br>Order number: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>We could not start PhonePe right now. Your order is saved safely. Please try payment again.';
+            submit.style.display='none';
+            const retry=document.createElement('button');
+            retry.type='button';
+            retry.className='btn btn-gold';
+            retry.style.marginTop='14px';
+            retry.textContent='Retry PhonePe Payment';
+            retry.onclick=()=>retryPhonePePayment(data.order.order_number,retry,message);
+            message.appendChild(retry);
+            return;
+        }
 
+        message.className='checkout-message checkout-success';
+        message.innerHTML='<strong>Order created successfully.</strong><br>Order number: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>Redirecting you to secure PhonePe checkout…';
         submit.style.display='none';
         form.reset();
+        window.location.href=paymentResult.data.redirect_url;
     }catch(error){
         console.error(error);
         message.className='checkout-message checkout-error';
         message.textContent=error?.message || 'Unable to save your order. Please try again.';
         submit.disabled=false;
         submit.textContent='Save Order Details';
+    }
+}
+
+async function retryPhonePePayment(orderNumber,button,message){
+    button.disabled=true;
+    button.textContent='Starting PhonePe…';
+    try{
+        const result=await getSupabaseClient().functions.invoke('phonepe-create-payment',{body:{order_number:orderNumber}});
+        if(result.error||!result.data?.success)throw new Error(result.data?.error||'Unable to start PhonePe payment.');
+        window.location.href=result.data.redirect_url;
+    }catch(error){
+        button.disabled=false;
+        button.textContent='Retry PhonePe Payment';
+        message.innerHTML+='<br><span style="font-size:12px">'+(error?.message||'Unable to start payment.')+'</span>';
     }
 }
 
