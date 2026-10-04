@@ -3104,13 +3104,67 @@ BACK TO TOP BUTTON
 </div>
 
 <div class="checkout-field">
-<label for="customerCity">City *</label>
-<input id="customerCity" name="city" required autocomplete="address-level2">
+<label for="customerCity">City / Town *</label>
+<input id="customerCity" name="city" required autocomplete="address-level2" list="citySuggestions" placeholder="Start typing your city or town">
+<datalist id="citySuggestions">
+<option value="Jusewit">Jusewit — West Bengal</option>
+<option value="Kolkata">Kolkata — West Bengal</option>
+<option value="Howrah">Howrah — West Bengal</option>
+<option value="Durgapur">Durgapur — West Bengal</option>
+<option value="Asansol">Asansol — West Bengal</option>
+<option value="Siliguri">Siliguri — West Bengal</option>
+<option value="Malda">Malda — West Bengal</option>
+<option value="Bardhaman">Bardhaman — West Bengal</option>
+<option value="Purba Bardhaman">Purba Bardhaman — West Bengal</option>
+<option value="Delhi">Delhi — Delhi</option>
+<option value="Mumbai">Mumbai — Maharashtra</option>
+<option value="Bengaluru">Bengaluru — Karnataka</option>
+<option value="Chennai">Chennai — Tamil Nadu</option>
+<option value="Hyderabad">Hyderabad — Telangana</option>
+</datalist>
 </div>
 
 <div class="checkout-field">
 <label for="customerState">State *</label>
-<input id="customerState" name="state" required autocomplete="address-level1">
+<select id="customerState" name="state" required autocomplete="address-level1">
+<option value="">Select state</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Delhi</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+<option>Andaman and Nicobar Islands</option>
+<option>Chandigarh</option>
+<option>Dadra and Nagar Haveli and Daman and Diu</option>
+<option>Jammu and Kashmir</option>
+<option>Ladakh</option>
+<option>Lakshadweep</option>
+<option>Puducherry</option>
+</select>
 </div>
 
 <div class="checkout-field">
@@ -3363,6 +3417,32 @@ async function submitCheckout(event){
 }
 
 document.getElementById('checkoutForm').addEventListener('submit',submitCheckout);
+
+const cityStateMap={
+    'jusewit':'West Bengal',
+    'kolkata':'West Bengal',
+    'howrah':'West Bengal',
+    'durgapur':'West Bengal',
+    'asansol':'West Bengal',
+    'siliguri':'West Bengal',
+    'malda':'West Bengal',
+    'bardhaman':'West Bengal',
+    'purba bardhaman':'West Bengal',
+    'delhi':'Delhi',
+    'mumbai':'Maharashtra',
+    'bengaluru':'Karnataka',
+    'bangalore':'Karnataka',
+    'chennai':'Tamil Nadu',
+    'hyderabad':'Telangana'
+};
+
+document.getElementById('customerCity').addEventListener('input',function(){
+    const key=this.value.trim().toLowerCase();
+    const state=cityStateMap[key];
+    if(state){
+        document.getElementById('customerState').value=state;
+    }
+});
 
 const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams%20.png',qty:1};
 function changeStoreImage(src,btn){document.getElementById('storeMainImage').src=src;document.querySelectorAll('.store-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
