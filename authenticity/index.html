@@ -1670,6 +1670,17 @@ ONLINE STORE / RESERVE PRODUCT
 @media(max-width:650px){.checkout-grid{grid-template-columns:1fr}.checkout-field.full{grid-column:auto}}
 @media(max-width:900px){.store-wrap{grid-template-columns:1fr}.store-panel{padding:26px}.store-panel h3{font-size:34px}}
 
+
+/* Temporary request-only mode while PhonePe production checkout is pending */
+.cart-actions,.cart-drawer,.cart-overlay,.checkout-modal{display:none!important}
+.requisition-panel{margin-top:24px;padding:22px;border:1px solid rgba(212,175,55,.28);border-radius:18px;background:rgba(255,255,255,.035)}
+.requisition-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.req-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.req-field:nth-child(4),.req-field:nth-child(7),.requisition-form button,.requisition-form>p{grid-column:1/-1}
+.req-field label{font-size:13px;font-weight:600;color:var(--ivory)}
+.req-field input,.req-field textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--ivory);font:inherit}
+@media(max-width:600px){.requisition-form{grid-template-columns:1fr}.req-field:nth-child(4),.req-field:nth-child(7),.requisition-form button,.requisition-form>p{grid-column:auto}}
+
 </style>
 
 </head>
@@ -2016,7 +2027,26 @@ ONLINE STORE / RESERVE PRODUCT
 <button type="button" id="addToCart" class="btn btn-gold">Add to Cart</button>
 </div>
 
-<p class="store-note">Select your pack size and quantity, then proceed to checkout to enter delivery details.</p>
+<div class="requisition-panel" id="requisition">
+<h4 style="font-size:27px;color:var(--gold);margin:8px 0 10px">Request This Product</h4>
+<p style="font-size:15px;margin-bottom:18px">Online checkout is temporarily unavailable while our payment gateway is being activated. Send us your request and our team will contact you to confirm availability, delivery and payment arrangements.</p>
+<form action="https://formsubmit.co/care@stelora.co.in" method="POST" class="requisition-form">
+<input type="hidden" name="_subject" value="New STELORA Customer Product Request">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="Product" value="STELORA Reserve Collection Gobindobhog Rice">
+<input type="hidden" name="Pack size" id="requestPackSize" value="400 g">
+<input type="hidden" name="Quantity" id="requestQuantity" value="1">
+<div class="req-field"><label for="requestName">Full name *</label><input id="requestName" name="Customer name" autocomplete="name" required></div>
+<div class="req-field"><label for="requestMobile">Mobile number *</label><input id="requestMobile" name="Mobile number" inputmode="tel" autocomplete="tel" required pattern="[0-9+() -]{8,18}" title="Enter a valid contact number"></div>
+<div class="req-field"><label for="requestEmail">Email (optional)</label><input id="requestEmail" name="Email" type="email" autocomplete="email"></div>
+<div class="req-field"><label for="requestLocation">City / PIN code *</label><input id="requestLocation" name="Delivery city and PIN code" required placeholder="e.g. Kolkata, 700001"></div>
+<div class="req-field"><label for="requestQty">Quantity (packs) *</label><input id="requestQty" name="Requested quantity" type="number" min="1" step="1" value="1" required></div>
+<div class="req-field"><label for="requestMessage">Additional details (optional)</label><textarea id="requestMessage" name="Additional details" rows="3" placeholder="Any delivery or product questions"></textarea></div>
+<button type="submit" class="btn btn-gold" style="width:100%;border:0">Send Product Request</button>
+<p style="font-size:12px;margin-top:12px;opacity:.75">This is a request, not a confirmed order. We will contact you before any payment is requested. Please do not include payment PINs or OTPs.</p>
+</form></div>
+
 </div>
 </div>
 </div>
@@ -3523,11 +3553,13 @@ async function validatePincodeForState(){
 
 const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams%20.png',qty:1};
 function changeStoreImage(src,btn){document.getElementById('storeMainImage').src=src;document.querySelectorAll('.store-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+document.getElementById('requestQty').addEventListener('input',function(){document.getElementById('requestQuantity').value=this.value;});
 document.querySelectorAll('.pack-option').forEach(btn=>btn.addEventListener('click',()=>{
 document.querySelectorAll('.pack-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
 storeState.size=btn.dataset.size;storeState.price=Number(btn.dataset.price);storeState.mrp=Number(btn.dataset.mrp);storeState.image=btn.dataset.image;
 document.getElementById('storePrice').textContent='₹'+storeState.price;document.getElementById('storeMrp').textContent='₹'+storeState.mrp;
 document.getElementById('storeMainImage').src=storeState.image;
+document.getElementById('requestPackSize').value=storeState.size;
 }));
 document.getElementById('qtyMinus').addEventListener('click',()=>{storeState.qty=Math.max(1,storeState.qty-1);document.getElementById('storeQty').textContent=storeState.qty});
 document.getElementById('qtyPlus').addEventListener('click',()=>{storeState.qty++;document.getElementById('storeQty').textContent=storeState.qty});
