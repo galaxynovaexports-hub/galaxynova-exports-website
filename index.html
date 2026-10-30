@@ -145,7 +145,7 @@ nav{
   background-size:60px 60px;
 }
 .hero-content{position:relative;z-index:2;width:min(620px,58%);max-width:620px;text-align:left;margin-right:auto;}
-.hero-title{font-family:'Bodoni Moda','Times New Roman',serif;color:#D0A040;letter-spacing:5px;font-weight:600;line-height:1.02;text-shadow:0 5px 28px rgba(208,160,64,.16);}
+.hero-title{font-family:'Bodoni Moda','Times New Roman',serif!important;color:#D0A040!important;letter-spacing:5px;font-weight:600;line-height:1.02;text-shadow:0 5px 28px rgba(208,160,64,.16);}
 .hero-subtitle{color:#D0A040;letter-spacing:4px;}
 .hero-divider{margin:22px 0;background:linear-gradient(90deg,#D0A040,rgba(208,160,64,0));}
 .hero-desc{display:block;margin:0 0 34px;max-width:540px;text-align:left;font-size:.94rem;line-height:1.85;color:var(--muted);}
@@ -265,6 +265,7 @@ section{position:relative;z-index:1;padding:90px 5%;}
   color:var(--white);margin-bottom:18px;line-height:1.15;
 }
 .sec-title em{color:var(--g1);font-style:italic;font-family:'Cinzel',serif;}
+.sec-title .stelora-wordmark,.stelora-wordmark{font-family:'Bodoni Moda','Times New Roman',serif!important;color:#D0A040!important;font-style:normal!important;font-weight:600;letter-spacing:1.5px;}
 .sec-line{
   width:60px;height:1px;
   background:linear-gradient(90deg,var(--g1),transparent);
@@ -370,8 +371,8 @@ section{position:relative;z-index:1;padding:90px 5%;}
 .featured-left::before{
   content:'STELORA';
   position:absolute;right:-20px;top:50%;transform:translateY(-50%) rotate(90deg);
-  font-family:'Cinzel',serif;font-size:5rem;font-weight:900;letter-spacing:10px;
-  color:rgba(0,201,122,0.04);white-space:nowrap;
+  font-family:'Bodoni Moda','Times New Roman',serif;font-size:5rem;font-weight:600;letter-spacing:7px;
+  color:rgba(208,160,64,0.055);white-space:nowrap;
 }
 .feat-star{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--g1);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
 .feat-star::before{content:'★';}
@@ -626,7 +627,7 @@ footer::before{
 .customer-portal.show{display:flex}
 .customer-portal-card{width:min(680px,100%);max-height:92vh;overflow:auto;background:#07151d;border:1px solid rgba(212,175,55,.35);border-radius:22px;padding:28px;box-shadow:0 25px 80px rgba(0,0,0,.55)}
 .customer-portal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-.customer-portal-head h3{margin:0;color:#d4af37;font-size:28px}
+.customer-portal-head h3{margin:0;color:#D0A040;font-family:'Bodoni Moda','Times New Roman',serif;font-weight:600;letter-spacing:1.5px;font-size:28px}
 .customer-portal-close{border:0;background:none;color:#dff4ec;font-size:30px;cursor:pointer}
 .portal-tabs{display:flex;gap:8px;margin-bottom:20px}
 .portal-tab{flex:1;border:1px solid rgba(212,175,55,.25);background:rgba(255,255,255,.04);color:#dff4ec;padding:11px;border-radius:10px;cursor:pointer}
@@ -738,7 +739,7 @@ alt="">
     <!-- Fallback visual if image doesn't render in browser -->
     <div id="pack-fallback" style="display:none;width:260px;height:380px;background:linear-gradient(180deg,#0a2a35,#04090f);border:1px solid rgba(0,201,122,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
       <svg width="40" height="40" viewBox="0 0 24 24" fill="#00c97a" style="filter:drop-shadow(0 0 12px #00c97a)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
-      <div style="font-family:'Cinzel',serif;font-size:1.6rem;letter-spacing:6px;color:#fff;text-shadow:0 0 20px rgba(0,201,122,0.5)">STELORA</div>
+      <div class="stelora-wordmark" style="font-size:1.6rem;letter-spacing:4px;text-shadow:0 0 18px rgba(208,160,64,.18)">STELORA</div>
       <div style="font-size:0.6rem;letter-spacing:3px;color:#00c97a;text-transform:uppercase">Fine Aromatic Rice</div>
       <div style="font-size:0.55rem;letter-spacing:2px;color:rgba(223,244,236,0.4);text-transform:uppercase">Specialty Rice from Bengal, India</div>
       <div style="font-size:0.65rem;color:rgba(0,201,122,0.6);margin-top:8px">1 kg (2.2 lb)</div>
@@ -773,7 +774,7 @@ alt="">
     </div>
     <div class="brand-info anim">
       <p class="brand-text">
-        <strong style="color:var(--star)">STELORA™</strong> is the premium rice brand of <strong style="color:var(--g1)">GALAXYNOVA EXPORTS TRADING (OPC) PRIVATE LIMITED</strong>, incorporated in West Bengal, India. Just as the Northern Lights illuminate the sky with celestial energy, STELORA carries the luminous essence of Bengal's finest rice to the world.
+        <strong class="stelora-wordmark">STELORA™</strong> is the premium rice brand of <strong style="color:var(--g1)">GALAXYNOVA EXPORTS TRADING (OPC) PRIVATE LIMITED</strong>, incorporated in West Bengal, India. Just as the Northern Lights illuminate the sky with celestial energy, STELORA carries the luminous essence of Bengal's finest rice to the world.
       </p>
       <p class="brand-text">
         We specialise in the export of GI-certified non-basmati rice — foremost among them <strong style="color:var(--star)">Tulaipanji</strong>, a rare, fragrant, short-grain rice with Geographical Indication status from the Government of India. Sourced directly from farmers in South 24 Parganas and the rice belts of West Bengal, each grain carries the provenance of centuries of cultivation.
@@ -800,7 +801,7 @@ alt="">
 <section class="products-section" id="products">
   <div class="anim">
     <div class="sec-label">Our Products</div>
-    <h2 class="sec-title">The <em>STELORA</em> Collection</h2>
+    <h2 class="sec-title">The <span class="stelora-wordmark">STELORA</span> Collection</h2>
     <div class="sec-line"></div>
     <p class="sec-sub">Every variety in the STELORA range is selected for aroma, grain integrity, and authentic regional provenance — export-certified and beautifully packaged.</p>
   </div>
@@ -958,7 +959,7 @@ alt="">
 <section class="why-section" id="why">
   <div class="anim">
     <div class="sec-label">Why Choose STELORA</div>
-    <h2 class="sec-title">The <em>STELORA</em> Difference</h2>
+    <h2 class="sec-title">The <span class="stelora-wordmark">STELORA</span> Difference</h2>
     <div class="sec-line"></div>
   </div>
   <div class="why-grid">
@@ -1065,7 +1066,7 @@ Full compliance documents available to verified importers upon request.
 <section class="contact-section" id="contact">
   <div class="anim">
     <div class="sec-label">Connect With Us</div>
-    <h2 class="sec-title">Begin Your <em>STELORA</em> Journey</h2>
+    <h2 class="sec-title">Begin Your <span class="stelora-wordmark">STELORA</span> Journey</h2>
     <div class="sec-line"></div>
   </div>
   <div class="contact-grid">
