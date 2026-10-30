@@ -71,7 +71,7 @@ body{font-family:'Raleway',sans-serif;background:var(--ink);color:var(--star);ov
 
 /* star particles */
 .stars{position:fixed;inset:0;z-index:0;pointer-events:none;}
-.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) var(--delay,0s) ease-in-out infinite;}
+.star{position:absolute;background:#D0A040;border-radius:50%;box-shadow:0 0 5px rgba(208,160,64,.45);animation:twinkle var(--d,3s) var(--delay,0s) ease-in-out infinite;}
 @keyframes twinkle{0%,100%{opacity:0.1;}50%{opacity:0.8;}}
 
 /* page content sits above bg */
@@ -155,6 +155,7 @@ nav{
   margin-bottom:28px;
   font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--g2);
 }
+.hero-eyebrow::before,.hero-eyebrow::after{color:#D0A040;text-shadow:0 0 8px rgba(208,160,64,.35);}
 .hero-eyebrow::before{content:'★';font-size:10px;}
 .hero-eyebrow::after{content:'★';font-size:10px;}
 .hero-title{
@@ -257,7 +258,7 @@ section{position:relative;z-index:1;padding:90px 5%;}
   font-size:0.62rem;letter-spacing:4px;text-transform:uppercase;
   color:var(--g1);margin-bottom:12px;display:flex;align-items:center;gap:10px;
 }
-.sec-label::before{content:'★';font-size:9px;}
+.sec-label::before{content:'★';font-size:9px;color:#D0A040;text-shadow:0 0 7px rgba(208,160,64,.3);}
 .sec-title{
   font-family:'Cinzel',serif;
   font-size:clamp(1.8rem,3.5vw,2.8rem);
@@ -337,7 +338,7 @@ section{position:relative;z-index:1;padding:90px 5%;}
 .prod-card-content{
   position:absolute;bottom:0;left:0;right:0;padding:28px 24px;
 }
-.prod-tag{
+ .prod-tag{
   display:inline-block;
   border:1px solid var(--g1);color:var(--g1);
   font-size:0.58rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;
@@ -375,7 +376,7 @@ section{position:relative;z-index:1;padding:90px 5%;}
   color:rgba(208,160,64,0.055);white-space:nowrap;
 }
 .feat-star{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--g1);display:flex;align-items:center;gap:8px;margin-bottom:16px;}
-.feat-star::before{content:'★';}
+.feat-star::before{content:'★';color:#D0A040;text-shadow:0 0 7px rgba(208,160,64,.3);}
 .featured-left h3{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;letter-spacing:3px;color:var(--white);margin-bottom:14px;}
 .featured-left p{font-size:0.88rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:28px;}
 .feat-specs{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
@@ -447,7 +448,7 @@ section{position:relative;z-index:1;padding:90px 5%;}
 }
 .why-item:hover::after{transform:scaleY(1);}
 .why-item:hover{background:rgba(0,201,122,0.04);}
-.why-icon{
+.why-icon{color:#D0A040;
   width:44px;height:44px;flex-shrink:0;
   border:1px solid var(--border2);
   display:flex;align-items:center;justify-content:center;
@@ -738,7 +739,7 @@ src="stelora-pack.png"
 alt="">
     <!-- Fallback visual if image doesn't render in browser -->
     <div id="pack-fallback" style="display:none;width:260px;height:380px;background:linear-gradient(180deg,#0a2a35,#04090f);border:1px solid rgba(0,201,122,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="#00c97a" style="filter:drop-shadow(0 0 12px #00c97a)"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="#D0A040" style="filter:drop-shadow(0 0 12px rgba(208,160,64,.45))"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
       <div class="stelora-wordmark" style="font-size:1.6rem;letter-spacing:4px;text-shadow:0 0 18px rgba(208,160,64,.18)">STELORA</div>
       <div style="font-size:0.6rem;letter-spacing:3px;color:#00c97a;text-transform:uppercase">Fine Aromatic Rice</div>
       <div style="font-size:0.55rem;letter-spacing:2px;color:rgba(223,244,236,0.4);text-transform:uppercase">Specialty Rice from Bengal, India</div>
