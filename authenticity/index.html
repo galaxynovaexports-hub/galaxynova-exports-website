@@ -2287,13 +2287,13 @@ Each production batch is evaluated for physical quality, appearance, aroma, clea
 
 </p>
 
-<a class="btn btn-gold report-file-link" href="./STL-2601-Quality_report.pdf" target="_blank" rel="noopener">
+<button type="button" class="btn btn-gold report-file-link" onclick="openReport('STL-2601-Quality_report.pdf')">
     View Quality Report
-</a>
+</button>
 
-<a class="btn btn-gold report-file-link" href="./STL-2601-Nutrition-Panel.pdf" target="_blank" rel="noopener">
+<button type="button" class="btn btn-gold report-file-link" onclick="openReport('STL-2601-Nutrition-Panel.pdf')">
     View Nutrition Panel
-</a>
+</button>
 </div>
 
 <div class="lab-card">
@@ -3515,91 +3515,60 @@ function openReport(file) {
     };
     const report = reports[file];
     if (!report) {
-        console.error('Unknown STELORA report:', file);
         alert('This report is temporarily unavailable. Please contact STELORA support.');
         return;
     }
 
+    // View-only presentation: no in-page download, print, or separate-open controls.
     const viewer = document.createElement('div');
     viewer.setAttribute('role', 'dialog');
     viewer.setAttribute('aria-modal', 'true');
     viewer.setAttribute('aria-label', report.title);
-    viewer.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#101b16;color:#f5f0e5;display:flex;flex-direction:column;padding:clamp(10px,2vw,20px);box-sizing:border-box;';
+    viewer.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#101b16;color:#f5f0e5;display:flex;flex-direction:column;padding:clamp(8px,2vw,18px);box-sizing:border-box;';
 
     const header = document.createElement('div');
-    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 14px;flex-wrap:wrap;flex-shrink:0;';
+    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 12px;flex-shrink:0;';
     const title = document.createElement('strong');
     title.textContent = report.title;
     title.style.cssText = 'font:600 18px Georgia,serif;color:#ead7a6;';
-    const actions = document.createElement('div');
-    actions.style.cssText = 'display:flex;gap:8px;align-items:center;flex-wrap:wrap;';
-    const openLink = document.createElement('a');
-    openLink.href = report.url;
-    openLink.target = '_blank';
-    openLink.rel = 'noopener';
-    openLink.textContent = 'Open PDF separately';
-    openLink.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;background:#ead7a6;color:#172219;border-radius:6px;text-decoration:none;font:600 13px Arial,sans-serif;';
     const close = document.createElement('button');
     close.type = 'button';
     close.textContent = 'Close';
     close.setAttribute('aria-label', 'Close report viewer');
     close.style.cssText = 'padding:10px 18px;background:#d4af6a;color:#111;border:0;border-radius:6px;cursor:pointer;font-weight:bold;';
-    close.addEventListener('click', () => {
+    const closeViewer = () => {
         viewer.remove();
         document.body.style.overflow = '';
-    });
-    actions.append(openLink, close);
-    header.append(title, actions);
+        document.removeEventListener('keydown', onEscape);
+    };
+    close.addEventListener('click', closeViewer);
+    header.append(title, close);
 
     const frame = document.createElement('iframe');
-    frame.title = report.title + ' PDF document';
-    frame.src = report.url + '#toolbar=1&navpanes=0&scrollbar=1';
+    frame.title = report.title + ' (view only)';
+    frame.src = report.url + '#toolbar=0&navpanes=0&scrollbar=1&view=FitH';
     frame.setAttribute('loading', 'eager');
+    frame.setAttribute('referrerpolicy', 'no-referrer');
     frame.style.cssText = 'display:block;width:100%;height:100%;min-height:0;flex:1;border:1px solid rgba(226,201,143,.4);border-radius:8px;background:#fff;';
     frame.addEventListener('error', () => {
-        frame.replaceWith(makeFallback());
-    });
-
-    function makeFallback() {
-        const fallback = document.createElement('div');
-        fallback.style.cssText = 'display:flex;flex:1;min-height:240px;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;border:1px solid rgba(226,201,143,.4);border-radius:8px;background:#18291f;color:#f5f0e5;';
         const message = document.createElement('p');
-        message.textContent = 'Your in-app browser may not display PDF files. Open the report separately to view it, or download it to your device.';
-        const download = document.createElement('a');
-        download.href = report.url;
-        download.download = file;
-        download.textContent = 'Download ' + report.title;
-        download.style.cssText = 'display:inline-flex;padding:12px 18px;background:#ead7a6;color:#172219;border-radius:6px;text-decoration:none;font-weight:700;';
-        fallback.append(message, download);
-        return fallback;
-    }
+        message.textContent = 'This browser cannot display the report in the viewer. Please try another browser or contact STELORA support.';
+        message.style.cssText = 'padding:24px;text-align:center;color:#f5f0e5;';
+        frame.replaceWith(message);
+    });
 
     viewer.append(header, frame);
     document.body.appendChild(viewer);
     document.body.style.overflow = 'hidden';
     close.focus();
+    const onEscape = event => {
+        if (event.key === 'Escape') closeViewer();
+    };
+    document.addEventListener('keydown', onEscape);
     viewer.addEventListener('click', event => {
-        if (event.target === viewer) {
-            viewer.remove();
-            document.body.style.overflow = '';
-        }
-    });
-    document.addEventListener('keydown', function onEscape(event) {
-        if (event.key === 'Escape' && document.body.contains(viewer)) {
-            viewer.remove();
-            document.body.style.overflow = '';
-            document.removeEventListener('keydown', onEscape);
-        }
+        if (event.target === viewer) closeViewer();
     });
 }
-
-window.scrollToLabReports = function () {
-    const lab = document.getElementById('lab');
-    if (!lab) return;
-    lab.classList.add('show');
-    const top = lab.getBoundingClientRect().top + window.pageYOffset - 82;
-    window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
-};
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
