@@ -3625,11 +3625,10 @@ async function submitCheckout(event){
         if(error) throw error;
         if(!data || !data.success) throw new Error(data?.error || 'Order could not be created.');
 
-        message.textContent='Step 3 of 3 · Connecting to PhonePe…';
-        const paymentResult=await getSupabaseClient().functions.invoke('phonepe-create-payment',{body:{order_number:data.order.order_number}});
-        if(paymentResult.error || !paymentResult.data?.success){
+        message.textContent='Step 3 of 3 · Opening secure PhonePe checkout…';
+        if(!data.redirect_url){
             message.className='checkout-message checkout-error';
-            message.innerHTML='<strong>Payment not completed.</strong><br>Payment reference: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>No order has been confirmed. You can retry the secure PhonePe payment.';
+            message.innerHTML='<strong>Payment not completed.</strong><br>Payment reference: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>No order has been confirmed. '+(data.payment_error||'You can retry the secure PhonePe payment.');
             submit.style.display='none';
             const retry=document.createElement('button');
             retry.type='button';
@@ -3645,7 +3644,7 @@ async function submitCheckout(event){
         message.innerHTML='<strong>Secure payment request created.</strong><br>Payment reference: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>Your order will be confirmed only after PhonePe verifies successful payment. Opening secure checkout…';
         submit.style.display='none';
         form.reset();
-        window.location.href=paymentResult.data.redirect_url;
+        window.location.href=data.redirect_url;
     }catch(error){
         console.error(error);
         message.className='checkout-message checkout-error';
