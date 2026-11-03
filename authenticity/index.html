@@ -3691,5 +3691,72 @@ function startCheckout(){
     openCheckout();
 }
 </script>
+
+<script>
+// Independent storefront controls: keep product selection and cart working
+// even if another page script encounters an unrelated runtime error.
+(function(){
+  const state={size:'400 g',price:269,mrp:379,image:'asset/400grams%20.png',qty:1};
+  const $=id=>document.getElementById(id);
+  function update(){
+    const total=state.price*state.qty;
+    if($('storePrice')) $('storePrice').textContent='₹'+state.price.toLocaleString('en-IN');
+    if($('storeMrp')) $('storeMrp').textContent='₹'+state.mrp.toLocaleString('en-IN');
+    if($('liveCartTotal')) $('liveCartTotal').textContent='₹'+total.toLocaleString('en-IN');
+    if($('storeQty')) $('storeQty').textContent=state.qty;
+    if($('storeMainImage')) $('storeMainImage').src=state.image;
+    const requestPack=$('requestPackSize');
+    if(requestPack) requestPack.value=state.size;
+  }
+  document.addEventListener('click',function(event){
+    const pack=event.target.closest('.pack-option');
+    if(pack){
+      event.preventDefault(); event.stopImmediatePropagation();
+      document.querySelectorAll('.pack-option').forEach(x=>x.classList.toggle('selected',x===pack));
+      state.size=pack.dataset.size||'400 g';
+      state.price=Number(pack.dataset.price)||269;
+      state.mrp=Number(pack.dataset.mrp)||379;
+      state.image=pack.dataset.image||state.image;
+      update();
+      return;
+    }
+    const minus=event.target.closest('#qtyMinus');
+    const plus=event.target.closest('#qtyPlus');
+    if(minus||plus){
+      event.preventDefault(); event.stopImmediatePropagation();
+      state.qty=Math.max(1,state.qty+(plus?1:-1)); update(); return;
+    }
+    const add=event.target.closest('#addToCart');
+    if(add){
+      event.preventDefault(); event.stopImmediatePropagation();
+      const total=state.price*state.qty;
+      if($('cartItems')) $('cartItems').innerHTML='<div class="cart-item"><img src="'+state.image+'" alt=""><div class="cart-item-info"><strong>STELORA™ Reserve Collection — Gobindobhog</strong><small>'+state.size+' × '+state.qty+'</small><div style="margin-top:7px">₹'+total.toLocaleString('en-IN')+'</div></div></div>';
+      if($('cartSummary')) $('cartSummary').innerHTML='<div class="cart-total"><span>Total</span><span>₹'+total.toLocaleString('en-IN')+'</span></div><button type="button" class="btn btn-gold" style="width:100%" onclick="window.steloraStartCheckout()">Proceed to Checkout</button>';
+      if($('cartDrawer')) $('cartDrawer').classList.add('open');
+      if($('cartOverlay')) $('cartOverlay').classList.add('show');
+    }
+  },true);
+  window.changeStoreImage=function(src,button){
+    if($('storeMainImage')) $('storeMainImage').src=src;
+    document.querySelectorAll('.store-thumb').forEach(x=>x.classList.toggle('active',x===button));
+  };
+  window.closeCart=function(){
+    if($('cartDrawer')) $('cartDrawer').classList.remove('open');
+    if($('cartOverlay')) $('cartOverlay').classList.remove('show');
+  };
+  window.steloraStartCheckout=function(){
+    window.closeCart();
+    const modal=$('checkoutModal');
+    if(modal){
+      if($('checkoutPack')) $('checkoutPack').textContent=state.size;
+      if($('checkoutQuantity')) $('checkoutQuantity').textContent=state.qty;
+      if($('checkoutTotal')) $('checkoutTotal').textContent='₹'+(state.price*state.qty).toLocaleString('en-IN');
+      modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
+    }
+  };
+  window.startCheckout=window.steloraStartCheckout;
+  update();
+})();
+</script>
 </body>
 </html>
