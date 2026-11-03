@@ -1824,6 +1824,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   .checkout-summary{margin:16px 0;padding:12px}
 }
 
+
+.lab-report-mobile{display:none;align-items:center;justify-content:center;gap:7px;border:1px solid rgba(226,201,143,.72);border-radius:999px;padding:10px 15px;background:linear-gradient(135deg,#e2c98f,#b9954b);color:#182219;font:600 14px 'Raleway',sans-serif;white-space:nowrap;cursor:pointer;box-shadow:0 3px 14px rgba(0,0,0,.16)}
+@media(max-width:900px){.lab-report-mobile{display:inline-flex}}
+@media(max-width:600px){.navbar{gap:10px}.logo{font-size:clamp(22px,6vw,29px);letter-spacing:1px}.lab-report-mobile{padding:9px 12px;font-size:13px;flex-shrink:0}}
+
 </style>
 
 </head>
@@ -1851,6 +1856,8 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 <a href="#about">About</a>
 
 </nav>
+
+<button type="button" class="lab-report-mobile" onclick="openReport('STL-2601-Quality_report.pdf')" aria-label="View STELORA laboratory quality report">🧪 <span>Lab Report</span></button>
 
 </div>
 
