@@ -3567,7 +3567,6 @@ citySelect.addEventListener('input',function(){
     clearTimeout(citySearchTimer);
     if(citySearchController) citySearchController.abort();
     hideCitySuggestions();
-    cityOptions.innerHTML='';
     if(!state||query.length<2) return;
 
     citySearchTimer=setTimeout(async()=>{
@@ -3581,14 +3580,23 @@ citySelect.addEventListener('input',function(){
             const offices=payload?.[0]?.Status==='Success'?(payload[0].PostOffice||[]):[];
             const stateKey=state.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
             const matching=offices.filter(office=>String(office.State||'').toLocaleLowerCase().replace(/[^a-z0-9]/g,'')===stateKey);
+            const queryKey=query.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
             const names=new Set();
             matching.forEach(office=>{
                 [office.Name,office.Block,office.District,office.Division,office.Region].forEach(value=>{
                     const clean=String(value||'').trim();
-                    if(clean) names.add(clean);
+                    const key=clean.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
+                    if(clean&&key.includes(queryKey)) names.add(clean);
                 });
             });
-            showCitySuggestions([...names].sort((a,b)=>a.localeCompare(b)));
+            const ranked=[...names].sort((a,b)=>{
+                const ak=a.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
+                const bk=b.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
+                const ar=ak===queryKey?0:ak.startsWith(queryKey)?1:2;
+                const br=bk===queryKey?0:bk.startsWith(queryKey)?1:2;
+                return ar-br||a.localeCompare(b);
+            });
+            showCitySuggestions(ranked);
         }catch(error){
             if(error.name!=='AbortError') console.warn('City/town suggestions could not be loaded:',error);
         }
