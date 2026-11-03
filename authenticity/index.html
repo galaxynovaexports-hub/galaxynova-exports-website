@@ -3582,9 +3582,48 @@ async function validatePincodeForState(){
             input.focus(); return false;
         }
 
-        const matchesState=records.some(x=>String(x.State||'').trim().toLowerCase()===state.trim().toLowerCase());
+        const normalizePlace=value=>String(value||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+        const city=citySelect.value;
+        const matchesState=records.some(x=>normalizePlace(x.State)===normalizePlace(state));
         if(!matchesState){
             alert('The PIN code does not belong to '+state+'. Please enter the correct PIN code for your selected state.');
+            input.focus(); return false;
+        }
+
+        if(!city){
+            alert('Please select your city / town first.');
+            citySelect.focus(); return false;
+        }
+
+        // India Post returns district and block for each post office. Match the
+        // selected city against these locality fields, with common city aliases.
+        const cityDistrictAliases={
+            'noida':['gautambuddhanagar'],
+            'greaternoida':['gautambuddhanagar'],
+            'gurugram':['gurgaon'],
+            'bengaluru':['bengaluruurban','bangaloreurban'],
+            'bangalore':['bengaluruurban','bangaloreurban'],
+            'mumbai':['mumbicity','mumbaisuburban'],
+            'thane':['thane'],
+            'pune':['pune'],
+            'bardhaman':['purbabardhaman','bardhaman'],
+            'pur bardhaman':['purbabardhaman']
+        };
+        const selectedCity=normalizePlace(city);
+        const acceptedDistricts=[selectedCity,...(cityDistrictAliases[selectedCity]||[])];
+        const matchesCity=records.some(x=>{
+            const district=normalizePlace(x.District);
+            const block=normalizePlace(x.Block);
+            const office=normalizePlace(x.Name);
+            return acceptedDistricts.includes(district) ||
+                   acceptedDistricts.includes(block) ||
+                   district===selectedCity ||
+                   block===selectedCity ||
+                   office===selectedCity;
+        });
+        if(!matchesCity){
+            const districts=[...new Set(records.map(x=>x.District).filter(Boolean))].join(', ');
+            alert('This PIN code does not appear to match '+city+'. The PIN code belongs to '+(districts||'a different locality')+'. Please check your city and PIN code.');
             input.focus(); return false;
         }
         return true;
