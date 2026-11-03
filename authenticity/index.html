@@ -1706,6 +1706,109 @@ ONLINE STORE / RESERVE PRODUCT
   .quality-feedback-float{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));min-height:50px;padding:0 18px;font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.quality-feedback-float{transition:none}}
+
+/* STELORA unified premium heritage design */
+:root{
+ --gold:#c6a45d;--gold-light:#ead7a6;--emerald:#557b5b;--navy:#101b16;
+ --navy2:#1a2a20;--white:#fffdf7;--ivory:#f5f0e5;
+ --glass:rgba(255,253,247,.045);--border:rgba(198,164,93,.22);
+}
+html{scroll-padding-top:100px}
+body{background:#101b16;color:#f5f0e5;line-height:1.75}
+body::before{
+ background:radial-gradient(circle at 12% 16%,rgba(85,123,91,.22),transparent 42%),
+ radial-gradient(circle at 88% 12%,rgba(198,164,93,.12),transparent 38%),
+ radial-gradient(circle at 55% 90%,rgba(85,123,91,.10),transparent 46%);
+ animation:none
+}
+body::after{background:linear-gradient(180deg,rgba(8,16,11,.12),rgba(8,16,11,.30))}
+header{background:rgba(16,27,22,.94);border-bottom:1px solid rgba(198,164,93,.2)}
+.logo{color:#e2c98f}
+.nav-links a{color:rgba(245,240,229,.78)}
+.nav-links a:hover{color:#e2c98f}
+.nav-cart-btn{border-color:#c6a45d;color:#e2c98f;background:rgba(198,164,93,.07)}
+.nav-cart-btn:hover{background:#c6a45d;color:#172219}
+h1,h2,h3,h4{color:#fffdf7}
+p{color:rgba(245,240,229,.78)}
+.badge{background:rgba(85,123,91,.16);border-color:rgba(126,164,126,.35);color:#c5dfc4}
+.btn-gold{background:linear-gradient(135deg,#ead7a6,#b9954b);color:#172219}
+.btn-gold:hover{box-shadow:0 12px 35px rgba(198,164,93,.22)}
+.btn-outline{border-color:rgba(234,215,166,.35);color:#f5f0e5}
+.hero-card,.info-card,.store-panel,.lab-card,.storage-card,.reward-card,.story-box,
+.heritage-card,.collection-card,.market-card,.contact-card,.feedback-wrapper{
+ background:rgba(255,253,247,.045);border:1px solid rgba(198,164,93,.20);
+ box-shadow:0 18px 48px rgba(0,0,0,.14)
+}
+.verify-icon,.card-icon,.storage-icon,.story-icon,.heritage-icon,.product-icon,.contact-icon{
+ background:rgba(198,164,93,.10);color:#e2c98f;border:1px solid rgba(198,164,93,.20)
+}
+.store-eyebrow,.store-bullets,.product-tag,.lab-icon,.step-circle,.reward-badge{color:#e2c98f}
+.sale-price{color:#f3dca5}
+.mrp-price{color:rgba(245,240,229,.52)}
+.pack-option{border-color:rgba(198,164,93,.28);background:rgba(255,253,247,.035);color:#f5f0e5}
+.pack-option.selected,.pack-option:hover{border-color:#d7bb7b;background:rgba(198,164,93,.12)}
+.store-main-image{border-radius:18px}
+.store-thumb{border-color:rgba(198,164,93,.25)}
+.store-thumb.active,.store-thumb:hover{border-color:#e2c98f}
+.qty-control button,.cart-actions button{border-color:rgba(198,164,93,.32)}
+.cart-live-total{color:#ead7a6}
+.requisition-panel{border-color:rgba(198,164,93,.25);background:rgba(255,253,247,.035)}
+.req-field input,.req-field textarea{background:#111e17;border-color:rgba(198,164,93,.24);color:#fffdf7}
+.lab-card.featured{border-color:rgba(198,164,93,.48)}
+.process-step,.rating-box,.story-content,.feedback-info{color:#f5f0e5}
+.feedback-form input,.feedback-form textarea,.feedback-form select,
+.form-group input,.form-group textarea,.form-group select{
+ background:#111e17;border:1px solid rgba(198,164,93,.24);color:#fffdf7
+}
+.feedback-form input:focus,.feedback-form textarea:focus,.feedback-form select:focus,
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+ outline:none;border-color:#e2c98f;box-shadow:0 0 0 3px rgba(198,164,93,.10)
+}
+.reward-card{border-color:rgba(198,164,93,.20)}
+.reward-icon{color:#e2c98f}
+.story-image,.store-gallery{border-color:rgba(198,164,93,.20)}
+.product-features,.store-desc,.store-note,.city-help{color:rgba(245,240,229,.72)}
+.coming-soon{border-color:rgba(198,164,93,.24);color:#e2c98f}
+footer{background:#0b1510;border-top:1px solid rgba(198,164,93,.20)}
+footer a,footer p,.copyright{color:rgba(245,240,229,.66)}
+.cart-drawer,.checkout-card{background:#14231a;border-color:rgba(198,164,93,.28)}
+.cart-head,.checkout-head{border-bottom-color:rgba(198,164,93,.22)}
+.cart-close,.checkout-close{color:#f5f0e5}
+.checkout-field input,.checkout-field textarea,.checkout-field select{
+ background:#0e1a13;border-color:rgba(198,164,93,.25);color:#fffdf7
+}
+.checkout-field input:focus,.checkout-field textarea:focus,.checkout-field select:focus{
+ outline:none;border-color:#e2c98f
+}
+.quality-feedback-float{
+ background:linear-gradient(135deg,#ead7a6,#b9954b);color:#172219;
+ border-color:rgba(255,253,247,.55);box-shadow:0 12px 34px rgba(0,0,0,.38),0 0 0 4px rgba(198,164,93,.10)
+}
+.quality-feedback-float:hover,.quality-feedback-float:focus-visible{
+ box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 0 5px rgba(198,164,93,.18)
+}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+ outline:2px solid #ead7a6;outline-offset:3px
+}
+@media(max-width:900px){
+ section{padding:82px 0}
+ .navbar{height:auto;min-height:72px}
+ .nav-links{gap:18px}
+}
+@media(max-width:600px){
+ section{padding:64px 0}
+ .navbar{min-height:68px}
+ .logo{font-size:29px}
+ .nav-links{gap:12px}
+ .nav-links a{font-size:13px}
+ .hero{padding-top:104px}
+ .hero-card,.store-panel{padding:22px}
+ .quality-feedback-float{right:14px;bottom:calc(14px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
 </style>
 
 </head>
