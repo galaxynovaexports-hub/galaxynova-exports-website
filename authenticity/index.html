@@ -3758,5 +3758,59 @@ function startCheckout(){
   update();
 })();
 </script>
+
+<script>
+// Independent state-to-city control: do not depend on the checkout script.
+(function(){
+  const state=document.getElementById('customerState');
+  const city=document.getElementById('customerCity');
+  const list=document.getElementById('customerCityOptions');
+  if(!state||!city||!list) return;
+  let timer=null, controller=null, requestNo=0;
+  const norm=v=>String(v||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+  function activateCity(){
+    city.disabled=!state.value;
+    city.placeholder=state.value?'Type a town, city or post-office name':'Select state first';
+    city.value='';
+    list.replaceChildren();
+    city.setCustomValidity('');
+    if(controller) controller.abort();
+    requestNo++;
+  }
+  state.addEventListener('change',activateCity);
+  // Also support browsers/autofill that change the select without a normal click.
+  state.addEventListener('input',activateCity);
+  city.addEventListener('input',function(){
+    clearTimeout(timer);
+    if(controller) controller.abort();
+    list.replaceChildren();
+    const query=city.value.trim(), selectedState=state.value, seq=++requestNo;
+    if(!selectedState){city.disabled=true;return;}
+    city.disabled=false;
+    if(query.length<2) return;
+    timer=setTimeout(async()=>{
+      controller=new AbortController();
+      try{
+        const response=await fetch('https://api.postalpincode.in/postoffice/'+encodeURIComponent(query),{signal:controller.signal});
+        if(!response.ok) return;
+        const payload=await response.json();
+        if(seq!==requestNo||selectedState!==state.value) return;
+        const offices=payload?.[0]?.Status==='Success'?(payload[0].PostOffice||[]):[];
+        const seen=new Set();
+        offices.filter(o=>norm(o.State)===norm(selectedState)).forEach(o=>{
+          [o.Name,o.Block,o.District].forEach(value=>{
+            const name=String(value||'').trim(), key=norm(name);
+            if(!name||seen.has(key)) return;
+            seen.add(key);
+            const option=document.createElement('option'); option.value=name; list.appendChild(option);
+          });
+        });
+      }catch(e){if(e.name!=='AbortError') console.warn('City suggestions unavailable; manual entry remains enabled.',e);}
+    },300);
+  });
+  if(state.value){city.disabled=false;city.placeholder='Type a town, city or post-office name';}
+  else {city.disabled=true;city.placeholder='Select state first';}
+})();
+</script>
 </body>
 </html>
