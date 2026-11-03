@@ -1663,6 +1663,11 @@ ONLINE STORE / RESERVE PRODUCT
 .checkout-field label{font-size:13px;opacity:.82}
 .checkout-field input{width:100%;box-sizing:border-box;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--ivory);outline:none}
 .checkout-field input:focus{border-color:var(--gold)}
+.checkout-field{position:relative}
+.city-suggestions{position:absolute;z-index:10030;top:100%;left:0;right:0;max-height:220px;overflow-y:auto;background:#102235;border:1px solid var(--gold);border-radius:10px;margin-top:4px;box-shadow:0 12px 28px rgba(0,0,0,.4)}
+.city-suggestions button{display:block;width:100%;padding:10px 13px;text-align:left;color:var(--ivory);background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.city-suggestions button:hover,.city-suggestions button:focus{background:rgba(255,255,255,.1);outline:none}
+.city-help{font-size:11px;opacity:.7}
 .checkout-summary{margin:22px 0;padding:16px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.04)}
 .checkout-summary-row{display:flex;justify-content:space-between;margin:6px 0}
 .checkout-message{margin-top:14px;font-size:14px;line-height:1.5}
@@ -3180,8 +3185,10 @@ BACK TO TOP BUTTON
 
 <div class="checkout-field">
 <label for="customerCity">City / Town *</label>
-<input id="customerCity" name="city" type="text" list="customerCityOptions" required autocomplete="address-level2" placeholder="Select state first" disabled>
+<input id="customerCity" name="city" type="text" list="customerCityOptions" required autocomplete="address-level2" placeholder="Select state first" disabled aria-autocomplete="list" aria-controls="customerCitySuggestions">
 <datalist id="customerCityOptions"></datalist>
+<div id="customerCitySuggestions" class="city-suggestions" role="listbox" aria-label="Matching cities, towns and districts" hidden></div>
+<small class="city-help">Select a state, then type to see matching cities, towns and districts.</small>
 </div>
 
 <div class="checkout-field">
@@ -3524,33 +3531,48 @@ document.getElementById('customerFeedbackForm').addEventListener('submit',async 
 const stateSelect=document.getElementById('customerState');
 const citySelect=document.getElementById('customerCity');
 const cityOptions=document.getElementById('customerCityOptions');
+const citySuggestions=document.getElementById('customerCitySuggestions');
 let citySearchTimer=null;
 let citySearchController=null;
 let citySearchSequence=0;
 
+function hideCitySuggestions(){
+    if(citySuggestions){citySuggestions.hidden=true;citySuggestions.replaceChildren();}
+}
 function populateCities(state){
     cityOptions.innerHTML='';
+    hideCitySuggestions();
     citySelect.value='';
     citySelect.disabled=false;
     citySelect.readOnly=!state;
-    citySelect.placeholder=state?'Enter your city or town':'Select state first';
+    citySelect.placeholder=state?'Start typing a city, town or district':'Select state first';
 }
-
-function addCitySuggestion(value, seen){
-    const name=String(value||'').trim();
-    const key=name.toLocaleLowerCase();
-    if(!name||seen.has(key)) return;
-    seen.add(key);
-    const option=document.createElement('option');
-    option.value=name;
-    cityOptions.appendChild(option);
+function showCitySuggestions(names){
+    hideCitySuggestions();
+    if(!names.length) return;
+    names.slice(0,25).forEach(name=>{
+        const option=document.createElement('option');
+        option.value=name;
+        cityOptions.appendChild(option);
+        const button=document.createElement('button');
+        button.type='button';
+        button.setAttribute('role','option');
+        button.textContent=name;
+        button.addEventListener('click',()=>{
+            citySelect.value=name;
+            citySelect.dispatchEvent(new Event('change',{bubbles:true}));
+            hideCitySuggestions();
+        });
+        citySuggestions.appendChild(button);
+    });
+    citySuggestions.hidden=false;
 }
-
 citySelect.addEventListener('input',function(){
     const query=this.value.trim();
     const state=stateSelect.value;
     clearTimeout(citySearchTimer);
     if(citySearchController) citySearchController.abort();
+    hideCitySuggestions();
     cityOptions.innerHTML='';
     if(!state||query.length<2) return;
 
@@ -3565,18 +3587,25 @@ citySelect.addEventListener('input',function(){
             const offices=payload?.[0]?.Status==='Success'?(payload[0].PostOffice||[]):[];
             const stateKey=state.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
             const matching=offices.filter(office=>String(office.State||'').toLocaleLowerCase().replace(/[^a-z0-9]/g,'')===stateKey);
-            const seen=new Set();
+            const names=new Set();
             matching.forEach(office=>{
-                addCitySuggestion(office.Name,seen);
-                addCitySuggestion(office.Block,seen);
-                addCitySuggestion(office.District,seen);
+                [office.Name,office.Block,office.District,office.Division,office.Region].forEach(value=>{
+                    const clean=String(value||'').trim();
+                    if(clean) names.add(clean);
+                });
             });
+            showCitySuggestions([...names].sort((a,b)=>a.localeCompare(b)));
         }catch(error){
             if(error.name!=='AbortError') console.warn('City/town suggestions could not be loaded:',error);
         }
     },250);
-}
-
+});
+citySelect.addEventListener('focus',()=>{
+    if(stateSelect.value&&citySelect.value.trim().length>=2) citySelect.dispatchEvent(new Event('input'));
+});
+document.addEventListener('click',event=>{
+    if(!event.target.closest('#customerCity')&&!event.target.closest('#customerCitySuggestions')) hideCitySuggestions();
+});
 stateSelect.addEventListener('change',function(){
     populateCities(this.value);
     document.getElementById('customerPincode').setCustomValidity('');
@@ -3782,6 +3811,8 @@ function startCheckout(){
     city.placeholder=hasState?'Enter your city or town':'Select state first';
     if(!hasState) city.value='';
     if(list) list.replaceChildren();
+    const suggestions=byId('customerCitySuggestions');
+    if(suggestions){suggestions.hidden=true;suggestions.replaceChildren();}
   }
 
   document.addEventListener('click',function(event){
