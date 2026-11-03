@@ -2357,38 +2357,36 @@ Whether you enjoyed the aroma, taste, packaging or have suggestions for improvem
 
 <div class="feedback-form">
 
-<form>
-
+<form id="customerFeedbackForm" novalidate>
 <div class="form-group">
-
-<label>Your Name</label>
-
-<input type="text" placeholder="Enter your name">
-
+<label for="feedbackName">Your Name (Optional)</label>
+<input id="feedbackName" name="customer_name" type="text" maxlength="100" autocomplete="name" placeholder="Enter your name">
 </div>
-
 <div class="form-group">
-
-<label>Email (Optional)</label>
-
-<input type="email" placeholder="Enter your email">
-
+<label for="feedbackEmail">Email (Optional)</label>
+<input id="feedbackEmail" name="customer_email" type="email" maxlength="254" autocomplete="email" placeholder="Enter your email">
 </div>
-
 <div class="form-group">
-
-<label>Your Feedback</label>
-
-<textarea rows="6" placeholder="Tell us about your experience with STELORA™"></textarea>
-
+<label for="feedbackRating">Your Rating *</label>
+<select id="feedbackRating" name="rating" required>
+<option value="">Select a rating</option>
+<option value="5">★★★★★ — Excellent</option>
+<option value="4">★★★★☆ — Very good</option>
+<option value="3">★★★☆☆ — Good</option>
+<option value="2">★★☆☆☆ — Fair</option>
+<option value="1">★☆☆☆☆ — Needs improvement</option>
+</select>
 </div>
-
-<button type="submit" class="btn btn-gold">
-
-Submit Feedback
-
-</button>
-
+<div class="form-group">
+<label for="feedbackMessage">Your Feedback *</label>
+<textarea id="feedbackMessage" name="feedback" rows="6" minlength="5" maxlength="3000" required placeholder="Tell us about your experience with STELORA™"></textarea>
+</div>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+<label for="feedbackWebsite">Leave this field empty</label>
+<input id="feedbackWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+</div>
+<button id="feedbackSubmit" type="submit" class="btn btn-gold">Submit Feedback</button>
+<p id="feedbackStatus" role="status" aria-live="polite" style="margin-top:14px"></p>
 </form>
 
 </div>
@@ -3477,6 +3475,47 @@ async function retryPhonePePayment(orderNumber,button,message){
 }
 
 document.getElementById('checkoutForm').addEventListener('submit',submitCheckout);
+
+document.getElementById('customerFeedbackForm').addEventListener('submit',async function(event){
+    event.preventDefault();
+    const form=event.currentTarget;
+    const button=document.getElementById('feedbackSubmit');
+    const status=document.getElementById('feedbackStatus');
+    const name=document.getElementById('feedbackName').value.trim();
+    const email=document.getElementById('feedbackEmail').value.trim();
+    const rating=Number(document.getElementById('feedbackRating').value);
+    const feedback=document.getElementById('feedbackMessage').value.trim();
+    if(document.getElementById('feedbackWebsite').value.trim()) return;
+    if(!Number.isInteger(rating)||rating<1||rating>5||feedback.length<5){
+        status.textContent='Please select a rating and enter at least 5 characters of feedback.';
+        status.style.color='#d99a72';
+        return;
+    }
+    button.disabled=true;
+    button.textContent='Submitting…';
+    status.textContent='Sending your feedback securely…';
+    status.style.color='var(--ivory)';
+    try{
+        const {error}=await getSupabaseClient().from('customer_feedback').insert([{
+            customer_name:name||null,
+            customer_email:email||null,
+            rating,
+            feedback
+        }]);
+        if(error) throw error;
+        form.reset();
+        status.textContent='Thank you! Your feedback has been received by STELORA.';
+        status.style.color='#75c99a';
+    }catch(error){
+        console.error('STELORA feedback submission failed:',error);
+        status.textContent='We could not submit your feedback just now. Please try again or email care@stelora.co.in.';
+        status.style.color='#d99a72';
+    }finally{
+        button.disabled=false;
+        button.textContent='Submit Feedback';
+    }
+});
+
 
 const citiesByState={
 'Andhra Pradesh':['Amaravati','Visakhapatnam','Vijayawada','Guntur','Tirupati','Nellore'],
