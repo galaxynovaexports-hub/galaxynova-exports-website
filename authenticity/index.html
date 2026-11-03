@@ -3531,8 +3531,9 @@ let citySearchSequence=0;
 function populateCities(state){
     cityOptions.innerHTML='';
     citySelect.value='';
-    citySelect.disabled=!state;
-    citySelect.placeholder=state?'Type at least 2 letters to search towns and post-office localities':'Select state first';
+    citySelect.disabled=false;
+    citySelect.readOnly=!state;
+    citySelect.placeholder=state?'Enter your city or town':'Select state first';
 }
 
 function addCitySuggestion(value, seen){
@@ -3776,7 +3777,8 @@ function startCheckout(){
     const state=byId('customerState'), city=byId('customerCity'), list=byId('customerCityOptions');
     if(!state||!city) return;
     const hasState=!!state.value;
-    city.disabled=!hasState;
+    city.disabled=false;
+    city.readOnly=!hasState;
     city.placeholder=hasState?'Enter your city or town':'Select state first';
     if(!hasState) city.value='';
     if(list) list.replaceChildren();
@@ -3793,15 +3795,37 @@ function startCheckout(){
     if(event.target && event.target.id==='customerState') syncCityField();
   },true);
 
+  document.addEventListener('click',function(event){
+    const city=event.target.closest('#customerCity');
+    if(city){
+      const state=byId('customerState');
+      if(!state||!state.value){
+        event.preventDefault();
+        alert('Please select your State first. Then you can enter your City or Town.');
+        if(state) state.focus();
+      }
+    }
+  },true);
+
+  document.addEventListener('focusin',function(event){
+    if(event.target && event.target.id==='customerCity'){
+      const state=byId('customerState');
+      if(!state||!state.value){
+        alert('Please select your State first. Then you can enter your City or Town.');
+        if(state) state.focus();
+      }
+    }
+  },true);
+
   document.addEventListener('input',function(event){
     if(event.target && event.target.id==='customerCity'){
       const state=byId('customerState');
       if(!state||!state.value){
         event.target.value='';
-        event.target.disabled=true;
+        event.target.readOnly=true;
         return;
       }
-      event.target.disabled=false;
+      event.target.readOnly=false;
     }
   },true);
 
