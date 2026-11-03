@@ -3185,8 +3185,7 @@ BACK TO TOP BUTTON
 
 <div class="checkout-field">
 <label for="customerCity">City / Town *</label>
-<input id="customerCity" name="city" type="text" required autocomplete="address-level2" placeholder="Select state first" disabled aria-autocomplete="list" aria-controls="customerCitySuggestions">
-<datalist id="customerCityOptions"></datalist>
+<input id="customerCity" name="city" type="text" required autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Select state first" disabled aria-autocomplete="list" aria-controls="customerCitySuggestions">
 <div id="customerCitySuggestions" class="city-suggestions" role="listbox" aria-label="Matching cities, towns and districts" hidden></div>
 <small class="city-help">Select a state, then type to see matching cities, towns and districts.</small>
 </div>
@@ -3530,7 +3529,6 @@ document.getElementById('customerFeedbackForm').addEventListener('submit',async 
 
 const stateSelect=document.getElementById('customerState');
 const citySelect=document.getElementById('customerCity');
-const cityOptions=document.getElementById('customerCityOptions');
 const citySuggestions=document.getElementById('customerCitySuggestions');
 let citySearchTimer=null;
 let citySearchController=null;
@@ -3540,7 +3538,6 @@ function hideCitySuggestions(){
     if(citySuggestions){citySuggestions.hidden=true;citySuggestions.replaceChildren();}
 }
 function populateCities(state){
-    cityOptions.innerHTML='';
     hideCitySuggestions();
     citySelect.value='';
     citySelect.disabled=false;
@@ -3551,9 +3548,6 @@ function showCitySuggestions(names){
     hideCitySuggestions();
     if(!names.length) return;
     names.slice(0,25).forEach(name=>{
-        const option=document.createElement('option');
-        option.value=name;
-        cityOptions.appendChild(option);
         const button=document.createElement('button');
         button.type='button';
         button.setAttribute('role','option');
@@ -3803,14 +3797,13 @@ function startCheckout(){
   window.closeCheckout=closeCheckout;
 
   function syncCityField(){
-    const state=byId('customerState'), city=byId('customerCity'), list=byId('customerCityOptions');
+    const state=byId('customerState'), city=byId('customerCity');
     if(!state||!city) return;
     const hasState=!!state.value;
     city.disabled=false;
     city.readOnly=!hasState;
     city.placeholder=hasState?'Enter your city or town':'Select state first';
     if(!hasState) city.value='';
-    if(list) list.replaceChildren();
     const suggestions=byId('customerCitySuggestions');
     if(suggestions){suggestions.hidden=true;suggestions.replaceChildren();}
   }
