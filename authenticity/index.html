@@ -3503,9 +3503,15 @@ document.getElementById('customerFeedbackForm').addEventListener('submit',async 
             feedback
         }]);
         if(error) throw error;
+        const notification=await getSupabaseClient().functions.invoke('send-feedback-notification',{body:{name,email,rating,feedback}});
         form.reset();
-        status.textContent='Thank you! Your feedback has been received by STELORA.';
-        status.style.color='#75c99a';
+        if(notification.error||!notification.data?.success){
+            status.textContent='Your feedback was saved successfully. Email notification is temporarily unavailable.';
+            status.style.color='#d99a72';
+        }else{
+            status.textContent='Thank you! Your feedback has been received by STELORA.';
+            status.style.color='#75c99a';
+        }
     }catch(error){
         console.error('STELORA feedback submission failed:',error);
         status.textContent='We could not submit your feedback just now. Please try again or email care@stelora.co.in.';
