@@ -799,6 +799,85 @@ footer{background:#0c1511;border-top:1px solid rgba(216,189,122,.2)}
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
+
+/* STELORA responsive hero pack: keep the complete packet visible on phones/tablets. */
+@media (max-width: 767px) {
+  .hero {
+    min-height: 100svh;
+    min-height: 100dvh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: calc(88px + env(safe-area-inset-top, 0px)) 5% 42px;
+    overflow: visible;
+  }
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    flex: 0 0 auto;
+  }
+  .hero-visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    margin: 26px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+  .hero-pack {
+    display: block;
+    width: auto;
+    max-width: min(72vw, 270px);
+    height: auto;
+    max-height: 42svh;
+    max-height: 42dvh;
+    object-fit: contain;
+    object-position: center center;
+    margin: 0 auto;
+    transform-origin: center center;
+  }
+  .hero-glow-ring {
+    top: 50%;
+    left: 50%;
+    width: min(78vw, 280px);
+    height: min(78vw, 280px);
+    pointer-events: none;
+  }
+  #pack-fallback {
+    width: min(72vw, 260px) !important;
+    max-height: 42dvh;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero {
+    min-height: 100svh;
+    padding-top: 110px;
+    padding-bottom: 55px;
+  }
+  .hero-visual {
+    right: 3%;
+    max-width: 38vw;
+  }
+  .hero-pack {
+    width: min(30vw, 250px);
+    max-height: 58svh;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
 </style>
 </head>
 <body>
