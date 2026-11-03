@@ -3280,22 +3280,22 @@ BACK TO TOP BUTTON
 <div class="checkout-grid">
 <div class="checkout-field">
 <label for="customerName">Full name *</label>
-<input id="customerName" name="name" required autocomplete="name">
+<input id="customerName" name="name" required minlength="2" maxlength="80" autocomplete="name" title="Please enter your full name (at least 2 characters).">
 </div>
 
 <div class="checkout-field">
 <label for="customerMobile">Mobile number *</label>
-<input id="customerMobile" name="mobile" required inputmode="numeric" maxlength="10" autocomplete="tel">
+<input id="customerMobile" name="mobile" type="tel" required inputmode="numeric" pattern="[6-9][0-9]{9}" minlength="10" maxlength="10" autocomplete="tel" title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.">
 </div>
 
 <div class="checkout-field full">
 <label for="customerEmail">Email address (optional)</label>
-<input id="customerEmail" name="email" type="email" autocomplete="email">
+<input id="customerEmail" name="email" type="email" maxlength="254" autocomplete="email" title="Enter a valid email address, or leave this field blank.">
 </div>
 
 <div class="checkout-field full">
 <label for="customerAddress">Address *</label>
-<input id="customerAddress" name="address_line1" required autocomplete="street-address" placeholder="House / Flat / Street">
+<input id="customerAddress" name="address_line1" required minlength="5" maxlength="200" autocomplete="street-address" placeholder="House / Flat / Street" title="Please enter your complete delivery address.">
 </div>
 
 <div class="checkout-field full">
@@ -3326,7 +3326,7 @@ BACK TO TOP BUTTON
 
 <div class="checkout-field">
 <label for="customerPincode">PIN code *</label>
-<input id="customerPincode" name="pincode" required inputmode="numeric" maxlength="6" autocomplete="postal-code">
+<input id="customerPincode" name="pincode" required inputmode="numeric" pattern="[1-9][0-9]{5}" minlength="6" maxlength="6" autocomplete="postal-code" title="Enter a valid 6-digit Indian PIN code.">
 </div>
 </div>
 
@@ -3555,6 +3555,30 @@ function openCheckout(){
 function closeCheckout(){
     document.getElementById('checkoutModal').classList.remove('show');
     document.getElementById('checkoutModal').setAttribute('aria-hidden','true');
+}
+
+function validateCheckoutFields(){
+    const fields=[
+        {id:'customerName',message:'Please enter your full name (at least 2 characters).'},
+        {id:'customerMobile',message:'Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9.'},
+        {id:'customerEmail',message:'Please enter a valid email address, or leave it blank.'},
+        {id:'customerAddress',message:'Please enter your complete delivery address (at least 5 characters).'},
+        {id:'customerState',message:'Please select your state.'},
+        {id:'customerCity',message:'Please select or enter your city / town.'},
+        {id:'customerPincode',message:'Enter a valid 6-digit Indian PIN code.'}
+    ];
+    for(const field of fields){
+        const input=document.getElementById(field.id);
+        input.setCustomValidity('');
+        if(!input.checkValidity()){
+            input.setCustomValidity(field.message);
+            input.reportValidity();
+            input.addEventListener('input',()=>input.setCustomValidity(''),{once:true});
+            input.addEventListener('change',()=>input.setCustomValidity(''),{once:true});
+            return false;
+        }
+    }
+    return true;
 }
 
 async function submitCheckout(event){
