@@ -1809,6 +1809,21 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
+
+/* iPhone checkout sizing: prevent focus zoom and keep the form inside the visible screen. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.checkout-field input,.checkout-field select,.checkout-field textarea{font-size:16px!important;line-height:1.35;min-height:48px;-webkit-appearance:none;appearance:none}
+@media(max-width:650px){
+  .checkout-modal{align-items:flex-start;padding:12px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .checkout-card{width:100%;max-width:100%;max-height:calc(100vh - 24px);overflow-y:auto;overscroll-behavior:contain;padding:20px 16px;border-radius:18px;margin:auto 0}
+  .checkout-head h3{font-size:24px}
+  .checkout-grid{grid-template-columns:1fr;gap:12px}
+  .checkout-field.full{grid-column:auto}
+  .checkout-field label{font-size:14px}
+  .checkout-field input,.checkout-field select,.checkout-field textarea{font-size:16px!important;padding:12px;min-width:0}
+  .checkout-summary{margin:16px 0;padding:12px}
+}
+
 </style>
 
 </head>
