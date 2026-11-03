@@ -610,7 +610,7 @@ footer::before{
 @media(max-width:960px){
   .nav-links{display:none;}
   .hero-content{width:min(680px,100%);}
-  .hero-visual{display:none;}
+  .hero-visual{display:block;position:relative;top:auto;right:auto;transform:none;width:100%;max-width:360px;margin:34px auto 0;text-align:center;}
   .brand-grid,.why-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
   .products-grid,.markets-grid{grid-template-columns:1fr;}
   .certs-grid{grid-template-columns:1fr 1fr;}
@@ -760,7 +760,8 @@ footer{background:#0c1511;border-top:1px solid rgba(216,189,122,.2)}
  .hero{padding-top:115px;padding-bottom:48px}
  .hero-title{font-size:clamp(3.3rem,16vw,5.5rem)}
  .hero-subtitle{letter-spacing:3px}
- .hero-pack{max-height:46vh}
+ .hero-pack{display:block;width:min(72vw,260px);height:auto;max-height:none;object-fit:contain;margin:0 auto}
+  .hero-glow-ring{width:min(88vw,300px);height:min(88vw,300px)}
  .hero-markets{gap:8px}
  .market-pill{font-size:.68rem}
  .featured-block{padding:24px 18px}
