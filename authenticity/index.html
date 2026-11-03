@@ -1629,6 +1629,7 @@ ONLINE STORE / RESERVE PRODUCT
 .pack-option span{font-size:13px;opacity:.75}
 .pack-option.selected{border-color:var(--gold);background:rgba(212,175,55,.12);box-shadow:0 0 0 1px rgba(212,175,55,.25) inset}
 .cart-actions{display:flex;gap:12px;align-items:center;margin-top:18px}
+.cart-live-total{display:flex;flex-direction:column;justify-content:center;min-width:88px;padding:7px 12px;border:1px solid rgba(212,175,55,.45);border-radius:12px;background:rgba(212,175,55,.08);line-height:1.2}.cart-live-total small{font-size:11px;opacity:.8}.cart-live-total strong{font-size:18px;color:var(--gold);white-space:nowrap}
 .qty-control{display:flex;align-items:center;border:1px solid rgba(255,255,255,.2);border-radius:50px;overflow:hidden}
 .qty-control button{width:42px;height:46px;border:0;background:transparent;color:var(--ivory);font-size:20px;cursor:pointer}
 .qty-control span{min-width:34px;text-align:center}
@@ -2024,6 +2025,7 @@ ONLINE STORE / RESERVE PRODUCT
 <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
 </div>
 <button type="button" id="addToCart" class="btn btn-gold">Add to Cart</button>
+<div class="cart-live-total" aria-live="polite"><small>Cart total</small><strong id="liveCartTotal">₹269</strong></div>
 </div>
 
 <div class="requisition-panel" id="requisition">
@@ -3635,18 +3637,20 @@ async function validatePincodeForState(){
 }
 
 const storeState={size:'400 g',price:269,mrp:379,image:'asset/400grams%20.png',qty:1};
+function updateStoreCartTotal(){const total=storeState.price*storeState.qty;document.getElementById('liveCartTotal').textContent='₹'+total.toLocaleString('en-IN');}
 function changeStoreImage(src,btn){document.getElementById('storeMainImage').src=src;document.querySelectorAll('.store-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
 document.getElementById('requestQty').addEventListener('input',function(){document.getElementById('requestQuantity').value=this.value;});
 document.querySelectorAll('.pack-option').forEach(btn=>btn.addEventListener('click',()=>{
 document.querySelectorAll('.pack-option').forEach(x=>x.classList.remove('selected'));btn.classList.add('selected');
-storeState.size=btn.dataset.size;storeState.price=Number(btn.dataset.price);storeState.mrp=Number(btn.dataset.mrp);storeState.image=btn.dataset.image;
+storeState.size=btn.dataset.size;storeState.price=Number(btn.dataset.price);storeState.mrp=Number(btn.dataset.mrp);storeState.image=btn.dataset.image;updateStoreCartTotal();
 document.getElementById('storePrice').textContent='₹'+storeState.price;document.getElementById('storeMrp').textContent='₹'+storeState.mrp;
 document.getElementById('storeMainImage').src=storeState.image;
 document.getElementById('requestPackSize').value=storeState.size;
 }));
-document.getElementById('qtyMinus').addEventListener('click',()=>{storeState.qty=Math.max(1,storeState.qty-1);document.getElementById('storeQty').textContent=storeState.qty});
-document.getElementById('qtyPlus').addEventListener('click',()=>{storeState.qty++;document.getElementById('storeQty').textContent=storeState.qty});
+document.getElementById('qtyMinus').addEventListener('click',()=>{storeState.qty=Math.max(1,storeState.qty-1);document.getElementById('storeQty').textContent=storeState.qty;updateStoreCartTotal()});
+document.getElementById('qtyPlus').addEventListener('click',()=>{storeState.qty++;document.getElementById('storeQty').textContent=storeState.qty;updateStoreCartTotal()});
 document.getElementById('addToCart').addEventListener('click',()=>{
+ updateStoreCartTotal();
 const total=storeState.price*storeState.qty;
 document.getElementById('cartItems').innerHTML='<div class="cart-item"><img src="'+storeState.image+'" alt=""><div class="cart-item-info"><strong>STELORA™ Reserve Collection — Gobindobhog</strong><small>'+storeState.size+' × '+storeState.qty+'</small><div style="margin-top:7px">₹'+total+'</div></div></div>';
 document.getElementById('cartSummary').innerHTML='<div class="cart-total"><span>Total</span><span>₹'+total+'</span></div><button class="btn btn-gold" style="width:100%" onclick="startCheckout()">Proceed to Checkout</button><p class="store-note">PhonePe payment will be initiated only after the secure server-side payment integration is configured.</p>';
