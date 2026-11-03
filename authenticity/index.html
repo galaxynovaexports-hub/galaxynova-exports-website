@@ -1857,7 +1857,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 
 </nav>
 
-<button type="button" class="lab-report-mobile" onclick="document.getElementById('lab').scrollIntoView({behavior:'smooth'})" aria-label="View both STELORA laboratory reports">🧪 <span>Lab Report</span></button>
+<button type="button" class="lab-report-mobile" onclick="window.scrollToLabReports()" aria-label="View both STELORA laboratory reports">🧪 <span>Lab Report</span></button>
 
 </div>
 
@@ -3374,25 +3374,29 @@ Save Order Details
 
 const sections = document.querySelectorAll("section");
 
-const observer = new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.01, rootMargin: "0px 0px -4% 0px" });
+  sections.forEach(section => observer.observe(section));
+} else {
+  sections.forEach(section => section.classList.add("show"));
 }
 
-});
-
-},{threshold:0.15});
-
-sections.forEach(section=>{
-
-observer.observe(section);
-
-});
+// Ensure the section addressed by a deep link is visible in embedded browsers.
+function revealHashTarget() {
+  const id = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (target && target.tagName.toLowerCase() === "section") target.classList.add("show");
+}
+window.addEventListener("hashchange", revealHashTarget);
+revealHashTarget();
 
 // ==========================
 // Back To Top Button
@@ -3465,61 +3469,103 @@ link.style.color="#D4AF37";
 </script>
 <script>
 function openReport(file) {
-    const reports = [
-        { title: 'Quality Report', url: '/authenticity/STL-2601-Quality_report.pdf' },
-        { title: 'Nutrition Panel', url: '/authenticity/STL-2601-Nutrition-Panel.pdf' }
-    ];
+    const reports = {
+        'STL-2601-Quality_report.pdf': {
+            title: 'STELORA Quality Report',
+            url: '/authenticity/STL-2601-Quality_report.pdf'
+        },
+        'STL-2601-Nutrition-Panel.pdf': {
+            title: 'STELORA Nutrition Panel',
+            url: '/authenticity/STL-2601-Nutrition-Panel.pdf'
+        }
+    };
+    const report = reports[file];
+    if (!report) {
+        console.error('Unknown STELORA report:', file);
+        alert('This report is temporarily unavailable. Please contact STELORA support.');
+        return;
+    }
+
     const viewer = document.createElement('div');
     viewer.setAttribute('role', 'dialog');
     viewer.setAttribute('aria-modal', 'true');
-    viewer.setAttribute('aria-label', 'STELORA laboratory reports');
-    viewer.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#101b16;color:#f5f0e5;display:flex;flex-direction:column;padding:16px;box-sizing:border-box;';
+    viewer.setAttribute('aria-label', report.title);
+    viewer.style.cssText = 'position:fixed;inset:0;z-index:99999;background:#101b16;color:#f5f0e5;display:flex;flex-direction:column;padding:clamp(10px,2vw,20px);box-sizing:border-box;';
 
     const header = document.createElement('div');
-    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 4px 14px;flex-wrap:wrap;';
-    header.innerHTML = '<strong style="font:600 18px Georgia,serif;color:#ead7a6">STELORA Laboratory Reports</strong>';
+    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 14px;flex-wrap:wrap;flex-shrink:0;';
+    const title = document.createElement('strong');
+    title.textContent = report.title;
+    title.style.cssText = 'font:600 18px Georgia,serif;color:#ead7a6;';
+    const actions = document.createElement('div');
+    actions.style.cssText = 'display:flex;gap:8px;align-items:center;flex-wrap:wrap;';
+    const openLink = document.createElement('a');
+    openLink.href = report.url;
+    openLink.target = '_blank';
+    openLink.rel = 'noopener';
+    openLink.textContent = 'Open PDF separately';
+    openLink.style.cssText = 'display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;background:#ead7a6;color:#172219;border-radius:6px;text-decoration:none;font:600 13px Arial,sans-serif;';
     const close = document.createElement('button');
     close.type = 'button';
     close.textContent = 'Close';
-    close.setAttribute('aria-label', 'Close laboratory reports');
-    close.style.cssText = 'padding:10px 18px;background:#d4af6a;color:#111;border:0;border-radius:5px;cursor:pointer;font-weight:bold;';
-    close.addEventListener('click', () => viewer.remove());
-    header.appendChild(close);
+    close.setAttribute('aria-label', 'Close report viewer');
+    close.style.cssText = 'padding:10px 18px;background:#d4af6a;color:#111;border:0;border-radius:6px;cursor:pointer;font-weight:bold;';
+    close.addEventListener('click', () => {
+        viewer.remove();
+        document.body.style.overflow = '';
+    });
+    actions.append(openLink, close);
+    header.append(title, actions);
 
-    const grid = document.createElement('div');
-    grid.style.cssText = 'display:grid;grid-template-columns:1fr 1fr;gap:14px;min-height:0;flex:1;';
-    reports.forEach(report => {
-        const panel = document.createElement('section');
-        panel.style.cssText = 'display:flex;flex-direction:column;min-width:0;min-height:0;border:1px solid rgba(226,201,143,.4);border-radius:8px;overflow:hidden;background:#fff;';
-        const title = document.createElement('div');
-        title.textContent = report.title;
-        title.style.cssText = 'padding:10px 12px;background:#18291f;color:#ead7a6;font:600 14px Arial,sans-serif;';
-        const frame = document.createElement('iframe');
-        frame.title = report.title;
-        frame.src = report.url + '#toolbar=1&navpanes=0&scrollbar=1';
-        frame.style.cssText = 'width:100%;height:100%;min-height:0;flex:1;border:0;background:#fff;';
-        panel.append(title, frame);
-        grid.appendChild(panel);
+    const frame = document.createElement('iframe');
+    frame.title = report.title + ' PDF document';
+    frame.src = report.url + '#toolbar=1&navpanes=0&scrollbar=1';
+    frame.setAttribute('loading', 'eager');
+    frame.style.cssText = 'display:block;width:100%;height:100%;min-height:0;flex:1;border:1px solid rgba(226,201,143,.4);border-radius:8px;background:#fff;';
+    frame.addEventListener('error', () => {
+        frame.replaceWith(makeFallback());
     });
 
-    const mobileStyle = document.createElement('style');
-    mobileStyle.textContent = '@media(max-width:760px){.stelora-report-grid{grid-template-columns:1fr!important;grid-template-rows:1fr 1fr!important;overflow:auto}.stelora-report-grid section{min-height:48vh!important}}';
-    grid.className = 'stelora-report-grid';
-    viewer.append(header, grid, mobileStyle);
+    function makeFallback() {
+        const fallback = document.createElement('div');
+        fallback.style.cssText = 'display:flex;flex:1;min-height:240px;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;border:1px solid rgba(226,201,143,.4);border-radius:8px;background:#18291f;color:#f5f0e5;';
+        const message = document.createElement('p');
+        message.textContent = 'Your in-app browser may not display PDF files. Open the report separately to view it, or download it to your device.';
+        const download = document.createElement('a');
+        download.href = report.url;
+        download.download = file;
+        download.textContent = 'Download ' + report.title;
+        download.style.cssText = 'display:inline-flex;padding:12px 18px;background:#ead7a6;color:#172219;border-radius:6px;text-decoration:none;font-weight:700;';
+        fallback.append(message, download);
+        return fallback;
+    }
+
+    viewer.append(header, frame);
     document.body.appendChild(viewer);
     document.body.style.overflow = 'hidden';
     close.focus();
     viewer.addEventListener('click', event => {
-        if (event.target === viewer) viewer.remove();
-    });
-    const observer = new MutationObserver(() => {
-        if (!document.body.contains(viewer)) {
+        if (event.target === viewer) {
+            viewer.remove();
             document.body.style.overflow = '';
-            observer.disconnect();
         }
     });
-    observer.observe(document.body, { childList: true });
+    document.addEventListener('keydown', function onEscape(event) {
+        if (event.key === 'Escape' && document.body.contains(viewer)) {
+            viewer.remove();
+            document.body.style.overflow = '';
+            document.removeEventListener('keydown', onEscape);
+        }
+    });
 }
+
+window.scrollToLabReports = function () {
+    const lab = document.getElementById('lab');
+    if (!lab) return;
+    lab.classList.add('show');
+    const top = lab.getBoundingClientRect().top + window.pageYOffset - 82;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+};
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
