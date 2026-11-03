@@ -1846,6 +1846,23 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   color:#172219!important;
 }
 .lab-card .btn{margin:8px 10px 0 0;min-height:48px;line-height:1.25;}
+
+/* Native PDF links: open the actual files directly, bypassing the in-page iframe viewer. */
+.lab-card a.report-file-link{
+  background:linear-gradient(135deg,#ead7a6,#b9954b)!important;
+  color:#172219!important;
+  border:1px solid #ead7a6!important;
+  font-weight:700!important;
+  text-decoration:none!important;
+  opacity:1!important;
+  margin:8px 10px 0 0;
+  min-height:48px;
+  line-height:1.25;
+}
+.lab-card a.report-file-link:hover{
+  background:#f3e4bd!important;
+  color:#172219!important;
+}
 </style>
 
 </head>
@@ -2270,13 +2287,13 @@ Each production batch is evaluated for physical quality, appearance, aroma, clea
 
 </p>
 
-<button type="button" class="btn btn-gold" onclick="openReport('STL-2601-Quality_report.pdf')">
+<a class="btn btn-gold report-file-link" href="./STL-2601-Quality_report.pdf" target="_blank" rel="noopener">
     View Quality Report
-</button>
+</a>
 
-<button type="button" class="btn btn-gold nutrition-report-btn" onclick="openReport('STL-2601-Nutrition-Panel.pdf')">
+<a class="btn btn-gold report-file-link" href="./STL-2601-Nutrition-Panel.pdf" target="_blank" rel="noopener">
     View Nutrition Panel
-</button>
+</a>
 </div>
 
 <div class="lab-card">
