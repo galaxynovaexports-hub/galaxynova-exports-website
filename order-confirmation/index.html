@@ -21,7 +21,7 @@ const client=window.supabase.createClient('https://synzgbcfpyiqnxgkzpwu.supabase
 const params=new URLSearchParams(location.search),order=(params.get('order')||'').trim().toUpperCase();
 const heading=document.getElementById('heading'),status=document.getElementById('status'),details=document.getElementById('details');
 document.getElementById('orderId').textContent=order||'Not available';
-document.getElementById('trackLink').href='/?order='+encodeURIComponent(order);
+document.getElementById('trackLink').href='/?payment=phonepe&order='+encodeURIComponent(order);
 function row(label,value){const el=document.createElement('div');el.className='row';const a=document.createElement('span');a.textContent=label;const b=document.createElement('strong');b.textContent=value??'—';el.append(a,b);details.append(el)}
 async function verify(){
  if(!/^STL-\d{8}-[A-F0-9]{6}$/.test(order)){heading.textContent='Order reference missing';status.textContent='Please use your STELORA order ID in Track Your Order.';return}
