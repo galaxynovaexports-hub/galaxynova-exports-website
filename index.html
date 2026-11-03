@@ -282,9 +282,13 @@ section{position:relative;z-index:1;padding:90px 5%;}
 .brand-img-wrap{position:relative;}
 .brand-img{
   width:100%;aspect-ratio:3/4;
-  background:url('Rice.jpg') center/cover;
+  background:#14251d url('/Rice.jpg?v=2') center/cover no-repeat;
   border:1px solid var(--border);
   position:relative;overflow:hidden;
+}
+.brand-img-photo{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;object-fit:cover;object-position:center;
 }
 .brand-img::after{
   content:'';position:absolute;inset:0;
@@ -896,7 +900,7 @@ alt="STELORA Reserve Collection Gobindobhog rice, original 1 kg retail pack" fet
   </div>
   <div class="brand-grid">
     <div class="brand-img-wrap anim">
-      <div class="brand-img"></div>
+      <div class="brand-img"><img class="brand-img-photo" src="/Rice.jpg?v=2" alt="STELORA premium aromatic rice grains" loading="eager" decoding="async" onerror="this.onerror=null;this.src='/Rice_closeup.jpg?v=2';"/></div>
       <div class="brand-img-frame"></div>
       <div class="brand-badge">
         <div class="bb-icon">🌾</div>
