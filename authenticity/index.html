@@ -1829,6 +1829,23 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @media(max-width:900px){.lab-report-mobile{display:inline-flex}}
 @media(max-width:600px){.navbar{gap:10px}.logo{font-size:clamp(22px,6vw,29px);letter-spacing:1px}.lab-report-mobile{padding:9px 12px;font-size:13px;flex-shrink:0}}
 
+
+/* High-contrast report actions, including the Nutrition Panel button. */
+.lab-card button.btn-outline,
+.lab-card .btn.btn-outline{
+  background:linear-gradient(135deg,#ead7a6,#b9954b)!important;
+  color:#172219!important;
+  border:1px solid #ead7a6!important;
+  font-weight:700!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+.lab-card button.btn-outline:hover,
+.lab-card .btn.btn-outline:hover{
+  background:#f3e4bd!important;
+  color:#172219!important;
+}
+.lab-card .btn{margin:8px 10px 0 0;min-height:48px;line-height:1.25;}
 </style>
 
 </head>
