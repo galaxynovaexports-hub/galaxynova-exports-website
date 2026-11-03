@@ -1686,6 +1686,26 @@ ONLINE STORE / RESERVE PRODUCT
 .req-field input,.req-field textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:var(--ivory);font:inherit}
 @media(max-width:600px){.requisition-form{grid-template-columns:1fr}.req-field:nth-child(4),.req-field:nth-child(7),.requisition-form button,.requisition-form>p{grid-column:auto}}
 
+
+/* Always-accessible customer quality feedback shortcut */
+.quality-feedback-float{
+  position:fixed;right:22px;bottom:22px;z-index:1200;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:54px;padding:0 22px;border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;background:linear-gradient(135deg,#e0bd59,#b9892d);
+  color:#101b1a;text-decoration:none;font-weight:750;font-size:14px;letter-spacing:.01em;
+  box-shadow:0 12px 34px rgba(0,0,0,.38),0 0 0 4px rgba(212,175,55,.12);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.quality-feedback-float:hover,.quality-feedback-float:focus-visible{
+  transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 0 5px rgba(212,175,55,.2);
+}
+.quality-feedback-float:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.quality-feedback-float .qf-star{font-size:19px;line-height:1}
+@media(max-width:600px){
+  .quality-feedback-float{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));min-height:50px;padding:0 18px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.quality-feedback-float{transition:none}}
 </style>
 
 </head>
@@ -1717,6 +1737,11 @@ ONLINE STORE / RESERVE PRODUCT
 </div>
 
 </header>
+
+<a class="quality-feedback-float" href="#feedback" aria-label="Share your STELORA product quality feedback">
+  <span class="qf-star" aria-hidden="true">★</span>
+  <span>Share Quality Feedback</span>
+</a>
 
 <section class="hero">
 
