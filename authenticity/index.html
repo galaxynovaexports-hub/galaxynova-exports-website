@@ -3180,9 +3180,8 @@ BACK TO TOP BUTTON
 
 <div class="checkout-field">
 <label for="customerCity">City / Town *</label>
-<select id="customerCity" name="city" required autocomplete="address-level2" disabled>
-<option value="">Select state first</option>
-</select>
+<input id="customerCity" name="city" type="text" list="customerCityOptions" required autocomplete="address-level2" placeholder="Select state first" disabled>
+<datalist id="customerCityOptions"></datalist>
 </div>
 
 <div class="checkout-field">
@@ -3542,16 +3541,19 @@ const citiesByState={
 
 const stateSelect=document.getElementById('customerState');
 const citySelect=document.getElementById('customerCity');
+const cityOptions=document.getElementById('customerCityOptions');
 
 function populateCities(state){
-    citySelect.innerHTML='<option value="">Select city / town</option>';
-    (citiesByState[state]||[]).forEach(city=>{
+    cityOptions.innerHTML='';
+    citySelect.value='';
+    const towns=citiesByState[state]||[];
+    towns.forEach(city=>{
         const option=document.createElement('option');
         option.value=city;
-        option.textContent=city;
-        citySelect.appendChild(option);
+        cityOptions.appendChild(option);
     });
-    citySelect.disabled=!citiesByState[state]?.length;
+    citySelect.disabled=!state;
+    citySelect.placeholder=state?'Type or select your city / town':'Select state first';
 }
 
 stateSelect.addEventListener('change',function(){
