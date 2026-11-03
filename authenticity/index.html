@@ -3208,7 +3208,7 @@ BACK TO TOP BUTTON
 Save Order Details
 </button>
 
-<p class="store-note">Your details are securely submitted to the STELORA order system. PhonePe payment will be connected in the next step.</p>
+<p class="store-note">Your details are securely submitted. You will be redirected to PhonePe to complete your payment.</p>
 </form>
 </div>
 </div>
@@ -3438,11 +3438,12 @@ async function submitCheckout(event){
     const formData=new FormData(form);
 
     submit.disabled=true;
-    submit.textContent='Saving...';
+    submit.textContent='Preparing secure checkout…';
     message.className='checkout-message';
-    message.textContent='';
+    message.textContent='Please wait while we verify your delivery details and prepare your order. You will be redirected to PhonePe automatically.';
 
     try{
+        message.textContent='Step 1 of 3 · Verifying your delivery PIN…';
         const validPincode=await validatePincodeForState();
         if(!validPincode){
             submit.disabled=false;
@@ -3450,6 +3451,7 @@ async function submitCheckout(event){
             return;
         }
 
+        message.textContent='Step 2 of 3 · Securely saving your order…';
         await ensureAnonymousSession();
 
         const payload={
@@ -3471,7 +3473,7 @@ async function submitCheckout(event){
         if(error) throw error;
         if(!data || !data.success) throw new Error(data?.error || 'Order could not be created.');
 
-        const payment={data:null,error:null};
+        message.textContent='Step 3 of 3 · Connecting to PhonePe…';
         const paymentResult=await getSupabaseClient().functions.invoke('phonepe-create-payment',{body:{order_number:data.order.order_number}});
         if(paymentResult.error || !paymentResult.data?.success){
             message.className='checkout-message checkout-error';
@@ -3488,7 +3490,7 @@ async function submitCheckout(event){
         }
 
         message.className='checkout-message checkout-success';
-        message.innerHTML='<strong>Order created successfully.</strong><br>Order number: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>Redirecting you to secure PhonePe checkout…';
+        message.innerHTML='<strong>Your order is ready.</strong><br>Order number: <strong>'+data.order.order_number+'</strong><br>Amount: <strong>₹'+data.order.total_amount+'</strong><br><br>Opening secure PhonePe checkout. Please do not refresh or close this page…';
         submit.style.display='none';
         form.reset();
         window.location.href=paymentResult.data.redirect_url;
