@@ -8,6 +8,8 @@
 <meta name="keywords" content="Tulaipanji rice exporter, Gobindobhog rice exporter, non basmati rice exporter India, GI rice West Bengal, Stelora rice">
   <meta name="author" content="GALAXYNOVA EXPORTS TRADING (OPC) PRIVATE LIMITED">
 <title>STELORA™ Reserve Gobindobhog Rice | GALAXYNOVA EXPORTS TRADING (OPC) PRIVATE LIMITED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Cinzel:wght@400;600;700;900&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -765,6 +767,22 @@ footer{background:#0c1511;border-top:1px solid rgba(216,189,122,.2)}
 }
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* Mobile performance: retain the visual palette without expensive animated filters. */
+@media (max-width: 767px) {
+  .stars { display: none !important; }
+  .aurora-bg { position: fixed; inset: 0; background:
+    radial-gradient(ellipse at 12% 8%, rgba(0,201,122,.10), transparent 48%),
+    radial-gradient(ellipse at 88% 34%, rgba(0,229,160,.07), transparent 46%),
+    linear-gradient(180deg, #030c12 0%, #061520 100%); }
+  .aurora-layer { display: none !important; animation: none !important; filter: none !important; }
+  .anim, .anim.visible { opacity: 1 !important; transform: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
 </style>
@@ -1579,48 +1597,63 @@ handlePhonePeReturn();
 steloraSupabase.auth.onAuthStateChange(()=>refreshCustomerAccount());
 </script>
 <script>
-// ── STAR FIELD ──
-(function(){
-  const container = document.getElementById('stars');
-  for(let i=0;i<120;i++){
-    const s = document.createElement('div');
-    s.className='star';
-    const size = Math.random()*2+0.5;
-    s.style.cssText=`
-      width:${size}px;height:${size}px;
-      top:${Math.random()*100}%;left:${Math.random()*100}%;
-      --d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;
-    `;
-    container.appendChild(s);
+// ── NON-ESSENTIAL VISUAL ENHANCEMENTS ──
+// Keep the mobile path lightweight; defer decorative work until the browser is idle.
+function initDesktopVisualEffects(){
+  const desktopEffects = window.matchMedia && window.matchMedia('(min-width: 768px)').matches;
+  if(desktopEffects){
+    const container = document.getElementById('stars');
+    if(container && !container.childElementCount){
+      for(let i=0;i<120;i++){
+        const star = document.createElement('div');
+        star.className='star';
+        const size = Math.random()*2+0.5;
+        star.style.cssText=`
+          width:${size}px;height:${size}px;
+          top:${Math.random()*100}%;left:${Math.random()*100}%;
+          --d:${2+Math.random()*4}s;--delay:${Math.random()*5}s;
+        `;
+        container.appendChild(star);
+      }
+    }
+    if('IntersectionObserver' in window){
+      const observer = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },{threshold:0.08});
+      document.querySelectorAll('.anim').forEach((el,i)=>{
+        el.style.transitionDelay=`${(i%5)*0.08}s`;
+        observer.observe(el);
+      });
+    }else{
+      document.querySelectorAll('.anim').forEach(el=>el.classList.add('visible'));
+    }
+  }else{
+    document.querySelectorAll('.anim').forEach(el=>el.classList.add('visible'));
   }
-})();
+}
+const runWhenIdle = window.requestIdleCallback
+  ? callback => window.requestIdleCallback(callback,{timeout:1200})
+  : callback => window.setTimeout(callback,200);
+runWhenIdle(initDesktopVisualEffects);
 
-// ── SMOOTH NAV SCROLL ──
+// ── NAVIGATION ──
+const isMobileViewport = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:isMobileViewport?'auto':'smooth'});}
   });
 });
 
 function scrollTo(id){
   const el=document.getElementById(id);
-  if(el)el.scrollIntoView({behavior:'smooth'});
+  if(el)el.scrollIntoView({behavior:isMobileViewport?'auto':'smooth'});
 }
-
-// ── INTERSECTION OBSERVER for .anim ──
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      // stagger children if any
-    }
-  });
-},{threshold:0.08});
-document.querySelectorAll('.anim').forEach((el,i)=>{
-  el.style.transitionDelay=`${(i%5)*0.08}s`;
-  obs.observe(el);
-});
 
 // ── FORM SUBMIT ──
 function submitForm(){
@@ -1639,11 +1672,19 @@ function submitForm(){
   });
 }
 
-// ── NAV aurora glow on scroll ──
-window.addEventListener('scroll',()=>{
-  const nav=document.querySelector('nav');
-  nav.style.boxShadow = window.scrollY>50 ? '0 0 40px rgba(0,201,122,0.1)' : 'none';
-});
+// Desktop-only decorative nav glow; avoid a per-scroll style update on phones.
+if(!(window.matchMedia && window.matchMedia('(max-width: 767px)').matches)){
+  let navGlowTicking=false;
+  window.addEventListener('scroll',()=>{
+    if(navGlowTicking)return;
+    navGlowTicking=true;
+    window.requestAnimationFrame(()=>{
+      const nav=document.querySelector('nav');
+      if(nav)nav.style.boxShadow = window.scrollY>50 ? '0 0 40px rgba(0,201,122,0.1)' : 'none';
+      navGlowTicking=false;
+    });
+  },{passive:true});
+}
 </script>
 </body>
 </html>
