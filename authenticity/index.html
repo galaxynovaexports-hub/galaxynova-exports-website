@@ -3391,7 +3391,19 @@ function openCheckout(){
     document.getElementById('checkoutPack').textContent=storeState.size;
     document.getElementById('checkoutQuantity').textContent=storeState.qty;
     document.getElementById('checkoutTotal').textContent='₹'+(storeState.price*storeState.qty);
-    document.getElementById('checkoutMessage').innerHTML='';
+
+    // A customer may return from PhonePe without paying. The browser can
+    // restore this page from its back-forward cache, including the hidden
+    // submit button from the previous payment attempt. Always reset the
+    // checkout action when opening a fresh checkout.
+    const submit=document.getElementById('checkoutSubmit');
+    submit.style.display='';
+    submit.disabled=false;
+    submit.textContent='Save Order Details';
+    const message=document.getElementById('checkoutMessage');
+    message.className='checkout-message';
+    message.textContent='';
+
     document.getElementById('checkoutModal').classList.add('show');
     document.getElementById('checkoutModal').setAttribute('aria-hidden','false');
 }
